@@ -1,0 +1,3 @@
+subckt mux4i_x1 D0 D1 D2 D3 S0 S1 X VDD VSS
+* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+ends mux4i_x1

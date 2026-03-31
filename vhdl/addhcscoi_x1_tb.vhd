@@ -1,0 +1,44 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity tb is
+end entity tb;
+
+architecture sim of tb is
+  signal w_s, w_a, w_x : std_logic;
+  signal in0 : std_logic;
+  signal in1 : std_logic;
+  signal in2 : std_logic;
+begin
+  dut: entity work.addhcscoi_x1(rtl)
+    port map (S => w_s, CO0 => w_a, CO1 => w_x, A => in0, B => in1, CI => in2);
+  process
+  begin
+    in0 <= '0'; in1 <= '0'; in2 <= '0';
+    wait for 1 ns;
+    assert w_s = '0' and w_a = '1' and w_x = '1' report "ADDHCSCOI mismatch" severity failure;
+    in0 <= '1'; in1 <= '0'; in2 <= '0';
+    wait for 1 ns;
+    assert w_s = '1' and w_a = '1' and w_x = '0' report "ADDHCSCOI mismatch" severity failure;
+    in0 <= '0'; in1 <= '1'; in2 <= '0';
+    wait for 1 ns;
+    assert w_s = '1' and w_a = '1' and w_x = '0' report "ADDHCSCOI mismatch" severity failure;
+    in0 <= '1'; in1 <= '1'; in2 <= '0';
+    wait for 1 ns;
+    assert w_s = '0' and w_a = '0' and w_x = '0' report "ADDHCSCOI mismatch" severity failure;
+    in0 <= '0'; in1 <= '0'; in2 <= '1';
+    wait for 1 ns;
+    assert w_s = '1' and w_a = '1' and w_x = '1' report "ADDHCSCOI mismatch" severity failure;
+    in0 <= '1'; in1 <= '0'; in2 <= '1';
+    wait for 1 ns;
+    assert w_s = '0' and w_a = '1' and w_x = '0' report "ADDHCSCOI mismatch" severity failure;
+    in0 <= '0'; in1 <= '1'; in2 <= '1';
+    wait for 1 ns;
+    assert w_s = '0' and w_a = '1' and w_x = '0' report "ADDHCSCOI mismatch" severity failure;
+    in0 <= '1'; in1 <= '1'; in2 <= '1';
+    wait for 1 ns;
+    assert w_s = '1' and w_a = '0' and w_x = '0' report "ADDHCSCOI mismatch" severity failure;
+    report "TB_PASS addhcscoi_x1" severity note;
+    wait;
+  end process;
+end architecture sim;

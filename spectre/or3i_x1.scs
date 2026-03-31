@@ -1,0 +1,3 @@
+subckt or3i_x1 A1 A2 A3 X VDD VSS
+* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+ends or3i_x1

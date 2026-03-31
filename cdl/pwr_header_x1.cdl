@@ -1,0 +1,4 @@
+* CDL/LVS-oriented netlist
+.SUBCKT pwr_header_x1 VDD VDDH VSS
+* Power rail / header / footer / PM cell: VDD (core), VDDH (domain/I/O), VSS.
+.ENDS pwr_header_x1

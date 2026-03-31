@@ -1,0 +1,4 @@
+* CDL/LVS-oriented netlist
+.SUBCKT tiehi_x1 L_HI VDD VSS
+* Physical cell: abstract subckt (rails per PDK CDL; add PDK devices if needed).
+.ENDS tiehi_x1

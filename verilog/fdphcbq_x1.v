@@ -1,0 +1,52 @@
+`timescale 100ps / 1ps
+
+`define STDCELL_SEQ_DELAY 1
+`define STDCELL_COMBO_DELAY 1
+`define STDCELL_CKGT_DELAY 0
+`define STDCELL_LAT_DELAY 1
+
+`ifdef VIRL_functiononly
+    `delay_mode_distributed
+    `define _fv
+`else
+    `delay_mode_path
+`endif
+
+`celldefine
+module fdphcbq_x1 (Q, CK, D, EN, RS);
+   output reg Q;
+   input CK, D, EN, RS;
+
+   /////////////////////////////////////
+   //          FUNCTIONALITY          //
+   /////////////////////////////////////
+
+   `ifdef VIRL_functiononly
+   always @(posedge CK) begin
+       if (EN)
+           Q <= D & RS;
+   end
+   `else
+   always @(posedge CK) begin
+       if (EN)
+           Q <= D & RS;
+   end
+   `endif
+
+   /////////////////////////////////////
+   //             TIMING              //
+   /////////////////////////////////////
+   `ifdef VIRL_functiononly
+
+   `else
+
+specify
+(CK +=> Q)=(0, 0);
+(D +=> Q)=(0, 0);
+(EN +=> Q)=(0, 0);
+(RS +=> Q)=(0, 0);
+endspecify
+   `endif
+
+endmodule
+`endcelldefine

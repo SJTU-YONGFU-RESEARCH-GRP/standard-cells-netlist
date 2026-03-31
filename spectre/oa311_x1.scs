@@ -1,0 +1,3 @@
+subckt oa311_x1 A1 A2 B1 B2 C X VDD VSS
+* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+ends oa311_x1

@@ -1,0 +1,10 @@
+.subckt mux2di_x1 D0 D1 S X VDD VSS
+XMUX2DI_IN0_P0 in0_b D0 VDD VDD pmos w=2u l=100n
+XMUX2DI_IN0_N0 in0_b D0 VSS VSS nmos w=1u l=100n
+XMUX2DI_S_P0 sel_b S VDD VDD pmos w=2u l=100n
+XMUX2DI_S_N0 sel_b S VSS VSS nmos w=1u l=100n
+XM2DI0_MP0 X S in0_b VDD pmos w=2u l=100n
+XM2DI0_MN0 X sel_b in0_b VSS nmos w=1u l=100n
+XM2DI0_MP1 X sel_b D1 VDD pmos w=2u l=100n
+XM2DI0_MN1 X S D1 VSS nmos w=1u l=100n
+.ends mux2di_x1

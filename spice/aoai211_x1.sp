@@ -1,0 +1,18 @@
+.subckt aoai211_x1 A1 A2 B1 B2 X VDD VSS
+XAOAI211A0_PA0 aoai211_and_n A1 VDD VDD pmos w=2u l=100n
+XAOAI211A0_PB0 aoai211_and_n A2 VDD VDD pmos w=2u l=100n
+XAOAI211A0_NB0 aoai211_and_n A2 nmid_AOAI211A0_0 VSS nmos w=1u l=100n
+XAOAI211A0_NA0 nmid_AOAI211A0_0 A1 VSS VSS nmos w=1u l=100n
+XAOAI211AI0_P0 aoai211_and aoai211_and_n VDD VDD pmos w=2u l=100n
+XAOAI211AI0_N0 aoai211_and aoai211_and_n VSS VSS nmos w=1u l=100n
+XAOAI211N20_PA0 pmid_AOAI211N20_0 aoai211_and VDD VDD pmos w=2u l=100n
+XAOAI211N20_PB0 aoai211_ao_n B1 pmid_AOAI211N20_0 VDD pmos w=2u l=100n
+XAOAI211N20_NA0 aoai211_ao_n aoai211_and VSS VSS nmos w=1u l=100n
+XAOAI211N20_NB0 aoai211_ao_n B1 VSS VSS nmos w=1u l=100n
+XAOAI211OI0_P0 aoai211_ao aoai211_ao_n VDD VDD pmos w=2u l=100n
+XAOAI211OI0_N0 aoai211_ao aoai211_ao_n VSS VSS nmos w=1u l=100n
+XAOAI211NAND0_PA0 X aoai211_ao VDD VDD pmos w=2u l=100n
+XAOAI211NAND0_PB0 X B2 VDD VDD pmos w=2u l=100n
+XAOAI211NAND0_NB0 X B2 nmid_AOAI211NAND0_0 VSS nmos w=1u l=100n
+XAOAI211NAND0_NA0 nmid_AOAI211NAND0_0 aoai211_ao VSS VSS nmos w=1u l=100n
+.ends aoai211_x1

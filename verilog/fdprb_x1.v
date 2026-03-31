@@ -1,0 +1,64 @@
+`timescale 100ps / 1ps
+
+`define STDCELL_SEQ_DELAY 1
+`define STDCELL_COMBO_DELAY 1
+`define STDCELL_CKGT_DELAY 0
+`define STDCELL_LAT_DELAY 1
+
+`ifdef VIRL_functiononly
+    `delay_mode_distributed
+    `define _fv
+`else
+    `delay_mode_path
+`endif
+
+`celldefine
+module fdprb_x1 (Q, QN, CK, D, RD);
+   output reg Q, QN;
+   input CK, D, RD;
+
+   /////////////////////////////////////
+   //          FUNCTIONALITY          //
+   /////////////////////////////////////
+
+   `ifdef VIRL_functiononly
+   always @(posedge CK or negedge RD) begin
+       if (!RD) begin
+           Q <= 1'b0;
+           QN <= 1'b1;
+       end else begin
+           Q <= D;
+           QN <= ~D;
+       end
+   end
+   `else
+   always @(posedge CK or negedge RD) begin
+       if (!RD) begin
+           Q <= 1'b0;
+           QN <= 1'b1;
+       end else begin
+           Q <= D;
+           QN <= ~D;
+       end
+   end
+   `endif
+
+   /////////////////////////////////////
+   //             TIMING              //
+   /////////////////////////////////////
+   `ifdef VIRL_functiononly
+
+   `else
+
+specify
+(CK +=> Q)=(0, 0);
+(CK +=> QN)=(0, 0);
+(D +=> Q)=(0, 0);
+(D +=> QN)=(0, 0);
+(RD +=> Q)=(0, 0);
+(RD +=> QN)=(0, 0);
+endspecify
+   `endif
+
+endmodule
+`endcelldefine

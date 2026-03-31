@@ -1,0 +1,11 @@
+* CDL/LVS-oriented netlist
+.SUBCKT dly_x1 A X VDD VSS
+XDL0_0_P0 dly_0_s0 A VDD VDD pmos w=2u l=100n
+XDL0_0_N0 dly_0_s0 A VSS VSS nmos w=1u l=100n
+XDL0_1_P0 dly_0_s1 dly_0_s0 VDD VDD pmos w=2u l=100n
+XDL0_1_N0 dly_0_s1 dly_0_s0 VSS VSS nmos w=1u l=100n
+XDL0_2_P0 dly_0_s2 dly_0_s1 VDD VDD pmos w=2u l=100n
+XDL0_2_N0 dly_0_s2 dly_0_s1 VSS VSS nmos w=1u l=100n
+XDL0_3_P0 X dly_0_s2 VDD VDD pmos w=2u l=100n
+XDL0_3_N0 X dly_0_s2 VSS VSS nmos w=1u l=100n
+.ENDS dly_x1

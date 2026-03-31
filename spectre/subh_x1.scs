@@ -1,0 +1,3 @@
+subckt subh_x1 A B S CO VDD VSS
+* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+ends subh_x1

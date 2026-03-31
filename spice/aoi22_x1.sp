@@ -1,0 +1,10 @@
+.subckt aoi22_x1 A1 A2 B1 B2 X VDD VSS
+XMNA10 X A1 aoi22_nsa VSS nmos w=1u l=100n
+XMNA20 aoi22_nsa A2 VSS VSS nmos w=1u l=100n
+XMNB10 X B1 aoi22_nsb VSS nmos w=1u l=100n
+XMNB20 aoi22_nsb B2 VSS VSS nmos w=1u l=100n
+XMPA10 aoi22_n1 A1 VDD VDD pmos w=2u l=100n
+XMPA20 aoi22_n1 A2 VDD VDD pmos w=2u l=100n
+XMPB10 X B1 aoi22_n1 VDD pmos w=2u l=100n
+XMPB20 X B2 aoi22_n1 VDD pmos w=2u l=100n
+.ends aoi22_x1

@@ -1,0 +1,11 @@
+* CDL/LVS-oriented netlist
+.SUBCKT or3_x1 A1 A2 A3 X VDD VSS
+XO30_PA0 pmid1 A1 VDD VDD pmos w=2u l=100n
+XO30_PB0 pmid2 A2 pmid1 VDD pmos w=2u l=100n
+XO30_PC0 nor3_out A3 pmid2 VDD pmos w=2u l=100n
+XO30_NA0 nor3_out A1 VSS VSS nmos w=1u l=100n
+XO30_NB0 nor3_out A2 VSS VSS nmos w=1u l=100n
+XO30_NC0 nor3_out A3 VSS VSS nmos w=1u l=100n
+XO3I0_P0 X nor3_out VDD VDD pmos w=2u l=100n
+XO3I0_N0 X nor3_out VSS VSS nmos w=1u l=100n
+.ENDS or3_x1

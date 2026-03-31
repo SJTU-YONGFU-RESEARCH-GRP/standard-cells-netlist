@@ -1,0 +1,3 @@
+.subckt tiehi_x1 L_HI VDD VSS
+* Physical cell: abstract subckt (rails per PDK CDL; add PDK devices if needed).
+.ends tiehi_x1

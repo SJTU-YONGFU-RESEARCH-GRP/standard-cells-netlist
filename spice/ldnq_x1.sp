@@ -1,0 +1,4 @@
+.subckt ldnq_x1 Q G D VDD VSS
+* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+* ref_lib analogue: LIB_LDNQ_* in ref_lib/lib_hd_ref.v; LIBHD_* in ref_lib/lib_hd_ref.spx (rails often VDD VSS VBP VBN)
+.ends ldnq_x1

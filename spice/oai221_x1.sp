@@ -1,0 +1,12 @@
+.subckt oai221_x1 A1 A2 B1 B2 C X VDD VSS
+XMNA10 X A1 oai221_n1 VSS nmos w=1u l=100n
+XMNA20 X A2 oai221_n1 VSS nmos w=1u l=100n
+XMNB10 oai221_n1 B1 oai221_n2 VSS nmos w=1u l=100n
+XMNB20 oai221_n1 B2 oai221_n2 VSS nmos w=1u l=100n
+XMNC0 oai221_n2 C VSS VSS nmos w=1u l=100n
+XMPA10 oai221_p1a A1 VDD VDD pmos w=2u l=100n
+XMPA20 X A2 oai221_p1a VDD pmos w=2u l=100n
+XMPB10 oai221_p1b B1 VDD VDD pmos w=2u l=100n
+XMPB20 X B2 oai221_p1b VDD pmos w=2u l=100n
+XMPC0 X C VDD VDD pmos w=2u l=100n
+.ends oai221_x1

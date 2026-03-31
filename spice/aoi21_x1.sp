@@ -1,0 +1,8 @@
+.subckt aoi21_x1 A1 A2 B X VDD VSS
+XMNB0 X B VSS VSS nmos w=1u l=100n
+XMNA20 aoi21_nsa A2 VSS VSS nmos w=1u l=100n
+XMNA10 X A1 aoi21_nsa VSS nmos w=1u l=100n
+XMPB0 aoi21_npb B VDD VDD pmos w=2u l=100n
+XMPA10 X A1 aoi21_npb VDD pmos w=2u l=100n
+XMPA20 X A2 aoi21_npb VDD pmos w=2u l=100n
+.ends aoi21_x1

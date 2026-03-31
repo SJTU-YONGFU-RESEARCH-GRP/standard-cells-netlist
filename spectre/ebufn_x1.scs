@@ -1,0 +1,6 @@
+subckt ebufn_x1 A EN X VDD VSS
+TEI_P0 (te_n EN VDD VDD) pmos w=2u l=100n
+TEI_N0 (te_n EN VSS VSS) nmos w=1u l=100n
+EBP0 (X EN A VDD) pmos w=2u l=100n
+EBN0 (X te_n A VSS) nmos w=1u l=100n
+ends ebufn_x1

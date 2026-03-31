@@ -1,0 +1,3 @@
+subckt addfcii_x1 S CO A B CI VDD VSS
+* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+ends addfcii_x1

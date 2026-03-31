@@ -1,0 +1,4 @@
+* CDL/LVS-oriented netlist
+.SUBCKT subh_x1 A B S CO VDD VSS
+* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+.ENDS subh_x1

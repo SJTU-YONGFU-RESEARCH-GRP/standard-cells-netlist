@@ -1,0 +1,3 @@
+subckt oai32_x1 A1 A2 B1 B2 C X VDD VSS
+* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+ends oai32_x1

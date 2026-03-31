@@ -1,0 +1,19 @@
+* CDL/LVS-oriented netlist
+.SUBCKT xor2_x1 A1 A2 X VDD VSS
+XX0_nr_PA0 pmid_X0_nr_0 A1 VDD VDD pmos w=2u l=100n
+XX0_nr_PB0 x_nor_0 A2 pmid_X0_nr_0 VDD pmos w=2u l=100n
+XX0_nr_NA0 x_nor_0 A1 VSS VSS nmos w=1u l=100n
+XX0_nr_NB0 x_nor_0 A2 VSS VSS nmos w=1u l=100n
+XX0_iv_P0 x_or_0 x_nor_0 VDD VDD pmos w=2u l=100n
+XX0_iv_N0 x_or_0 x_nor_0 VSS VSS nmos w=1u l=100n
+XX0_nd_PA0 x_nand_0 A1 VDD VDD pmos w=2u l=100n
+XX0_nd_PB0 x_nand_0 A2 VDD VDD pmos w=2u l=100n
+XX0_nd_NB0 x_nand_0 A2 nmid_X0_nd_0 VSS nmos w=1u l=100n
+XX0_nd_NA0 nmid_X0_nd_0 A1 VSS VSS nmos w=1u l=100n
+XX0_na_PA0 x_pre_0 x_or_0 VDD VDD pmos w=2u l=100n
+XX0_na_PB0 x_pre_0 x_nand_0 VDD VDD pmos w=2u l=100n
+XX0_na_NB0 x_pre_0 x_nand_0 nmid_X0_na_0 VSS nmos w=1u l=100n
+XX0_na_NA0 nmid_X0_na_0 x_or_0 VSS VSS nmos w=1u l=100n
+XX0_xo_P0 X x_pre_0 VDD VDD pmos w=2u l=100n
+XX0_xo_N0 X x_pre_0 VSS VSS nmos w=1u l=100n
+.ENDS xor2_x1

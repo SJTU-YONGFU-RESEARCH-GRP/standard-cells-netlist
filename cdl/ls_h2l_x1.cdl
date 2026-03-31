@@ -1,0 +1,4 @@
+* CDL/LVS-oriented netlist
+.SUBCKT ls_h2l_x1 in0 out VDDL VDDH VSS
+* Level shifter: in0, out, VDDL (low domain), VDDH (high domain), VSS.
+.ENDS ls_h2l_x1

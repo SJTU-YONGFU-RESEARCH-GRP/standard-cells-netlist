@@ -1,0 +1,3 @@
+subckt bmux_x1 S A X M0 M1 PP VDD VSS
+* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+ends bmux_x1

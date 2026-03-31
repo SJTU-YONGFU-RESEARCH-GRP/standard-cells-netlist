@@ -1,0 +1,27 @@
+.subckt addhii_x1 S CO A B VDD VSS
+* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+XADDHII_B_P0 addh_b B VDD VDD pmos w=2u l=100n
+XADDHII_B_N0 addh_b B VSS VSS nmos w=1u l=100n
+XADDH_S_nr_PA0 pmid_ADDH_S_nr_0 A VDD VDD pmos w=2u l=100n
+XADDH_S_nr_PB0 x_nor_0 addh_b pmid_ADDH_S_nr_0 VDD pmos w=2u l=100n
+XADDH_S_nr_NA0 x_nor_0 A VSS VSS nmos w=1u l=100n
+XADDH_S_nr_NB0 x_nor_0 addh_b VSS VSS nmos w=1u l=100n
+XADDH_S_iv_P0 x_or_0 x_nor_0 VDD VDD pmos w=2u l=100n
+XADDH_S_iv_N0 x_or_0 x_nor_0 VSS VSS nmos w=1u l=100n
+XADDH_S_nd_PA0 x_nand_0 A VDD VDD pmos w=2u l=100n
+XADDH_S_nd_PB0 x_nand_0 addh_b VDD VDD pmos w=2u l=100n
+XADDH_S_nd_NB0 x_nand_0 addh_b nmid_ADDH_S_nd_0 VSS nmos w=1u l=100n
+XADDH_S_nd_NA0 nmid_ADDH_S_nd_0 A VSS VSS nmos w=1u l=100n
+XADDH_S_na_PA0 x_pre_0 x_or_0 VDD VDD pmos w=2u l=100n
+XADDH_S_na_PB0 x_pre_0 x_nand_0 VDD VDD pmos w=2u l=100n
+XADDH_S_na_NB0 x_pre_0 x_nand_0 nmid_ADDH_S_na_0 VSS nmos w=1u l=100n
+XADDH_S_na_NA0 nmid_ADDH_S_na_0 x_or_0 VSS VSS nmos w=1u l=100n
+XADDH_S_xo_P0 S x_pre_0 VDD VDD pmos w=2u l=100n
+XADDH_S_xo_N0 S x_pre_0 VSS VSS nmos w=1u l=100n
+XADDH_CON_PA0 addh_co_n A VDD VDD pmos w=2u l=100n
+XADDH_CON_PB0 addh_co_n addh_b VDD VDD pmos w=2u l=100n
+XADDH_CON_NB0 addh_co_n addh_b nmid_ADDH_CON_0 VSS nmos w=1u l=100n
+XADDH_CON_NA0 nmid_ADDH_CON_0 A VSS VSS nmos w=1u l=100n
+XADDH_CO_P0 CO addh_co_n VDD VDD pmos w=2u l=100n
+XADDH_CO_N0 CO addh_co_n VSS VSS nmos w=1u l=100n
+.ends addhii_x1

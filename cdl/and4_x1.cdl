@@ -1,0 +1,13 @@
+* CDL/LVS-oriented netlist
+.SUBCKT and4_x1 A1 A2 A3 A4 X VDD VSS
+XA40_PA0 nand4_out A1 VDD VDD pmos w=2u l=100n
+XA40_PB0 nand4_out A2 VDD VDD pmos w=2u l=100n
+XA40_PC0 nand4_out A3 VDD VDD pmos w=2u l=100n
+XA40_PD0 nand4_out A4 VDD VDD pmos w=2u l=100n
+XA40_ND0 nand4_out A4 na4_3 VSS nmos w=1u l=100n
+XA40_NC0 na4_3 A3 na4_2 VSS nmos w=1u l=100n
+XA40_NB0 na4_2 A2 na4_1 VSS nmos w=1u l=100n
+XA40_NA0 na4_1 A1 VSS VSS nmos w=1u l=100n
+XA4I0_P0 X nand4_out VDD VDD pmos w=2u l=100n
+XA4I0_N0 X nand4_out VSS VSS nmos w=1u l=100n
+.ENDS and4_x1

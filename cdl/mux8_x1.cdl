@@ -1,0 +1,4 @@
+* CDL/LVS-oriented netlist
+.SUBCKT mux8_x1 D0 D1 D2 D3 D4 D5 D6 D7 S0 S1 S2 X VDD VSS
+* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+.ENDS mux8_x1

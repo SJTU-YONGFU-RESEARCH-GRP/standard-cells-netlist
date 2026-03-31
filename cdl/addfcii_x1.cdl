@@ -1,0 +1,4 @@
+* CDL/LVS-oriented netlist
+.SUBCKT addfcii_x1 S CO A B CI VDD VSS
+* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+.ENDS addfcii_x1

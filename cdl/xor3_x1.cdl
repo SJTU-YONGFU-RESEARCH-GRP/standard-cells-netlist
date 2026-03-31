@@ -1,0 +1,35 @@
+* CDL/LVS-oriented netlist
+.SUBCKT xor3_x1 A1 A2 A3 X VDD VSS
+XX30A_nr_PA0 pmid_X30A_nr_0 A1 VDD VDD pmos w=2u l=100n
+XX30A_nr_PB0 x_nor_0a A2 pmid_X30A_nr_0 VDD pmos w=2u l=100n
+XX30A_nr_NA0 x_nor_0a A1 VSS VSS nmos w=1u l=100n
+XX30A_nr_NB0 x_nor_0a A2 VSS VSS nmos w=1u l=100n
+XX30A_iv_P0 x_or_0a x_nor_0a VDD VDD pmos w=2u l=100n
+XX30A_iv_N0 x_or_0a x_nor_0a VSS VSS nmos w=1u l=100n
+XX30A_nd_PA0 x_nand_0a A1 VDD VDD pmos w=2u l=100n
+XX30A_nd_PB0 x_nand_0a A2 VDD VDD pmos w=2u l=100n
+XX30A_nd_NB0 x_nand_0a A2 nmid_X30A_nd_0 VSS nmos w=1u l=100n
+XX30A_nd_NA0 nmid_X30A_nd_0 A1 VSS VSS nmos w=1u l=100n
+XX30A_na_PA0 x_pre_0a x_or_0a VDD VDD pmos w=2u l=100n
+XX30A_na_PB0 x_pre_0a x_nand_0a VDD VDD pmos w=2u l=100n
+XX30A_na_NB0 x_pre_0a x_nand_0a nmid_X30A_na_0 VSS nmos w=1u l=100n
+XX30A_na_NA0 nmid_X30A_na_0 x_or_0a VSS VSS nmos w=1u l=100n
+XX30A_xo_P0 xx3_01_0 x_pre_0a VDD VDD pmos w=2u l=100n
+XX30A_xo_N0 xx3_01_0 x_pre_0a VSS VSS nmos w=1u l=100n
+XX30B_nr_PA0 pmid_X30B_nr_0 xx3_01_0 VDD VDD pmos w=2u l=100n
+XX30B_nr_PB0 x_nor_0b A3 pmid_X30B_nr_0 VDD pmos w=2u l=100n
+XX30B_nr_NA0 x_nor_0b xx3_01_0 VSS VSS nmos w=1u l=100n
+XX30B_nr_NB0 x_nor_0b A3 VSS VSS nmos w=1u l=100n
+XX30B_iv_P0 x_or_0b x_nor_0b VDD VDD pmos w=2u l=100n
+XX30B_iv_N0 x_or_0b x_nor_0b VSS VSS nmos w=1u l=100n
+XX30B_nd_PA0 x_nand_0b xx3_01_0 VDD VDD pmos w=2u l=100n
+XX30B_nd_PB0 x_nand_0b A3 VDD VDD pmos w=2u l=100n
+XX30B_nd_NB0 x_nand_0b A3 nmid_X30B_nd_0 VSS nmos w=1u l=100n
+XX30B_nd_NA0 nmid_X30B_nd_0 xx3_01_0 VSS VSS nmos w=1u l=100n
+XX30B_na_PA0 x_pre_0b x_or_0b VDD VDD pmos w=2u l=100n
+XX30B_na_PB0 x_pre_0b x_nand_0b VDD VDD pmos w=2u l=100n
+XX30B_na_NB0 x_pre_0b x_nand_0b nmid_X30B_na_0 VSS nmos w=1u l=100n
+XX30B_na_NA0 nmid_X30B_na_0 x_or_0b VSS VSS nmos w=1u l=100n
+XX30B_xo_P0 X x_pre_0b VDD VDD pmos w=2u l=100n
+XX30B_xo_N0 X x_pre_0b VSS VSS nmos w=1u l=100n
+.ENDS xor3_x1

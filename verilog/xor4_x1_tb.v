@@ -1,0 +1,58 @@
+`timescale 1ns/1ps
+module tb;
+  wire out;
+  reg in0, in1, in2, in3;
+  xor4_x1 dut (.X(out), .A1(in0), .A2(in1), .A3(in2), .A4(in3));
+  initial begin
+      in0=1'b0; in1=1'b0; in2=1'b0; in3=1'b0;
+      #1;
+      if (out !== 1'b0) $fatal(1, "XOR4 mismatch");
+      in0=1'b1; in1=1'b0; in2=1'b0; in3=1'b0;
+      #1;
+      if (out !== 1'b1) $fatal(1, "XOR4 mismatch");
+      in0=1'b0; in1=1'b1; in2=1'b0; in3=1'b0;
+      #1;
+      if (out !== 1'b1) $fatal(1, "XOR4 mismatch");
+      in0=1'b1; in1=1'b1; in2=1'b0; in3=1'b0;
+      #1;
+      if (out !== 1'b0) $fatal(1, "XOR4 mismatch");
+      in0=1'b0; in1=1'b0; in2=1'b1; in3=1'b0;
+      #1;
+      if (out !== 1'b1) $fatal(1, "XOR4 mismatch");
+      in0=1'b1; in1=1'b0; in2=1'b1; in3=1'b0;
+      #1;
+      if (out !== 1'b0) $fatal(1, "XOR4 mismatch");
+      in0=1'b0; in1=1'b1; in2=1'b1; in3=1'b0;
+      #1;
+      if (out !== 1'b0) $fatal(1, "XOR4 mismatch");
+      in0=1'b1; in1=1'b1; in2=1'b1; in3=1'b0;
+      #1;
+      if (out !== 1'b1) $fatal(1, "XOR4 mismatch");
+      in0=1'b0; in1=1'b0; in2=1'b0; in3=1'b1;
+      #1;
+      if (out !== 1'b1) $fatal(1, "XOR4 mismatch");
+      in0=1'b1; in1=1'b0; in2=1'b0; in3=1'b1;
+      #1;
+      if (out !== 1'b0) $fatal(1, "XOR4 mismatch");
+      in0=1'b0; in1=1'b1; in2=1'b0; in3=1'b1;
+      #1;
+      if (out !== 1'b0) $fatal(1, "XOR4 mismatch");
+      in0=1'b1; in1=1'b1; in2=1'b0; in3=1'b1;
+      #1;
+      if (out !== 1'b1) $fatal(1, "XOR4 mismatch");
+      in0=1'b0; in1=1'b0; in2=1'b1; in3=1'b1;
+      #1;
+      if (out !== 1'b0) $fatal(1, "XOR4 mismatch");
+      in0=1'b1; in1=1'b0; in2=1'b1; in3=1'b1;
+      #1;
+      if (out !== 1'b1) $fatal(1, "XOR4 mismatch");
+      in0=1'b0; in1=1'b1; in2=1'b1; in3=1'b1;
+      #1;
+      if (out !== 1'b1) $fatal(1, "XOR4 mismatch");
+      in0=1'b1; in1=1'b1; in2=1'b1; in3=1'b1;
+      #1;
+      if (out !== 1'b0) $fatal(1, "XOR4 mismatch");
+    $display("TB_PASS %s", "xor4_x1");
+    $finish(0);
+  end
+endmodule

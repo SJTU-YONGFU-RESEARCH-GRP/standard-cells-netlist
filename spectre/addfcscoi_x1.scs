@@ -1,0 +1,3 @@
+subckt addfcscoi_x1 S CO0 CO1 A B CI0 CI1 CS VDD VSS
+* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+ends addfcscoi_x1

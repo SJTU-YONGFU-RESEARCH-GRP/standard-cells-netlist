@@ -1,0 +1,20 @@
+.subckt mux4i_x1 D0 D1 D2 D3 S0 S1 X VDD VSS
+XM4IS0_P0 s0_b S0 VDD VDD pmos w=2u l=100n
+XM4IS0_N0 s0_b S0 VSS VSS nmos w=1u l=100n
+XM4IS1_P0 s1_b S1 VDD VDD pmos w=2u l=100n
+XM4IS1_N0 s1_b S1 VSS VSS nmos w=1u l=100n
+XM4Ia0_MP0 mux4i_m01 S0 D0 VDD pmos w=2u l=100n
+XM4Ia0_MN0 mux4i_m01 s0_b D0 VSS nmos w=1u l=100n
+XM4Ia0_MP1 mux4i_m01 s0_b D1 VDD pmos w=2u l=100n
+XM4Ia0_MN1 mux4i_m01 S0 D1 VSS nmos w=1u l=100n
+XM4Ib0_MP0 mux4i_m23 S0 D2 VDD pmos w=2u l=100n
+XM4Ib0_MN0 mux4i_m23 s0_b D2 VSS nmos w=1u l=100n
+XM4Ib0_MP1 mux4i_m23 s0_b D3 VDD pmos w=2u l=100n
+XM4Ib0_MN1 mux4i_m23 S0 D3 VSS nmos w=1u l=100n
+XM4Ic0_MP0 mux4i_mid S1 mux4i_m01 VDD pmos w=2u l=100n
+XM4Ic0_MN0 mux4i_mid s1_b mux4i_m01 VSS nmos w=1u l=100n
+XM4Ic0_MP1 mux4i_mid s1_b mux4i_m23 VDD pmos w=2u l=100n
+XM4Ic0_MN1 mux4i_mid S1 mux4i_m23 VSS nmos w=1u l=100n
+XM4IOUT0_P0 X mux4i_mid VDD VDD pmos w=2u l=100n
+XM4IOUT0_N0 X mux4i_mid VSS VSS nmos w=1u l=100n
+.ends mux4i_x1

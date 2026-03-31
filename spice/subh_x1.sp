@@ -1,0 +1,23 @@
+.subckt subh_x1 A B S CO VDD VSS
+* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+XSUBH_nr_PA0 pmid_SUBH_nr_0 A VDD VDD pmos w=2u l=100n
+XSUBH_nr_PB0 x_nor_0 B pmid_SUBH_nr_0 VDD pmos w=2u l=100n
+XSUBH_nr_NA0 x_nor_0 A VSS VSS nmos w=1u l=100n
+XSUBH_nr_NB0 x_nor_0 B VSS VSS nmos w=1u l=100n
+XSUBH_iv_P0 x_or_0 x_nor_0 VDD VDD pmos w=2u l=100n
+XSUBH_iv_N0 x_or_0 x_nor_0 VSS VSS nmos w=1u l=100n
+XSUBH_nd_PA0 x_nand_0 A VDD VDD pmos w=2u l=100n
+XSUBH_nd_PB0 x_nand_0 B VDD VDD pmos w=2u l=100n
+XSUBH_nd_NB0 x_nand_0 B nmid_SUBH_nd_0 VSS nmos w=1u l=100n
+XSUBH_nd_NA0 nmid_SUBH_nd_0 A VSS VSS nmos w=1u l=100n
+XSUBH_na_PA0 S x_or_0 VDD VDD pmos w=2u l=100n
+XSUBH_na_PB0 S x_nand_0 VDD VDD pmos w=2u l=100n
+XSUBH_na_NB0 S x_nand_0 nmid_SUBH_na_0 VSS nmos w=1u l=100n
+XSUBH_na_NA0 nmid_SUBH_na_0 x_or_0 VSS VSS nmos w=1u l=100n
+XSUBH_OR_PA0 pmid_SUBH_OR_0 A VDD VDD pmos w=2u l=100n
+XSUBH_OR_PB0 subh_or_n B pmid_SUBH_OR_0 VDD pmos w=2u l=100n
+XSUBH_OR_NA0 subh_or_n A VSS VSS nmos w=1u l=100n
+XSUBH_OR_NB0 subh_or_n B VSS VSS nmos w=1u l=100n
+XSUBH_ORI_P0 CO subh_or_n VDD VDD pmos w=2u l=100n
+XSUBH_ORI_N0 CO subh_or_n VSS VSS nmos w=1u l=100n
+.ends subh_x1

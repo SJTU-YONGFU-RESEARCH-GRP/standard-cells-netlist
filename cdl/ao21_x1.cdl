@@ -1,0 +1,11 @@
+* CDL/LVS-oriented netlist
+.SUBCKT ao21_x1 A1 A2 B X VDD VSS
+XAO0_NB0 ao21_mid B VSS VSS nmos w=1u l=100n
+XAO0_NA20 aoi21_nsa A2 VSS VSS nmos w=1u l=100n
+XAO0_NA10 ao21_mid A1 aoi21_nsa VSS nmos w=1u l=100n
+XAO0_PB0 aoi21_npb B VDD VDD pmos w=2u l=100n
+XAO0_PA10 ao21_mid A1 aoi21_npb VDD pmos w=2u l=100n
+XAO0_PA20 ao21_mid A2 aoi21_npb VDD pmos w=2u l=100n
+XAO21OUT0_P0 X ao21_mid VDD VDD pmos w=2u l=100n
+XAO21OUT0_N0 X ao21_mid VSS VSS nmos w=1u l=100n
+.ENDS ao21_x1

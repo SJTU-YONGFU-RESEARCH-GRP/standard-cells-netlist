@@ -1,0 +1,26 @@
+.subckt bmuxi_x1 S A X M0 M1 PP VDD VSS
+XBMA_P0 a_b A VDD VDD pmos w=2u l=100n
+XBMA_N0 a_b A VSS VSS nmos w=1u l=100n
+XBMS_P0 s_b S VDD VDD pmos w=2u l=100n
+XBMS_N0 s_b S VSS VSS nmos w=1u l=100n
+XBMM0_P0 m0_b M0 VDD VDD pmos w=2u l=100n
+XBMM0_N0 m0_b M0 VSS VSS nmos w=1u l=100n
+XBMM1_P0 m1_b M1 VDD VDD pmos w=2u l=100n
+XBMM1_N0 m1_b M1 VSS VSS nmos w=1u l=100n
+XBMX_P0 x_b X VDD VDD pmos w=2u l=100n
+XBMX_N0 x_b X VSS VSS nmos w=1u l=100n
+XBM00_MP0 bm_b0 M0 s_b VDD pmos w=2u l=100n
+XBM00_MN0 bm_b0 m0_b s_b VSS nmos w=1u l=100n
+XBM00_MP1 bm_b0 m0_b a_b VDD pmos w=2u l=100n
+XBM00_MN1 bm_b0 M0 a_b VSS nmos w=1u l=100n
+XBM10_MP0 bm_b1 M1 s_b VDD pmos w=2u l=100n
+XBM10_MN0 bm_b1 m1_b s_b VSS nmos w=1u l=100n
+XBM10_MP1 bm_b1 m1_b a_b VDD pmos w=2u l=100n
+XBM10_MN1 bm_b1 M1 a_b VSS nmos w=1u l=100n
+XBMX0_MP0 bm_y X bm_b0 VDD pmos w=2u l=100n
+XBMX0_MN0 bm_y x_b bm_b0 VSS nmos w=1u l=100n
+XBMX0_MP1 bm_y x_b bm_b1 VDD pmos w=2u l=100n
+XBMX0_MN1 bm_y X bm_b1 VSS nmos w=1u l=100n
+XBMO0_P0 PP bm_y VDD VDD pmos w=2u l=100n
+XBMO0_N0 PP bm_y VSS VSS nmos w=1u l=100n
+.ends bmuxi_x1

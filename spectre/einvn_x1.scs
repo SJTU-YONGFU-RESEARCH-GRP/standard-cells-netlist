@@ -1,0 +1,8 @@
+subckt einvn_x1 A EN X VDD VSS
+TEI_P0 (te_n EN VDD VDD) pmos w=2u l=100n
+TEI_N0 (te_n EN VSS VSS) nmos w=1u l=100n
+EIPe0 (einv_np EN VDD VDD) pmos w=2u l=100n
+EIPd0 (X A einv_np VDD) pmos w=2u l=100n
+EINd0 (X A einv_nn VSS) nmos w=1u l=100n
+EINe0 (einv_nn te_n VSS VSS) nmos w=1u l=100n
+ends einvn_x1
