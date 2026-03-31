@@ -144,46 +144,46 @@ Most logic kinds are emitted with a symbolic drive encoded in the module / subci
 
 Rows are ordered by **group**: **LD latch** (all `LD*` cells, low-active gate then high-active gate), **F flop** (plain flops then Q-only async reset/set), **F scan** (plain scan flops then Q-only async), **Sync clear** last.
 
-| # | Group | Name | Description | `ref_lib` Verilog stem |
-|--:|-------|------|-------------|------------------------|
-| 1 | LD latch | `LDNQ` | D latch, **transparent while G low**, Q only (matches `LIB_LDNQ`: latch enabled by ~G) | `LIB_LDNQ_*` |
-| 2 | LD latch | `LDNRBQ` | D latch + async active-low reset RD; **transparent while G low**, Q only | `LIB_LDNRBQ_*` |
-| 3 | LD latch | `LDNSBQ` | D latch + async active-low set SD; **transparent while G low**, Q only | `LIB_LDNSBQ_*` |
-| 4 | LD latch | `LDPRBQ` | D latch + async active-low reset RD; transparent while **G high**, Q only | `LIB_LDPRBQ_*` |
-| 5 | LD latch | `LDPSBQ` | D latch + async active-low set SD; transparent while **G high**, Q only | `LIB_LDPSBQ_*` |
-| 6 | LD latch | `LDPQ` | D latch, transparent while **G high**, Q only (matches `LIB_LDPQ`) | `LIB_LDPQ_*` |
-| 7 | F flop | `FDP` | D flip-flop: Q/QN from D on posedge CK | `LIB_FDP_*` |
-| 8 | F flop | `FDPQ` | D flip-flop: Q from D on posedge CK | `LIB_FDPQ_*` |
-| 9 | F flop | `FDPHQ` | D flip-flop with enable EN: Q captures D on posedge CK when EN=1 | `LIB_FDPHQ_*` |
-| 10 | F flop | `FDPMQ` | D flip-flop with data mux: Q captures (S ? D1 : D0) on posedge CK | `LIB_FDPMQ_*` |
-| 11 | F flop | `FDPRB` | D flip-flop + async active-low reset RD: Q/QN outputs | `LIB_FDPRB_*` |
-| 12 | F flop | `FDPRBQ_F` | D flip-flop + async active-low reset RD: Q output only | `LIB_FDPRBQ_F_*` |
-| 13 | F flop | `FDPRBSBQ` | D flip-flop + async active-low reset RD and set SD: Q output only | `LIB_FDPRBSBQ_*` |
-| 14 | F flop | `FDNQ` | D flip-flop: Q from D on negedge CK | `LIB_FDNQ_*` |
-| 15 | F flop | `FDNRBQ` | D flip-flop + async active-low reset RD: Q from D on negedge CK | `LIB_FDNRBQ_*` |
-| 16 | F flop | `FDNSBQ` | D flip-flop + async active-low set SD: Q from D on negedge CK | `LIB_FDNSBQ_*` |
-| 17 | F flop (Q only, async) | `FDPRBQ` | D flip-flop + async active-low reset RD, Q output only | `LIB_FDPRBQ_*` |
-| 18 | F flop (Q only, async) | `FDPSBQ` | D flip-flop + async active-low set SD, Q output only | `LIB_FDPSBQ_*` |
-| 19 | F scan | `FSDP` | Scan D flip-flop: Q/QN from (SE ? SI : D) on posedge CK | `LIB_FSDP_*` |
-| 20 | F scan | `FSDPQ` | Scan D flip-flop: Q from (SE ? SI : D) on posedge CK | `LIB_FSDPQ_*` |
-| 21 | F scan | `FSDPQ_F` | Scan D flip-flop (F variant): Q from (SE ? SI : D) on posedge CK | `LIB_FSDPQ_F_*` |
-| 22 | F scan | `FSDPQB_F` | Scan D flip-flop (F variant): QN = ~(SE ? SI : D) on posedge CK | `LIB_FSDPQB_F_*` |
-| 23 | F scan | `FSDPHQ` | Scan D flip-flop with enable EN: Q captures (SE ? SI : D) on posedge CK when EN=1 | `LIB_FSDPHQ_*` |
-| 24 | F scan | `FSDPHQ_FFS` | Scan D flip-flop with enable EN (FFS variant): same data path as `FSDPHQ` | `LIB_FSDPHQ_FFS_*` |
-| 25 | F scan | `FSDPMQ` | Scan D flip-flop with data mux: Q captures (SE ? SI : (S ? D1 : D0)) on posedge CK | `LIB_FSDPMQ_*` |
-| 26 | F scan | `FSDPRB` | Scan D flip-flop + async active-low reset RD: Q/QN outputs | `LIB_FSDPRB_*` |
-| 27 | F scan | `FSDPRBQ_F` | Scan D flip-flop + async active-low reset RD (F variant): Q output only | `LIB_FSDPRBQ_F_*` |
-| 28 | F scan | `FSDPRBQ_FV1` | Scan D flip-flop + async active-low reset RD (FV1 variant): Q output only | `LIB_FSDPRBQ_FV1_*` |
-| 29 | F scan | `FSDPRBSBQ` | Scan D flip-flop + async active-low reset RD and set SD: Q output only | `LIB_FSDPRBSBQ_*` |
-| 30 | F scan | `FSDNQ` | Scan D flip-flop: Q from (SE ? SI : D) on negedge CK | `LIB_FSDNQ_*` |
-| 31 | F scan | `FSDNRBQ` | Scan D flip-flop + async active-low reset RD: Q from (SE ? SI : D) on negedge CK | `LIB_FSDNRBQ_*` |
-| 32 | F scan | `FSDNSBQ` | Scan D flip-flop + async active-low set SD: Q from (SE ? SI : D) on negedge CK | `LIB_FSDNSBQ_*` |
-| 33 | F scan (Q only, async) | `FSDPRBQ` | Scan D flip-flop + async active-low reset RD, Q output only | `LIB_FSDPRBQ_*` |
-| 34 | F scan (Q only, async) | `FSDPSBQ` | Scan D flip-flop + async active-low set SD, Q output only | `LIB_FSDPSBQ_*` |
-| 35 | Sync clear | `FDPCBQ` | D flip-flop with synchronous clear RS on posedge CK: Q <= D & RS | `LIB_FDPCBQ_*` |
-| 36 | Sync clear | `FDPHCBQ` | D flip-flop with enable EN and synchronous clear RS on posedge CK | `LIB_FDPHCBQ_*` |
-| 37 | Sync clear | `FSDPCBQ` | Scan flop + RS on posedge CK: Q <= (SE ? SI : D) & RS | `LIB_FSDPCBQ_*` |
-| 38 | Sync clear | `FSDPHCBQ` | Scan flop with EN and RS on posedge CK | `LIB_FSDPHCBQ_*` |
+| # | Group | Name | Description |
+|--:|-------|------|-------------|
+| 1 | LD latch | `LDNQ` | D latch, **transparent while G low**, Q only (matches `LIB_LDNQ`: latch enabled by ~G) |
+| 2 | LD latch | `LDNRBQ` | D latch + async active-low reset RD; **transparent while G low**, Q only |
+| 3 | LD latch | `LDNSBQ` | D latch + async active-low set SD; **transparent while G low**, Q only |
+| 4 | LD latch | `LDPRBQ` | D latch + async active-low reset RD; transparent while **G high**, Q only |
+| 5 | LD latch | `LDPSBQ` | D latch + async active-low set SD; transparent while **G high**, Q only |
+| 6 | LD latch | `LDPQ` | D latch, transparent while **G high**, Q only (matches `LIB_LDPQ`) |
+| 7 | F flop | `FDP` | D flip-flop: Q/QN from D on posedge CK |
+| 8 | F flop | `FDPQ` | D flip-flop: Q from D on posedge CK |
+| 9 | F flop | `FDPHQ` | D flip-flop with enable EN: Q captures D on posedge CK when EN=1 |
+| 10 | F flop | `FDPMQ` | D flip-flop with data mux: Q captures (S ? D1 : D0) on posedge CK |
+| 11 | F flop | `FDPRB` | D flip-flop + async active-low reset RD: Q/QN outputs |
+| 12 | F flop | `FDPRBQ_F` | D flip-flop + async active-low reset RD: Q output only |
+| 13 | F flop | `FDPRBSBQ` | D flip-flop + async active-low reset RD and set SD: Q output only |
+| 14 | F flop | `FDNQ` | D flip-flop: Q from D on negedge CK |
+| 15 | F flop | `FDNRBQ` | D flip-flop + async active-low reset RD: Q from D on negedge CK |
+| 16 | F flop | `FDNSBQ` | D flip-flop + async active-low set SD: Q from D on negedge CK |
+| 17 | F flop (Q only, async) | `FDPRBQ` | D flip-flop + async active-low reset RD, Q output only |
+| 18 | F flop (Q only, async) | `FDPSBQ` | D flip-flop + async active-low set SD, Q output only |
+| 19 | F scan | `FSDP` | Scan D flip-flop: Q/QN from (SE ? SI : D) on posedge CK |
+| 20 | F scan | `FSDPQ` | Scan D flip-flop: Q from (SE ? SI : D) on posedge CK |
+| 21 | F scan | `FSDPQ_F` | Scan D flip-flop (F variant): Q from (SE ? SI : D) on posedge CK |
+| 22 | F scan | `FSDPQB_F` | Scan D flip-flop (F variant): QN = ~(SE ? SI : D) on posedge CK |
+| 23 | F scan | `FSDPHQ` | Scan D flip-flop with enable EN: Q captures (SE ? SI : D) on posedge CK when EN=1 |
+| 24 | F scan | `FSDPHQ_FFS` | Scan D flip-flop with enable EN (FFS variant): same data path as `FSDPHQ` |
+| 25 | F scan | `FSDPMQ` | Scan D flip-flop with data mux: Q captures (SE ? SI : (S ? D1 : D0)) on posedge CK |
+| 26 | F scan | `FSDPRB` | Scan D flip-flop + async active-low reset RD: Q/QN outputs |
+| 27 | F scan | `FSDPRBQ_F` | Scan D flip-flop + async active-low reset RD (F variant): Q output only |
+| 28 | F scan | `FSDPRBQ_FV1` | Scan D flip-flop + async active-low reset RD (FV1 variant): Q output only |
+| 29 | F scan | `FSDPRBSBQ` | Scan D flip-flop + async active-low reset RD and set SD: Q output only |
+| 30 | F scan | `FSDNQ` | Scan D flip-flop: Q from (SE ? SI : D) on negedge CK |
+| 31 | F scan | `FSDNRBQ` | Scan D flip-flop + async active-low reset RD: Q from (SE ? SI : D) on negedge CK |
+| 32 | F scan | `FSDNSBQ` | Scan D flip-flop + async active-low set SD: Q from (SE ? SI : D) on negedge CK |
+| 33 | F scan (Q only, async) | `FSDPRBQ` | Scan D flip-flop + async active-low reset RD, Q output only |
+| 34 | F scan (Q only, async) | `FSDPSBQ` | Scan D flip-flop + async active-low set SD, Q output only |
+| 35 | Sync clear | `FDPCBQ` | D flip-flop with synchronous clear RS on posedge CK: Q <= D & RS |
+| 36 | Sync clear | `FDPHCBQ` | D flip-flop with enable EN and synchronous clear RS on posedge CK |
+| 37 | Sync clear | `FSDPCBQ` | Scan flop + RS on posedge CK: Q <= (SE ? SI : D) & RS |
+| 38 | Sync clear | `FSDPHCBQ` | Scan flop with EN and RS on posedge CK |
 
 ---
 
@@ -192,18 +192,17 @@ Rows are ordered by **group**: **LD latch** (all `LD*` cells, low-active gate th
 | # | Group | Name | Description | Bitwise (Verilog) |
 |--:|-------|------|-------------|-------------------|
 | 1 | Antenna | `ANTENNANP` | Antenna diode NP: port `A` | N/A (physical cell) |
-| 2 | Decap | `DECAP` | Decoupling capacitor cell, no pins; use **`decap_x1`** … **`decap_x8`** (`--drive X1` … `X8`) — same netlist, different stem for layout size. | N/A (physical cell) |
-| 3 | Fill | `FILL` | Fill cell, no pins; use **`fill_x1`** … **`fill_x8`** — same netlist, different stem for layout size. | N/A (physical cell) |
+| 2 | Decap | `DECAP` | Decoupling capacitor cell, no pins | N/A (physical cell) |
+| 3 | Fill | `FILL` | Fill cell, no pins | N/A (physical cell) |
 | 4 | Hold | `SIGHOLD` | Hold-state cell, pin `SH` inout | N/A (physical cell) |
 | 5 | Tie | `TIEHI` | Tie-high output `L_HI = 1` | `L_HI = 1'b1` |
 | 6 | Tie | `TIELO` | Tie-low output `L_LO = 0` | `L_LO = 1'b0` |
-| 7 | Tie | `TIEDIN` | Tie diode/input anchor: port `X` (SPICE/CDL templates include rails) | N/A (physical cell) |
-| 8 | Substrate tie | `TIESUB` | Substrate tie, rails `VDD`/`VSS` (`LIBHPD_TIESUB` family in `ref_lib`) | N/A (physical cell) |
-| 9 | Tap | `TAPDS` | Row tap / strap, rails `VDD`/`VSS` (`LIB_TAP_DS` family in `ref_lib`) | N/A (physical cell) |
+| 7 | Tie | `TIEDIN` | Tie diode/input anchor: port `X` | N/A (physical cell) |
+| 8 | Substrate tie | `TIESUB` | Substrate tie, rails `VDD`/`VSS` | N/A (physical cell) |
+| 9 | Tap | `TAPDS` | Row tap / strap, rails `VDD`/`VSS` | N/A (physical cell) |
 | 10 | Tap | `TAPDN` | Tap cell, rails `VDD`/`VSS` plus body-bias `VBN` | N/A (physical cell) |
-| 11 | Tap | `TAPPN` | Tap cell, rails `VDD`/`VSS` plus body-bias `VBP`/`VBN` (`LIBHPD_TAPPN` family) | N/A (physical cell) |
-| 12 | Tap | `TAPPP` | Tap cell, rails `VDD`/`VSS` plus always-on rail `VDDR` (`LIBHPD_TAPPP` family) | N/A (physical cell) |
-
+| 11 | Tap | `TAPPN` | Tap cell, rails `VDD`/`VSS` plus body-bias `VBP`/`VBN` | N/A (physical cell) |
+| 12 | Tap | `TAPPP` | Tap cell, rails `VDD`/`VSS` plus always-on rail `VDDR` | N/A (physical cell) |
 
 ---
 
