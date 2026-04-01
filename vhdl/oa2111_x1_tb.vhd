@@ -13,7 +13,7 @@ architecture sim of tb is
   signal in4 : std_logic;
 begin
   dut: entity work.oa2111_x1(rtl)
-    port map (A1 => in0, A2 => in1, B1 => in2, B2 => in3, C => in4, \X\ => w_o);
+    port map (A1 => in0, A2 => in1, B1 => in2, B2 => in3, B3 => in4, \X\ => w_o);
   process
   begin
     in0 <= '0'; in1 <= '0'; in2 <= '0'; in3 <= '0'; in4 <= '0';

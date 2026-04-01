@@ -13,8 +13,8 @@
 `endif
 
 `celldefine
-module tiehi_x1 (L_HI, VDD, VSS);
-   output L_HI;
+module tiehi_x1 (X, VDD, VSS);
+   output X;
    inout VDD, VSS;
 
    /////////////////////////////////////
@@ -22,9 +22,9 @@ module tiehi_x1 (L_HI, VDD, VSS);
    /////////////////////////////////////
 
    `ifdef VIRL_functiononly
-   assign #`STDCELL_COMBO_DELAY L_HI = 1'b1;
+   assign #`STDCELL_COMBO_DELAY X = 1'b1;
    `else
-   assign L_HI = 1'b1;
+   assign X = 1'b1;
    `endif
 
    /////////////////////////////////////

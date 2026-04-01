@@ -1,5 +1,9 @@
 .subckt isos0cl1_x1 VDD VSS VDDR VBP VBN X A EN0
-* Power-management helper: ref_lib-style rails listed first (VDD,VSS,VDDR,VBP,VBN).
-* Abstract subckt (no MOS instances).
-* No transistor template was found for this kind/drive.
+* Power-management helper: ref_lib-style rails listed first.
+XR2P1 p_nor2_mid A VDDR VBP pmos w=2u l=100n
+XR2P2 n_or EN0 p_nor2_mid VBP pmos w=2u l=100n
+XR2N1 n_or A VSS VBN nmos w=1u l=100n
+XR2N2 n_or EN0 VSS VBN nmos w=1u l=100n
+XI4P X n_or VDDR VBP pmos w=2u l=100n
+XI4N X n_or VSS VBN nmos w=1u l=100n
 .ends isos0cl1_x1

@@ -1,6 +1,5 @@
 * CDL/LVS-oriented netlist
-.SUBCKT tiehi_x1 L_HI VDD VSS
+.SUBCKT tiehi_x1 X VDD VSS
 * Physical cell: abstract subckt (rails per PDK CDL; add PDK devices if needed).
-* Abstract subckt (no MOS instances).
-* No transistor template was found for this kind/drive.
+XTIE1P X VSS VDD VDD pmos w=2u l=100n
 .ENDS tiehi_x1

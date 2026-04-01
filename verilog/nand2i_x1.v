@@ -13,18 +13,18 @@
 `endif
 
 `celldefine
-module nand2i_x1 (X, A1, A2);
+module nand2i_x1 (X, A, B);
    output X;
-   input A1, A2;
+   input A, B;
 
    /////////////////////////////////////
    //          FUNCTIONALITY          //
    /////////////////////////////////////
 
    `ifdef VIRL_functiononly
-   nand #`STDCELL_COMBO_DELAY(X, A1, A2);
+   nand #`STDCELL_COMBO_DELAY(X, A, B);
    `else
-   nand (X, A1, A2);
+   nand (X, A, B);
    `endif
 
    /////////////////////////////////////
@@ -35,8 +35,8 @@ module nand2i_x1 (X, A1, A2);
    `else
 
 specify
-(A1 -=> X)=(0, 0);
-(A2 -=> X)=(0, 0);
+(A -=> X)=(0, 0);
+(B -=> X)=(0, 0);
 endspecify
    `endif
 

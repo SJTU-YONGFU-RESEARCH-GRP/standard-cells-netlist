@@ -1,5 +1,7 @@
 subckt lvldbuf_x1 VDD VSS VDDR VBP VBN X A
-* Power-management helper: ref_lib-style rails listed first (VDD,VSS,VDDR,VBP,VBN).
-* Abstract subckt (no MOS instances).
-* No transistor template was found for this kind/drive.
+* Power-management helper: ref_lib-style rails listed first.
+I1P (n_buf A VDDR VBP) pmos w=2u l=100n
+I1N (n_buf A VSS VBN) nmos w=1u l=100n
+I2P (X n_buf VDDR VBP) pmos w=2u l=100n
+I2N (X n_buf VSS VBN) nmos w=1u l=100n
 ends lvldbuf_x1

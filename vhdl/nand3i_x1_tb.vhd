@@ -11,7 +11,7 @@ architecture sim of tb is
   signal in2 : std_logic;
 begin
   dut: entity work.nand3i_x1(rtl)
-    port map (A1 => in0, A2 => in1, A3 => in2, \X\ => w_o);
+    port map (A => in0, B1 => in1, B2 => in2, \X\ => w_o);
   process
   begin
     in0 <= '0'; in1 <= '0'; in2 <= '0';

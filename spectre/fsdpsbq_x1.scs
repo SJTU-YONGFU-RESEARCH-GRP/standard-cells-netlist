@@ -1,5 +1,33 @@
 subckt fsdpsbq_x1 Q CK D SI SE SD VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+FSDPSBQ_sei_P0 (FSDPSBQ_se_b SE VDD VDD) pmos w=2u l=100n
+FSDPSBQ_sei_N0 (FSDPSBQ_se_b SE VSS VSS) nmos w=1u l=100n
+FSDPSBQ_smx_MP0 (FSDPSBQ_din SE D VDD) pmos w=2u l=100n
+FSDPSBQ_smx_MN0 (FSDPSBQ_din FSDPSBQ_se_b D VSS) nmos w=1u l=100n
+FSDPSBQ_smx_MP1 (FSDPSBQ_din FSDPSBQ_se_b SI VDD) pmos w=2u l=100n
+FSDPSBQ_smx_MN1 (FSDPSBQ_din SE SI VSS) nmos w=1u l=100n
+FSDPSBQ_ck_P0 (FSDPSBQ_ck_b CK VDD VDD) pmos w=2u l=100n
+FSDPSBQ_ck_N0 (FSDPSBQ_ck_b CK VSS VSS) nmos w=1u l=100n
+FSDPSBQ_m_in_P (FSDPSBQ_m_n1 CK FSDPSBQ_din VDD) pmos w=2u l=100n
+FSDPSBQ_m_in_N (FSDPSBQ_m_n1 FSDPSBQ_ck_b FSDPSBQ_din VSS) nmos w=1u l=100n
+FSDPSBQ_m_i1_P0 (FSDPSBQ_m_n2 FSDPSBQ_m_n1 VDD VDD) pmos w=2u l=100n
+FSDPSBQ_m_i1_N0 (FSDPSBQ_m_n2 FSDPSBQ_m_n1 VSS VSS) nmos w=1u l=100n
+FSDPSBQ_m_i2_P0 (FSDPSBQ_m_n1 FSDPSBQ_m_n2 VDD VDD) pmos w=2u l=100n
+FSDPSBQ_m_i2_N0 (FSDPSBQ_m_n1 FSDPSBQ_m_n2 VSS VSS) nmos w=1u l=100n
+FSDPSBQ_m_fb_P (FSDPSBQ_m_n1 FSDPSBQ_ck_b FSDPSBQ_m_n2 VDD) pmos w=2u l=100n
+FSDPSBQ_m_fb_N (FSDPSBQ_m_n1 CK FSDPSBQ_m_n2 VSS) nmos w=1u l=100n
+FSDPSBQ_m_o_P0 (FSDPSBQ_qm FSDPSBQ_m_n2 VDD VDD) pmos w=2u l=100n
+FSDPSBQ_m_o_N0 (FSDPSBQ_qm FSDPSBQ_m_n2 VSS VSS) nmos w=1u l=100n
+FSDPSBQ_s_in_P (FSDPSBQ_s_n1 FSDPSBQ_ck_b FSDPSBQ_qm VDD) pmos w=2u l=100n
+FSDPSBQ_s_in_N (FSDPSBQ_s_n1 CK FSDPSBQ_qm VSS) nmos w=1u l=100n
+FSDPSBQ_s_i1_P0 (FSDPSBQ_s_n2 FSDPSBQ_s_n1 VDD VDD) pmos w=2u l=100n
+FSDPSBQ_s_i1_N0 (FSDPSBQ_s_n2 FSDPSBQ_s_n1 VSS VSS) nmos w=1u l=100n
+FSDPSBQ_s_i2_P0 (FSDPSBQ_s_n1 FSDPSBQ_s_n2 VDD VDD) pmos w=2u l=100n
+FSDPSBQ_s_i2_N0 (FSDPSBQ_s_n1 FSDPSBQ_s_n2 VSS VSS) nmos w=1u l=100n
+FSDPSBQ_s_fb_P (FSDPSBQ_s_n1 CK FSDPSBQ_s_n2 VDD) pmos w=2u l=100n
+FSDPSBQ_s_fb_N (FSDPSBQ_s_n1 FSDPSBQ_ck_b FSDPSBQ_s_n2 VSS) nmos w=1u l=100n
+FSDPSBQ_s_o_P0 (Q FSDPSBQ_s_n2 VDD VDD) pmos w=2u l=100n
+FSDPSBQ_s_o_N0 (Q FSDPSBQ_s_n2 VSS VSS) nmos w=1u l=100n
+FSDPSBQ_sdi_P0 (FSDPSBQ_sd_b SD VDD VDD) pmos w=2u l=100n
+FSDPSBQ_sdi_N0 (FSDPSBQ_sd_b SD VSS VSS) nmos w=1u l=100n
+FSDPSBQ_rst (Q FSDPSBQ_sd_b VDD VDD) pmos w=2u l=100n
 ends fsdpsbq_x1

@@ -13,17 +13,17 @@
 `endif
 
 `celldefine
-module tielo_x1 (L_LO);
-   output L_LO;
+module tielo_x1 (X);
+   output X;
 
    /////////////////////////////////////
    //          FUNCTIONALITY          //
    /////////////////////////////////////
 
    `ifdef VIRL_functiononly
-   assign #`STDCELL_COMBO_DELAY L_LO = 1'b0;
+   assign #`STDCELL_COMBO_DELAY X = 1'b0;
    `else
-   assign L_LO = 1'b0;
+   assign X = 1'b0;
    `endif
 
    /////////////////////////////////////

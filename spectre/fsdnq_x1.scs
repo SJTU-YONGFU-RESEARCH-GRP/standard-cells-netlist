@@ -1,5 +1,30 @@
 subckt fsdnq_x1 Q CK D SI SE VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+FSDNQ_sei_P0 (FSDNQ_se_b SE VDD VDD) pmos w=2u l=100n
+FSDNQ_sei_N0 (FSDNQ_se_b SE VSS VSS) nmos w=1u l=100n
+FSDNQ_smx_MP0 (FSDNQ_din SE D VDD) pmos w=2u l=100n
+FSDNQ_smx_MN0 (FSDNQ_din FSDNQ_se_b D VSS) nmos w=1u l=100n
+FSDNQ_smx_MP1 (FSDNQ_din FSDNQ_se_b SI VDD) pmos w=2u l=100n
+FSDNQ_smx_MN1 (FSDNQ_din SE SI VSS) nmos w=1u l=100n
+FSDNQ_ck_P0 (FSDNQ_ck_b CK VDD VDD) pmos w=2u l=100n
+FSDNQ_ck_N0 (FSDNQ_ck_b CK VSS VSS) nmos w=1u l=100n
+FSDNQ_m_in_P (FSDNQ_m_n1 FSDNQ_ck_b FSDNQ_din VDD) pmos w=2u l=100n
+FSDNQ_m_in_N (FSDNQ_m_n1 CK FSDNQ_din VSS) nmos w=1u l=100n
+FSDNQ_m_i1_P0 (FSDNQ_m_n2 FSDNQ_m_n1 VDD VDD) pmos w=2u l=100n
+FSDNQ_m_i1_N0 (FSDNQ_m_n2 FSDNQ_m_n1 VSS VSS) nmos w=1u l=100n
+FSDNQ_m_i2_P0 (FSDNQ_m_n1 FSDNQ_m_n2 VDD VDD) pmos w=2u l=100n
+FSDNQ_m_i2_N0 (FSDNQ_m_n1 FSDNQ_m_n2 VSS VSS) nmos w=1u l=100n
+FSDNQ_m_fb_P (FSDNQ_m_n1 CK FSDNQ_m_n2 VDD) pmos w=2u l=100n
+FSDNQ_m_fb_N (FSDNQ_m_n1 FSDNQ_ck_b FSDNQ_m_n2 VSS) nmos w=1u l=100n
+FSDNQ_m_o_P0 (FSDNQ_qm FSDNQ_m_n2 VDD VDD) pmos w=2u l=100n
+FSDNQ_m_o_N0 (FSDNQ_qm FSDNQ_m_n2 VSS VSS) nmos w=1u l=100n
+FSDNQ_s_in_P (FSDNQ_s_n1 CK FSDNQ_qm VDD) pmos w=2u l=100n
+FSDNQ_s_in_N (FSDNQ_s_n1 FSDNQ_ck_b FSDNQ_qm VSS) nmos w=1u l=100n
+FSDNQ_s_i1_P0 (FSDNQ_s_n2 FSDNQ_s_n1 VDD VDD) pmos w=2u l=100n
+FSDNQ_s_i1_N0 (FSDNQ_s_n2 FSDNQ_s_n1 VSS VSS) nmos w=1u l=100n
+FSDNQ_s_i2_P0 (FSDNQ_s_n1 FSDNQ_s_n2 VDD VDD) pmos w=2u l=100n
+FSDNQ_s_i2_N0 (FSDNQ_s_n1 FSDNQ_s_n2 VSS VSS) nmos w=1u l=100n
+FSDNQ_s_fb_P (FSDNQ_s_n1 FSDNQ_ck_b FSDNQ_s_n2 VDD) pmos w=2u l=100n
+FSDNQ_s_fb_N (FSDNQ_s_n1 CK FSDNQ_s_n2 VSS) nmos w=1u l=100n
+FSDNQ_s_o_P0 (Q FSDNQ_s_n2 VDD VDD) pmos w=2u l=100n
+FSDNQ_s_o_N0 (Q FSDNQ_s_n2 VSS VSS) nmos w=1u l=100n
 ends fsdnq_x1

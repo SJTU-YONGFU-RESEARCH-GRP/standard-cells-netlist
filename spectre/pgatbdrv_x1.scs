@@ -1,5 +1,7 @@
 subckt pgatbdrv_x1 VDDP VSS VBP VBN VDDC ENX EN
-* Power-management helper: ref_lib-style rails listed first (VDD,VSS,VDDR,VBP,VBN).
-* Abstract subckt (no MOS instances).
-* No transistor template was found for this kind/drive.
+* Power-management helper: ref_lib-style rails listed first.
+PG_ENX_POFF (ENX VDDP ENX VBP) pmos w=2u l=100n
+PG_ENX_NOFF (ENX VSS ENX VBN) nmos w=1u l=100n
+PG_EN_POFF (EN VDDP EN VBP) pmos w=2u l=100n
+PG_EN_NOFF (EN VSS EN VBN) nmos w=1u l=100n
 ends pgatbdrv_x1

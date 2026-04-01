@@ -13,9 +13,9 @@
 `endif
 
 `celldefine
-module or3i_x1 (X, A1, A2, A3);
+module or3i_x1 (X, A, B1, B2);
    output X;
-   input A1, A2, A3;
+   input A, B1, B2;
 
    /////////////////////////////////////
    //          FUNCTIONALITY          //
@@ -23,12 +23,12 @@ module or3i_x1 (X, A1, A2, A3);
 
    `ifdef VIRL_functiononly
    wire in0_b;
-   not #`STDCELL_COMBO_DELAY(in0_b, A1);
-   or #`STDCELL_COMBO_DELAY(X, in0_b, A2, A3);
+   not #`STDCELL_COMBO_DELAY(in0_b, A);
+   or #`STDCELL_COMBO_DELAY(X, in0_b, B1, B2);
    `else
    wire in0_b;
-   not (in0_b, A1);
-   or (X, in0_b, A2, A3);
+   not (in0_b, A);
+   or (X, in0_b, B1, B2);
    `endif
 
    /////////////////////////////////////
@@ -39,9 +39,9 @@ module or3i_x1 (X, A1, A2, A3);
    `else
 
 specify
-(A1 +=> X)=(0, 0);
-(A2 +=> X)=(0, 0);
-(A3 +=> X)=(0, 0);
+(A +=> X)=(0, 0);
+(B1 +=> X)=(0, 0);
+(B2 +=> X)=(0, 0);
 endspecify
    `endif
 

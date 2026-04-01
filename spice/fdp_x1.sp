@@ -1,5 +1,26 @@
 .subckt fdp_x1 Q QN CK D VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+XFDP_ck_P0 FDP_ck_b CK VDD VDD pmos w=2u l=100n
+XFDP_ck_N0 FDP_ck_b CK VSS VSS nmos w=1u l=100n
+XFDP_m_in_P FDP_m_n1 CK D VDD pmos w=2u l=100n
+XFDP_m_in_N FDP_m_n1 FDP_ck_b D VSS nmos w=1u l=100n
+XFDP_m_i1_P0 FDP_m_n2 FDP_m_n1 VDD VDD pmos w=2u l=100n
+XFDP_m_i1_N0 FDP_m_n2 FDP_m_n1 VSS VSS nmos w=1u l=100n
+XFDP_m_i2_P0 FDP_m_n1 FDP_m_n2 VDD VDD pmos w=2u l=100n
+XFDP_m_i2_N0 FDP_m_n1 FDP_m_n2 VSS VSS nmos w=1u l=100n
+XFDP_m_fb_P FDP_m_n1 FDP_ck_b FDP_m_n2 VDD pmos w=2u l=100n
+XFDP_m_fb_N FDP_m_n1 CK FDP_m_n2 VSS nmos w=1u l=100n
+XFDP_m_o_P0 FDP_qm FDP_m_n2 VDD VDD pmos w=2u l=100n
+XFDP_m_o_N0 FDP_qm FDP_m_n2 VSS VSS nmos w=1u l=100n
+XFDP_s_in_P FDP_s_n1 FDP_ck_b FDP_qm VDD pmos w=2u l=100n
+XFDP_s_in_N FDP_s_n1 CK FDP_qm VSS nmos w=1u l=100n
+XFDP_s_i1_P0 FDP_s_n2 FDP_s_n1 VDD VDD pmos w=2u l=100n
+XFDP_s_i1_N0 FDP_s_n2 FDP_s_n1 VSS VSS nmos w=1u l=100n
+XFDP_s_i2_P0 FDP_s_n1 FDP_s_n2 VDD VDD pmos w=2u l=100n
+XFDP_s_i2_N0 FDP_s_n1 FDP_s_n2 VSS VSS nmos w=1u l=100n
+XFDP_s_fb_P FDP_s_n1 CK FDP_s_n2 VDD pmos w=2u l=100n
+XFDP_s_fb_N FDP_s_n1 FDP_ck_b FDP_s_n2 VSS nmos w=1u l=100n
+XFDP_s_o_P0 Q FDP_s_n2 VDD VDD pmos w=2u l=100n
+XFDP_s_o_N0 Q FDP_s_n2 VSS VSS nmos w=1u l=100n
+XFDP_qn_P0 QN Q VDD VDD pmos w=2u l=100n
+XFDP_qn_N0 QN Q VSS VSS nmos w=1u l=100n
 .ends fdp_x1

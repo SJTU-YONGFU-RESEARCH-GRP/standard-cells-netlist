@@ -13,9 +13,9 @@
 `endif
 
 `celldefine
-module nand3i_x1 (X, A1, A2, A3, VDD, VSS);
+module nand3i_x1 (X, A, B1, B2, VDD, VSS);
    output X;
-   input A1, A2, A3;
+   input A, B1, B2;
    inout VDD, VSS;
 
    /////////////////////////////////////
@@ -24,12 +24,12 @@ module nand3i_x1 (X, A1, A2, A3, VDD, VSS);
 
    `ifdef VIRL_functiononly
    wire in0_b;
-   not #`STDCELL_COMBO_DELAY(in0_b, A1);
-   nand #`STDCELL_COMBO_DELAY(X, in0_b, A2, A3);
+   not #`STDCELL_COMBO_DELAY(in0_b, A);
+   nand #`STDCELL_COMBO_DELAY(X, in0_b, B1, B2);
    `else
    wire in0_b;
-   not (in0_b, A1);
-   nand (X, in0_b, A2, A3);
+   not (in0_b, A);
+   nand (X, in0_b, B1, B2);
    `endif
 
    /////////////////////////////////////
@@ -40,9 +40,9 @@ module nand3i_x1 (X, A1, A2, A3, VDD, VSS);
    `else
 
 specify
-(A1 -=> X)=(0, 0);
-(A2 -=> X)=(0, 0);
-(A3 -=> X)=(0, 0);
+(A -=> X)=(0, 0);
+(B1 -=> X)=(0, 0);
+(B2 -=> X)=(0, 0);
 endspecify
    `endif
 

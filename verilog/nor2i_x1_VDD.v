@@ -13,9 +13,9 @@
 `endif
 
 `celldefine
-module nor2i_x1 (X, A1, A2, VDD, VSS);
+module nor2i_x1 (X, A, B, VDD, VSS);
    output X;
-   input A1, A2;
+   input A, B;
    inout VDD, VSS;
 
    /////////////////////////////////////
@@ -23,9 +23,9 @@ module nor2i_x1 (X, A1, A2, VDD, VSS);
    /////////////////////////////////////
 
    `ifdef VIRL_functiononly
-   nor #`STDCELL_COMBO_DELAY(X, A1, A2);
+   nor #`STDCELL_COMBO_DELAY(X, A, B);
    `else
-   nor (X, A1, A2);
+   nor (X, A, B);
    `endif
 
    /////////////////////////////////////
@@ -36,8 +36,8 @@ module nor2i_x1 (X, A1, A2, VDD, VSS);
    `else
 
 specify
-(A1 -=> X)=(0, 0);
-(A2 -=> X)=(0, 0);
+(A -=> X)=(0, 0);
+(B -=> X)=(0, 0);
 endspecify
    `endif
 

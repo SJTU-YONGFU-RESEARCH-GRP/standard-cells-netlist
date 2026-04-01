@@ -1,10 +1,10 @@
-.subckt nand3i_x1 A1 A2 A3 X VDD VSS
-XM0I_P0 in0_b A1 VDD VDD pmos w=2u l=100n
-XM0I_N0 in0_b A1 VSS VSS nmos w=1u l=100n
+.subckt nand3i_x1 A B1 B2 X VDD VSS
+XM0I_P0 in0_b A VDD VDD pmos w=2u l=100n
+XM0I_N0 in0_b A VSS VSS nmos w=1u l=100n
 XMPA0 X in0_b VDD VDD pmos w=2u l=100n
-XMPB0 X A2 VDD VDD pmos w=2u l=100n
-XMPC0 X A3 VDD VDD pmos w=2u l=100n
-XMNC0 X A3 nmid2 VSS nmos w=1u l=100n
-XMNB0 nmid2 A2 nmid1 VSS nmos w=1u l=100n
+XMPB0 X B1 VDD VDD pmos w=2u l=100n
+XMPC0 X B2 VDD VDD pmos w=2u l=100n
+XMNC0 X B2 nmid2 VSS nmos w=1u l=100n
+XMNB0 nmid2 B1 nmid1 VSS nmos w=1u l=100n
 XMNA0 nmid1 in0_b VSS VSS nmos w=1u l=100n
 .ends nand3i_x1

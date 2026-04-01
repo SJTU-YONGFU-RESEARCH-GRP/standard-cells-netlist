@@ -1,5 +1,30 @@
 .subckt fdphq_x1 Q CK D EN VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+XFDPH_eni_P0 FDPH_en_b EN VDD VDD pmos w=2u l=100n
+XFDPH_eni_N0 FDPH_en_b EN VSS VSS nmos w=1u l=100n
+XFDPH_emx_MP0 FDPH_ed EN Q VDD pmos w=2u l=100n
+XFDPH_emx_MN0 FDPH_ed FDPH_en_b Q VSS nmos w=1u l=100n
+XFDPH_emx_MP1 FDPH_ed FDPH_en_b D VDD pmos w=2u l=100n
+XFDPH_emx_MN1 FDPH_ed EN D VSS nmos w=1u l=100n
+XFDPH_ck_P0 FDPH_ck_b CK VDD VDD pmos w=2u l=100n
+XFDPH_ck_N0 FDPH_ck_b CK VSS VSS nmos w=1u l=100n
+XFDPH_m_in_P FDPH_m_n1 CK FDPH_ed VDD pmos w=2u l=100n
+XFDPH_m_in_N FDPH_m_n1 FDPH_ck_b FDPH_ed VSS nmos w=1u l=100n
+XFDPH_m_i1_P0 FDPH_m_n2 FDPH_m_n1 VDD VDD pmos w=2u l=100n
+XFDPH_m_i1_N0 FDPH_m_n2 FDPH_m_n1 VSS VSS nmos w=1u l=100n
+XFDPH_m_i2_P0 FDPH_m_n1 FDPH_m_n2 VDD VDD pmos w=2u l=100n
+XFDPH_m_i2_N0 FDPH_m_n1 FDPH_m_n2 VSS VSS nmos w=1u l=100n
+XFDPH_m_fb_P FDPH_m_n1 FDPH_ck_b FDPH_m_n2 VDD pmos w=2u l=100n
+XFDPH_m_fb_N FDPH_m_n1 CK FDPH_m_n2 VSS nmos w=1u l=100n
+XFDPH_m_o_P0 FDPH_qm FDPH_m_n2 VDD VDD pmos w=2u l=100n
+XFDPH_m_o_N0 FDPH_qm FDPH_m_n2 VSS VSS nmos w=1u l=100n
+XFDPH_s_in_P FDPH_s_n1 FDPH_ck_b FDPH_qm VDD pmos w=2u l=100n
+XFDPH_s_in_N FDPH_s_n1 CK FDPH_qm VSS nmos w=1u l=100n
+XFDPH_s_i1_P0 FDPH_s_n2 FDPH_s_n1 VDD VDD pmos w=2u l=100n
+XFDPH_s_i1_N0 FDPH_s_n2 FDPH_s_n1 VSS VSS nmos w=1u l=100n
+XFDPH_s_i2_P0 FDPH_s_n1 FDPH_s_n2 VDD VDD pmos w=2u l=100n
+XFDPH_s_i2_N0 FDPH_s_n1 FDPH_s_n2 VSS VSS nmos w=1u l=100n
+XFDPH_s_fb_P FDPH_s_n1 CK FDPH_s_n2 VDD pmos w=2u l=100n
+XFDPH_s_fb_N FDPH_s_n1 FDPH_ck_b FDPH_s_n2 VSS nmos w=1u l=100n
+XFDPH_s_o_P0 Q FDPH_s_n2 VDD VDD pmos w=2u l=100n
+XFDPH_s_o_N0 Q FDPH_s_n2 VSS VSS nmos w=1u l=100n
 .ends fdphq_x1

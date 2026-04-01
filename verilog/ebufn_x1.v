@@ -13,18 +13,18 @@
 `endif
 
 `celldefine
-module ebufn_x1 (X, A, EN);
+module ebufn_x1 (X, A, TE_B);
    output X;
-   input A, EN;
+   input A, TE_B;
 
    /////////////////////////////////////
    //          FUNCTIONALITY          //
    /////////////////////////////////////
 
    `ifdef VIRL_functiononly
-   bufif0 #`STDCELL_COMBO_DELAY(X, A, EN);
+   bufif0 #`STDCELL_COMBO_DELAY(X, A, TE_B);
    `else
-   bufif0 (X, A, EN);
+   bufif0 (X, A, TE_B);
    `endif
 
    /////////////////////////////////////
@@ -36,7 +36,7 @@ module ebufn_x1 (X, A, EN);
 
 specify
 (A +=> X)=(0, 0);
-(EN +=> X)=(0, 0);
+(TE_B +=> X)=(0, 0);
 endspecify
    `endif
 

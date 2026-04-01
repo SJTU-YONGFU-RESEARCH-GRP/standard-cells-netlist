@@ -1,5 +1,36 @@
 subckt fsdpmq_x1 Q CK D0 D1 S SI SE VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+FSDPMQ_si_P0 (FSDPMQ_s_b S VDD VDD) pmos w=2u l=100n
+FSDPMQ_si_N0 (FSDPMQ_s_b S VSS VSS) nmos w=1u l=100n
+FSDPMQ_mmx_MP0 (FSDPMQ_md S D0 VDD) pmos w=2u l=100n
+FSDPMQ_mmx_MN0 (FSDPMQ_md FSDPMQ_s_b D0 VSS) nmos w=1u l=100n
+FSDPMQ_mmx_MP1 (FSDPMQ_md FSDPMQ_s_b D1 VDD) pmos w=2u l=100n
+FSDPMQ_mmx_MN1 (FSDPMQ_md S D1 VSS) nmos w=1u l=100n
+FSDPMQ_sei_P0 (FSDPMQ_se_b SE VDD VDD) pmos w=2u l=100n
+FSDPMQ_sei_N0 (FSDPMQ_se_b SE VSS VSS) nmos w=1u l=100n
+FSDPMQ_smx_MP0 (FSDPMQ_din SE FSDPMQ_md VDD) pmos w=2u l=100n
+FSDPMQ_smx_MN0 (FSDPMQ_din FSDPMQ_se_b FSDPMQ_md VSS) nmos w=1u l=100n
+FSDPMQ_smx_MP1 (FSDPMQ_din FSDPMQ_se_b SI VDD) pmos w=2u l=100n
+FSDPMQ_smx_MN1 (FSDPMQ_din SE SI VSS) nmos w=1u l=100n
+FSDPMQ_ck_P0 (FSDPMQ_ck_b CK VDD VDD) pmos w=2u l=100n
+FSDPMQ_ck_N0 (FSDPMQ_ck_b CK VSS VSS) nmos w=1u l=100n
+FSDPMQ_m_in_P (FSDPMQ_m_n1 CK FSDPMQ_din VDD) pmos w=2u l=100n
+FSDPMQ_m_in_N (FSDPMQ_m_n1 FSDPMQ_ck_b FSDPMQ_din VSS) nmos w=1u l=100n
+FSDPMQ_m_i1_P0 (FSDPMQ_m_n2 FSDPMQ_m_n1 VDD VDD) pmos w=2u l=100n
+FSDPMQ_m_i1_N0 (FSDPMQ_m_n2 FSDPMQ_m_n1 VSS VSS) nmos w=1u l=100n
+FSDPMQ_m_i2_P0 (FSDPMQ_m_n1 FSDPMQ_m_n2 VDD VDD) pmos w=2u l=100n
+FSDPMQ_m_i2_N0 (FSDPMQ_m_n1 FSDPMQ_m_n2 VSS VSS) nmos w=1u l=100n
+FSDPMQ_m_fb_P (FSDPMQ_m_n1 FSDPMQ_ck_b FSDPMQ_m_n2 VDD) pmos w=2u l=100n
+FSDPMQ_m_fb_N (FSDPMQ_m_n1 CK FSDPMQ_m_n2 VSS) nmos w=1u l=100n
+FSDPMQ_m_o_P0 (FSDPMQ_qm FSDPMQ_m_n2 VDD VDD) pmos w=2u l=100n
+FSDPMQ_m_o_N0 (FSDPMQ_qm FSDPMQ_m_n2 VSS VSS) nmos w=1u l=100n
+FSDPMQ_s_in_P (FSDPMQ_s_n1 FSDPMQ_ck_b FSDPMQ_qm VDD) pmos w=2u l=100n
+FSDPMQ_s_in_N (FSDPMQ_s_n1 CK FSDPMQ_qm VSS) nmos w=1u l=100n
+FSDPMQ_s_i1_P0 (FSDPMQ_s_n2 FSDPMQ_s_n1 VDD VDD) pmos w=2u l=100n
+FSDPMQ_s_i1_N0 (FSDPMQ_s_n2 FSDPMQ_s_n1 VSS VSS) nmos w=1u l=100n
+FSDPMQ_s_i2_P0 (FSDPMQ_s_n1 FSDPMQ_s_n2 VDD VDD) pmos w=2u l=100n
+FSDPMQ_s_i2_N0 (FSDPMQ_s_n1 FSDPMQ_s_n2 VSS VSS) nmos w=1u l=100n
+FSDPMQ_s_fb_P (FSDPMQ_s_n1 CK FSDPMQ_s_n2 VDD) pmos w=2u l=100n
+FSDPMQ_s_fb_N (FSDPMQ_s_n1 FSDPMQ_ck_b FSDPMQ_s_n2 VSS) nmos w=1u l=100n
+FSDPMQ_s_o_P0 (Q FSDPMQ_s_n2 VDD VDD) pmos w=2u l=100n
+FSDPMQ_s_o_N0 (Q FSDPMQ_s_n2 VSS VSS) nmos w=1u l=100n
 ends fsdpmq_x1

@@ -7,7 +7,7 @@ use  ieee.Vital_Primitives.all;
 use IEEE.VITAL_Timing.all;
 entity nand4i_x1 is
    port (
-      A1, A2, A3, A4 : in STD_LOGIC;
+      A, B1, B2, B3 : in STD_LOGIC;
       X : out STD_LOGIC
    );
 end nand4i_x1;
@@ -15,7 +15,7 @@ end nand4i_x1;
 architecture nand4i_x1_arch of nand4i_x1 is
 begin
 
-   VitalBehavior : Process (A1, A2, A3, A4)
+   VitalBehavior : Process (A, B1, B2, B3)
       VARIABLE INT_RES_0 : STD_LOGIC := 'X';
    begin
 
@@ -23,7 +23,7 @@ begin
       --     FUNCTIONALITY SECTION      --
       ------------------------------------
 
-      INT_RES_0 := not (((not A1) and A2 and A3 and A4));
+      INT_RES_0 := not (((not A) and B1 and B2 and B3));
 
       ------------------------------------
       X <= INT_RES_0;

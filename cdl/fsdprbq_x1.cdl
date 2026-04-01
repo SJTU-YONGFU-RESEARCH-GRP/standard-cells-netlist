@@ -1,6 +1,34 @@
 * CDL/LVS-oriented netlist
 .SUBCKT fsdprbq_x1 Q CK D SI SE RD VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+XFSDPRBQ_sei_P0 FSDPRBQ_se_b SE VDD VDD pmos w=2u l=100n
+XFSDPRBQ_sei_N0 FSDPRBQ_se_b SE VSS VSS nmos w=1u l=100n
+XFSDPRBQ_smx_MP0 FSDPRBQ_din SE D VDD pmos w=2u l=100n
+XFSDPRBQ_smx_MN0 FSDPRBQ_din FSDPRBQ_se_b D VSS nmos w=1u l=100n
+XFSDPRBQ_smx_MP1 FSDPRBQ_din FSDPRBQ_se_b SI VDD pmos w=2u l=100n
+XFSDPRBQ_smx_MN1 FSDPRBQ_din SE SI VSS nmos w=1u l=100n
+XFSDPRBQ_ck_P0 FSDPRBQ_ck_b CK VDD VDD pmos w=2u l=100n
+XFSDPRBQ_ck_N0 FSDPRBQ_ck_b CK VSS VSS nmos w=1u l=100n
+XFSDPRBQ_m_in_P FSDPRBQ_m_n1 CK FSDPRBQ_din VDD pmos w=2u l=100n
+XFSDPRBQ_m_in_N FSDPRBQ_m_n1 FSDPRBQ_ck_b FSDPRBQ_din VSS nmos w=1u l=100n
+XFSDPRBQ_m_i1_P0 FSDPRBQ_m_n2 FSDPRBQ_m_n1 VDD VDD pmos w=2u l=100n
+XFSDPRBQ_m_i1_N0 FSDPRBQ_m_n2 FSDPRBQ_m_n1 VSS VSS nmos w=1u l=100n
+XFSDPRBQ_m_i2_P0 FSDPRBQ_m_n1 FSDPRBQ_m_n2 VDD VDD pmos w=2u l=100n
+XFSDPRBQ_m_i2_N0 FSDPRBQ_m_n1 FSDPRBQ_m_n2 VSS VSS nmos w=1u l=100n
+XFSDPRBQ_m_fb_P FSDPRBQ_m_n1 FSDPRBQ_ck_b FSDPRBQ_m_n2 VDD pmos w=2u l=100n
+XFSDPRBQ_m_fb_N FSDPRBQ_m_n1 CK FSDPRBQ_m_n2 VSS nmos w=1u l=100n
+XFSDPRBQ_m_o_P0 FSDPRBQ_qm FSDPRBQ_m_n2 VDD VDD pmos w=2u l=100n
+XFSDPRBQ_m_o_N0 FSDPRBQ_qm FSDPRBQ_m_n2 VSS VSS nmos w=1u l=100n
+XFSDPRBQ_s_in_P FSDPRBQ_s_n1 FSDPRBQ_ck_b FSDPRBQ_qm VDD pmos w=2u l=100n
+XFSDPRBQ_s_in_N FSDPRBQ_s_n1 CK FSDPRBQ_qm VSS nmos w=1u l=100n
+XFSDPRBQ_s_i1_P0 FSDPRBQ_s_n2 FSDPRBQ_s_n1 VDD VDD pmos w=2u l=100n
+XFSDPRBQ_s_i1_N0 FSDPRBQ_s_n2 FSDPRBQ_s_n1 VSS VSS nmos w=1u l=100n
+XFSDPRBQ_s_i2_P0 FSDPRBQ_s_n1 FSDPRBQ_s_n2 VDD VDD pmos w=2u l=100n
+XFSDPRBQ_s_i2_N0 FSDPRBQ_s_n1 FSDPRBQ_s_n2 VSS VSS nmos w=1u l=100n
+XFSDPRBQ_s_fb_P FSDPRBQ_s_n1 CK FSDPRBQ_s_n2 VDD pmos w=2u l=100n
+XFSDPRBQ_s_fb_N FSDPRBQ_s_n1 FSDPRBQ_ck_b FSDPRBQ_s_n2 VSS nmos w=1u l=100n
+XFSDPRBQ_s_o_P0 Q FSDPRBQ_s_n2 VDD VDD pmos w=2u l=100n
+XFSDPRBQ_s_o_N0 Q FSDPRBQ_s_n2 VSS VSS nmos w=1u l=100n
+XFSDPRBQ_rdi_P0 FSDPRBQ_rd_b RD VDD VDD pmos w=2u l=100n
+XFSDPRBQ_rdi_N0 FSDPRBQ_rd_b RD VSS VSS nmos w=1u l=100n
+XFSDPRBQ_rcl Q FSDPRBQ_rd_b VSS VSS nmos w=1u l=100n
 .ENDS fsdprbq_x1

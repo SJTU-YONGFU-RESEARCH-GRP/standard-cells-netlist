@@ -9,7 +9,7 @@ architecture sim of tb is
   signal in0, te_b : std_logic;
 begin
   dut: entity work.ebufn_x1(rtl)
-    port map (A => in0, EN => te_b, \X\ => w_o);
+    port map (A => in0, TE_B => te_b, \X\ => w_o);
   process
   begin
     in0 <= '0'; te_b <= '0';

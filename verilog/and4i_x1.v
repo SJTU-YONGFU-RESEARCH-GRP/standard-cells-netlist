@@ -13,9 +13,9 @@
 `endif
 
 `celldefine
-module and4i_x1 (X, A1, A2, A3, A4);
+module and4i_x1 (X, A, B1, B2, B3);
    output X;
-   input A1, A2, A3, A4;
+   input A, B1, B2, B3;
 
    /////////////////////////////////////
    //          FUNCTIONALITY          //
@@ -23,12 +23,12 @@ module and4i_x1 (X, A1, A2, A3, A4);
 
    `ifdef VIRL_functiononly
    wire in0_b;
-   not #`STDCELL_COMBO_DELAY(in0_b, A1);
-   and #`STDCELL_COMBO_DELAY(X, in0_b, A2, A3, A4);
+   not #`STDCELL_COMBO_DELAY(in0_b, A);
+   and #`STDCELL_COMBO_DELAY(X, in0_b, B1, B2, B3);
    `else
    wire in0_b;
-   not (in0_b, A1);
-   and (X, in0_b, A2, A3, A4);
+   not (in0_b, A);
+   and (X, in0_b, B1, B2, B3);
    `endif
 
    /////////////////////////////////////
@@ -39,10 +39,10 @@ module and4i_x1 (X, A1, A2, A3, A4);
    `else
 
 specify
-(A1 +=> X)=(0, 0);
-(A2 +=> X)=(0, 0);
-(A3 +=> X)=(0, 0);
-(A4 +=> X)=(0, 0);
+(A +=> X)=(0, 0);
+(B1 +=> X)=(0, 0);
+(B2 +=> X)=(0, 0);
+(B3 +=> X)=(0, 0);
 endspecify
    `endif
 

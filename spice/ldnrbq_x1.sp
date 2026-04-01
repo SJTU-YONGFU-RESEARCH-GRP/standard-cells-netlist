@@ -1,5 +1,17 @@
 .subckt ldnrbq_x1 Q G D RD VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+XLDNRB_g_P0 g_b G VDD VDD pmos w=2u l=100n
+XLDNRB_g_N0 g_b G VSS VSS nmos w=1u l=100n
+XLDNRB_l_in_P LDNRB_l_n1 G D VDD pmos w=2u l=100n
+XLDNRB_l_in_N LDNRB_l_n1 g_b D VSS nmos w=1u l=100n
+XLDNRB_l_i1_P0 LDNRB_l_n2 LDNRB_l_n1 VDD VDD pmos w=2u l=100n
+XLDNRB_l_i1_N0 LDNRB_l_n2 LDNRB_l_n1 VSS VSS nmos w=1u l=100n
+XLDNRB_l_i2_P0 LDNRB_l_n1 LDNRB_l_n2 VDD VDD pmos w=2u l=100n
+XLDNRB_l_i2_N0 LDNRB_l_n1 LDNRB_l_n2 VSS VSS nmos w=1u l=100n
+XLDNRB_l_fb_P LDNRB_l_n1 g_b LDNRB_l_n2 VDD pmos w=2u l=100n
+XLDNRB_l_fb_N LDNRB_l_n1 G LDNRB_l_n2 VSS nmos w=1u l=100n
+XLDNRB_l_o_P0 Q LDNRB_l_n2 VDD VDD pmos w=2u l=100n
+XLDNRB_l_o_N0 Q LDNRB_l_n2 VSS VSS nmos w=1u l=100n
+XLDNRB_r_rdi_P0 LDNRB_r_rd_b RD VDD VDD pmos w=2u l=100n
+XLDNRB_r_rdi_N0 LDNRB_r_rd_b RD VSS VSS nmos w=1u l=100n
+XLDNRB_r_rcl Q LDNRB_r_rd_b VSS VSS nmos w=1u l=100n
 .ends ldnrbq_x1

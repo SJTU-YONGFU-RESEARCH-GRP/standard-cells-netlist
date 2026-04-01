@@ -13,9 +13,9 @@
 `endif
 
 `celldefine
-module oai311_x1 (X, A1, A2, B1, B2, C, VDD, VSS);
+module oai311_x1 (X, A1, A2, A3, B1, B2, VDD, VSS);
    output X;
-   input A1, A2, B1, B2, C;
+   input A1, A2, A3, B1, B2;
    inout VDD, VSS;
 
    /////////////////////////////////////
@@ -24,13 +24,13 @@ module oai311_x1 (X, A1, A2, B1, B2, C, VDD, VSS);
 
    `ifdef VIRL_functiononly
    wire t0, t1;
-   or #`STDCELL_COMBO_DELAY(t0, A1, A2, B1);
-   and #`STDCELL_COMBO_DELAY(t1, t0, B2, C);
+   or #`STDCELL_COMBO_DELAY(t0, A1, A2, A3);
+   and #`STDCELL_COMBO_DELAY(t1, t0, B1, B2);
    not #`STDCELL_COMBO_DELAY(X, t1);
    `else
    wire t0, t1;
-   or (t0, A1, A2, B1);
-   and (t1, t0, B2, C);
+   or (t0, A1, A2, A3);
+   and (t1, t0, B1, B2);
    not (X, t1);
    `endif
 
@@ -44,9 +44,9 @@ module oai311_x1 (X, A1, A2, B1, B2, C, VDD, VSS);
 specify
 (A1 -=> X)=(0, 0);
 (A2 -=> X)=(0, 0);
+(A3 -=> X)=(0, 0);
 (B1 -=> X)=(0, 0);
 (B2 -=> X)=(0, 0);
-(C -=> X)=(0, 0);
 endspecify
    `endif
 

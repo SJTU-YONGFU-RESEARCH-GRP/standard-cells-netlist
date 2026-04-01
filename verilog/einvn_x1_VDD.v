@@ -13,9 +13,9 @@
 `endif
 
 `celldefine
-module einvn_x1 (X, A, EN, VDD, VSS);
+module einvn_x1 (X, A, TE_B, VDD, VSS);
    output X;
-   input A, EN;
+   input A, TE_B;
    inout VDD, VSS;
 
    /////////////////////////////////////
@@ -23,9 +23,9 @@ module einvn_x1 (X, A, EN, VDD, VSS);
    /////////////////////////////////////
 
    `ifdef VIRL_functiononly
-   notif0 #`STDCELL_COMBO_DELAY(X, A, EN);
+   notif0 #`STDCELL_COMBO_DELAY(X, A, TE_B);
    `else
-   notif0 (X, A, EN);
+   notif0 (X, A, TE_B);
    `endif
 
    /////////////////////////////////////
@@ -37,7 +37,7 @@ module einvn_x1 (X, A, EN, VDD, VSS);
 
 specify
 (A +=> X)=(0, 0);
-(EN +=> X)=(0, 0);
+(TE_B +=> X)=(0, 0);
 endspecify
    `endif
 

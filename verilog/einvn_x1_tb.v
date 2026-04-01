@@ -2,7 +2,7 @@
 module tb;
   wire out;
   reg in0, te_b;
-  einvn_x1 dut (.X(out), .A(in0), .EN(te_b));
+  einvn_x1 dut (.X(out), .A(in0), .TE_B(te_b));
   initial begin
       in0=1'b0; te_b=1'b0;
       #1;

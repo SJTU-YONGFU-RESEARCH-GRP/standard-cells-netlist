@@ -1,5 +1,7 @@
 subckt lvldinve1_x1 VDD VSS VDDR VBP VBN X A EN
-* Power-management helper: ref_lib-style rails listed first (VDD,VSS,VDDR,VBP,VBN).
-* Abstract subckt (no MOS instances).
-* No transistor template was found for this kind/drive.
+* Power-management helper: ref_lib-style rails listed first.
+N2P1 (X A VDDR VBP) pmos w=2u l=100n
+N2P2 (X EN VDDR VBP) pmos w=2u l=100n
+N2N1 (X A n_nand2_mid VBN) nmos w=1u l=100n
+N2N2 (n_nand2_mid EN VSS VBN) nmos w=1u l=100n
 ends lvldinve1_x1

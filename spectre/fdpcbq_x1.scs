@@ -1,5 +1,30 @@
 subckt fdpcbq_x1 Q CK D RS VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+FDPCBQ_PA0 (fdpcbq_and_n D VDD VDD) pmos w=2u l=100n
+FDPCBQ_PB0 (fdpcbq_and_n RS VDD VDD) pmos w=2u l=100n
+FDPCBQ_NB0 (fdpcbq_and_n RS nmid_FDPCBQ_0 VSS) nmos w=1u l=100n
+FDPCBQ_NA0 (nmid_FDPCBQ_0 D VSS VSS) nmos w=1u l=100n
+FDPCBQ_I_P0 (fdpcbq_and fdpcbq_and_n VDD VDD) pmos w=2u l=100n
+FDPCBQ_I_N0 (fdpcbq_and fdpcbq_and_n VSS VSS) nmos w=1u l=100n
+FDPCBQ_ck_P0 (FDPCBQ_ck_b CK VDD VDD) pmos w=2u l=100n
+FDPCBQ_ck_N0 (FDPCBQ_ck_b CK VSS VSS) nmos w=1u l=100n
+FDPCBQ_m_in_P (FDPCBQ_m_n1 CK fdpcbq_and VDD) pmos w=2u l=100n
+FDPCBQ_m_in_N (FDPCBQ_m_n1 FDPCBQ_ck_b fdpcbq_and VSS) nmos w=1u l=100n
+FDPCBQ_m_i1_P0 (FDPCBQ_m_n2 FDPCBQ_m_n1 VDD VDD) pmos w=2u l=100n
+FDPCBQ_m_i1_N0 (FDPCBQ_m_n2 FDPCBQ_m_n1 VSS VSS) nmos w=1u l=100n
+FDPCBQ_m_i2_P0 (FDPCBQ_m_n1 FDPCBQ_m_n2 VDD VDD) pmos w=2u l=100n
+FDPCBQ_m_i2_N0 (FDPCBQ_m_n1 FDPCBQ_m_n2 VSS VSS) nmos w=1u l=100n
+FDPCBQ_m_fb_P (FDPCBQ_m_n1 FDPCBQ_ck_b FDPCBQ_m_n2 VDD) pmos w=2u l=100n
+FDPCBQ_m_fb_N (FDPCBQ_m_n1 CK FDPCBQ_m_n2 VSS) nmos w=1u l=100n
+FDPCBQ_m_o_P0 (FDPCBQ_qm FDPCBQ_m_n2 VDD VDD) pmos w=2u l=100n
+FDPCBQ_m_o_N0 (FDPCBQ_qm FDPCBQ_m_n2 VSS VSS) nmos w=1u l=100n
+FDPCBQ_s_in_P (FDPCBQ_s_n1 FDPCBQ_ck_b FDPCBQ_qm VDD) pmos w=2u l=100n
+FDPCBQ_s_in_N (FDPCBQ_s_n1 CK FDPCBQ_qm VSS) nmos w=1u l=100n
+FDPCBQ_s_i1_P0 (FDPCBQ_s_n2 FDPCBQ_s_n1 VDD VDD) pmos w=2u l=100n
+FDPCBQ_s_i1_N0 (FDPCBQ_s_n2 FDPCBQ_s_n1 VSS VSS) nmos w=1u l=100n
+FDPCBQ_s_i2_P0 (FDPCBQ_s_n1 FDPCBQ_s_n2 VDD VDD) pmos w=2u l=100n
+FDPCBQ_s_i2_N0 (FDPCBQ_s_n1 FDPCBQ_s_n2 VSS VSS) nmos w=1u l=100n
+FDPCBQ_s_fb_P (FDPCBQ_s_n1 CK FDPCBQ_s_n2 VDD) pmos w=2u l=100n
+FDPCBQ_s_fb_N (FDPCBQ_s_n1 FDPCBQ_ck_b FDPCBQ_s_n2 VSS) nmos w=1u l=100n
+FDPCBQ_s_o_P0 (Q FDPCBQ_s_n2 VDD VDD) pmos w=2u l=100n
+FDPCBQ_s_o_N0 (Q FDPCBQ_s_n2 VSS VSS) nmos w=1u l=100n
 ends fdpcbq_x1

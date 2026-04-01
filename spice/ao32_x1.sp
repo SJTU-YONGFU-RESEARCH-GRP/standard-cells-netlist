@@ -1,16 +1,16 @@
-.subckt ao32_x1 A1 A2 B1 B2 C X VDD VSS
+.subckt ao32_x1 A1 A2 A3 B1 B2 X VDD VSS
 XAO32A0_PA0 ao32_a_n A1 VDD VDD pmos w=2u l=100n
 XAO32A0_PB0 ao32_a_n A2 VDD VDD pmos w=2u l=100n
-XAO32A0_PC0 ao32_a_n B1 VDD VDD pmos w=2u l=100n
-XAO32A0_NC0 ao32_a_n B1 nmid2 VSS nmos w=1u l=100n
+XAO32A0_PC0 ao32_a_n A3 VDD VDD pmos w=2u l=100n
+XAO32A0_NC0 ao32_a_n A3 nmid2 VSS nmos w=1u l=100n
 XAO32A0_NB0 nmid2 A2 nmid1 VSS nmos w=1u l=100n
 XAO32A0_NA0 nmid1 A1 VSS VSS nmos w=1u l=100n
 XAO32AI0_P0 ao32_a ao32_a_n VDD VDD pmos w=2u l=100n
 XAO32AI0_N0 ao32_a ao32_a_n VSS VSS nmos w=1u l=100n
-XAO32B0_PA0 ao32_b_n B2 VDD VDD pmos w=2u l=100n
-XAO32B0_PB0 ao32_b_n C VDD VDD pmos w=2u l=100n
-XAO32B0_NB0 ao32_b_n C nmid_AO32B0_0 VSS nmos w=1u l=100n
-XAO32B0_NA0 nmid_AO32B0_0 B2 VSS VSS nmos w=1u l=100n
+XAO32B0_PA0 ao32_b_n B1 VDD VDD pmos w=2u l=100n
+XAO32B0_PB0 ao32_b_n B2 VDD VDD pmos w=2u l=100n
+XAO32B0_NB0 ao32_b_n B2 nmid_AO32B0_0 VSS nmos w=1u l=100n
+XAO32B0_NA0 nmid_AO32B0_0 B1 VSS VSS nmos w=1u l=100n
 XAO32BI0_P0 ao32_b ao32_b_n VDD VDD pmos w=2u l=100n
 XAO32BI0_N0 ao32_b ao32_b_n VSS VSS nmos w=1u l=100n
 XAO32N20_PA0 pmid_AO32N20_0 ao32_a VDD VDD pmos w=2u l=100n

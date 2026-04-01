@@ -1,6 +1,28 @@
 * CDL/LVS-oriented netlist
 .SUBCKT fdnrbq_x1 Q CK D RD VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+XFDNRBQ_ck_P0 FDNRBQ_ck_b CK VDD VDD pmos w=2u l=100n
+XFDNRBQ_ck_N0 FDNRBQ_ck_b CK VSS VSS nmos w=1u l=100n
+XFDNRBQ_m_in_P FDNRBQ_m_n1 FDNRBQ_ck_b D VDD pmos w=2u l=100n
+XFDNRBQ_m_in_N FDNRBQ_m_n1 CK D VSS nmos w=1u l=100n
+XFDNRBQ_m_i1_P0 FDNRBQ_m_n2 FDNRBQ_m_n1 VDD VDD pmos w=2u l=100n
+XFDNRBQ_m_i1_N0 FDNRBQ_m_n2 FDNRBQ_m_n1 VSS VSS nmos w=1u l=100n
+XFDNRBQ_m_i2_P0 FDNRBQ_m_n1 FDNRBQ_m_n2 VDD VDD pmos w=2u l=100n
+XFDNRBQ_m_i2_N0 FDNRBQ_m_n1 FDNRBQ_m_n2 VSS VSS nmos w=1u l=100n
+XFDNRBQ_m_fb_P FDNRBQ_m_n1 CK FDNRBQ_m_n2 VDD pmos w=2u l=100n
+XFDNRBQ_m_fb_N FDNRBQ_m_n1 FDNRBQ_ck_b FDNRBQ_m_n2 VSS nmos w=1u l=100n
+XFDNRBQ_m_o_P0 FDNRBQ_qm FDNRBQ_m_n2 VDD VDD pmos w=2u l=100n
+XFDNRBQ_m_o_N0 FDNRBQ_qm FDNRBQ_m_n2 VSS VSS nmos w=1u l=100n
+XFDNRBQ_s_in_P FDNRBQ_s_n1 CK FDNRBQ_qm VDD pmos w=2u l=100n
+XFDNRBQ_s_in_N FDNRBQ_s_n1 FDNRBQ_ck_b FDNRBQ_qm VSS nmos w=1u l=100n
+XFDNRBQ_s_i1_P0 FDNRBQ_s_n2 FDNRBQ_s_n1 VDD VDD pmos w=2u l=100n
+XFDNRBQ_s_i1_N0 FDNRBQ_s_n2 FDNRBQ_s_n1 VSS VSS nmos w=1u l=100n
+XFDNRBQ_s_i2_P0 FDNRBQ_s_n1 FDNRBQ_s_n2 VDD VDD pmos w=2u l=100n
+XFDNRBQ_s_i2_N0 FDNRBQ_s_n1 FDNRBQ_s_n2 VSS VSS nmos w=1u l=100n
+XFDNRBQ_s_fb_P FDNRBQ_s_n1 FDNRBQ_ck_b FDNRBQ_s_n2 VDD pmos w=2u l=100n
+XFDNRBQ_s_fb_N FDNRBQ_s_n1 CK FDNRBQ_s_n2 VSS nmos w=1u l=100n
+XFDNRBQ_s_o_P0 Q FDNRBQ_s_n2 VDD VDD pmos w=2u l=100n
+XFDNRBQ_s_o_N0 Q FDNRBQ_s_n2 VSS VSS nmos w=1u l=100n
+XFDNRBQ_rdi_P0 FDNRBQ_rd_b RD VDD VDD pmos w=2u l=100n
+XFDNRBQ_rdi_N0 FDNRBQ_rd_b RD VSS VSS nmos w=1u l=100n
+XFDNRBQ_rcl Q FDNRBQ_rd_b VSS VSS nmos w=1u l=100n
 .ENDS fdnrbq_x1

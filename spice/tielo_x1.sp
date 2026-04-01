@@ -1,5 +1,4 @@
-.subckt tielo_x1 L_LO VDD VSS
+.subckt tielo_x1 X VDD VSS
 * Physical cell: abstract subckt (rails per PDK CDL; add PDK devices if needed).
-* Abstract subckt (no MOS instances).
-* No transistor template was found for this kind/drive.
+XTIE0N X VDD VSS VSS nmos w=1u l=100n
 .ends tielo_x1

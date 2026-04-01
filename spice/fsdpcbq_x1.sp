@@ -1,5 +1,36 @@
 .subckt fsdpcbq_x1 Q CK D SI SE RS VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+XFSDPCBQ_sei_P0 FSDPCBQ_se_b SE VDD VDD pmos w=2u l=100n
+XFSDPCBQ_sei_N0 FSDPCBQ_se_b SE VSS VSS nmos w=1u l=100n
+XFSDPCBQ_smx_MP0 FSDPCBQ_din SE D VDD pmos w=2u l=100n
+XFSDPCBQ_smx_MN0 FSDPCBQ_din FSDPCBQ_se_b D VSS nmos w=1u l=100n
+XFSDPCBQ_smx_MP1 FSDPCBQ_din FSDPCBQ_se_b SI VDD pmos w=2u l=100n
+XFSDPCBQ_smx_MN1 FSDPCBQ_din SE SI VSS nmos w=1u l=100n
+XFSDPCBQ_PA0 fsdpcbq_and_n FSDPCBQ_din VDD VDD pmos w=2u l=100n
+XFSDPCBQ_PB0 fsdpcbq_and_n RS VDD VDD pmos w=2u l=100n
+XFSDPCBQ_NB0 fsdpcbq_and_n RS nmid_FSDPCBQ_0 VSS nmos w=1u l=100n
+XFSDPCBQ_NA0 nmid_FSDPCBQ_0 FSDPCBQ_din VSS VSS nmos w=1u l=100n
+XFSDPCBQ_I_P0 fsdpcbq_and fsdpcbq_and_n VDD VDD pmos w=2u l=100n
+XFSDPCBQ_I_N0 fsdpcbq_and fsdpcbq_and_n VSS VSS nmos w=1u l=100n
+XFSDPCBQ_ck_P0 FSDPCBQ_ck_b CK VDD VDD pmos w=2u l=100n
+XFSDPCBQ_ck_N0 FSDPCBQ_ck_b CK VSS VSS nmos w=1u l=100n
+XFSDPCBQ_m_in_P FSDPCBQ_m_n1 CK fsdpcbq_and VDD pmos w=2u l=100n
+XFSDPCBQ_m_in_N FSDPCBQ_m_n1 FSDPCBQ_ck_b fsdpcbq_and VSS nmos w=1u l=100n
+XFSDPCBQ_m_i1_P0 FSDPCBQ_m_n2 FSDPCBQ_m_n1 VDD VDD pmos w=2u l=100n
+XFSDPCBQ_m_i1_N0 FSDPCBQ_m_n2 FSDPCBQ_m_n1 VSS VSS nmos w=1u l=100n
+XFSDPCBQ_m_i2_P0 FSDPCBQ_m_n1 FSDPCBQ_m_n2 VDD VDD pmos w=2u l=100n
+XFSDPCBQ_m_i2_N0 FSDPCBQ_m_n1 FSDPCBQ_m_n2 VSS VSS nmos w=1u l=100n
+XFSDPCBQ_m_fb_P FSDPCBQ_m_n1 FSDPCBQ_ck_b FSDPCBQ_m_n2 VDD pmos w=2u l=100n
+XFSDPCBQ_m_fb_N FSDPCBQ_m_n1 CK FSDPCBQ_m_n2 VSS nmos w=1u l=100n
+XFSDPCBQ_m_o_P0 FSDPCBQ_qm FSDPCBQ_m_n2 VDD VDD pmos w=2u l=100n
+XFSDPCBQ_m_o_N0 FSDPCBQ_qm FSDPCBQ_m_n2 VSS VSS nmos w=1u l=100n
+XFSDPCBQ_s_in_P FSDPCBQ_s_n1 FSDPCBQ_ck_b FSDPCBQ_qm VDD pmos w=2u l=100n
+XFSDPCBQ_s_in_N FSDPCBQ_s_n1 CK FSDPCBQ_qm VSS nmos w=1u l=100n
+XFSDPCBQ_s_i1_P0 FSDPCBQ_s_n2 FSDPCBQ_s_n1 VDD VDD pmos w=2u l=100n
+XFSDPCBQ_s_i1_N0 FSDPCBQ_s_n2 FSDPCBQ_s_n1 VSS VSS nmos w=1u l=100n
+XFSDPCBQ_s_i2_P0 FSDPCBQ_s_n1 FSDPCBQ_s_n2 VDD VDD pmos w=2u l=100n
+XFSDPCBQ_s_i2_N0 FSDPCBQ_s_n1 FSDPCBQ_s_n2 VSS VSS nmos w=1u l=100n
+XFSDPCBQ_s_fb_P FSDPCBQ_s_n1 CK FSDPCBQ_s_n2 VDD pmos w=2u l=100n
+XFSDPCBQ_s_fb_N FSDPCBQ_s_n1 FSDPCBQ_ck_b FSDPCBQ_s_n2 VSS nmos w=1u l=100n
+XFSDPCBQ_s_o_P0 Q FSDPCBQ_s_n2 VDD VDD pmos w=2u l=100n
+XFSDPCBQ_s_o_N0 Q FSDPCBQ_s_n2 VSS VSS nmos w=1u l=100n
 .ends fsdpcbq_x1

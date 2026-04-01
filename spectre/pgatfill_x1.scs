@@ -1,5 +1,5 @@
 subckt pgatfill_x1 VDDP VSS VBP VBN VDDCF ENXB
-* Power-management helper: ref_lib-style rails listed first (VDD,VSS,VDDR,VBP,VBN).
-* Abstract subckt (no MOS instances).
-* No transistor template was found for this kind/drive.
+* Power-management helper: ref_lib-style rails listed first.
+PG_ENXB_POFF (ENXB VDDP ENXB VBP) pmos w=2u l=100n
+PG_ENXB_NOFF (ENXB VSS ENXB VBN) nmos w=1u l=100n
 ends pgatfill_x1

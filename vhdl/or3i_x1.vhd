@@ -7,7 +7,7 @@ use  ieee.Vital_Primitives.all;
 use IEEE.VITAL_Timing.all;
 entity or3i_x1 is
    port (
-      A1, A2, A3 : in STD_LOGIC;
+      A, B1, B2 : in STD_LOGIC;
       X : out STD_LOGIC
    );
 end or3i_x1;
@@ -15,7 +15,7 @@ end or3i_x1;
 architecture or3i_x1_arch of or3i_x1 is
 begin
 
-   VitalBehavior : Process (A1, A2, A3)
+   VitalBehavior : Process (A, B1, B2)
       VARIABLE INT_RES_0 : STD_LOGIC := 'X';
    begin
 
@@ -23,7 +23,7 @@ begin
       --     FUNCTIONALITY SECTION      --
       ------------------------------------
 
-      INT_RES_0 := (not A1) or A2 or A3;
+      INT_RES_0 := (not A) or B1 or B2;
 
       ------------------------------------
       X <= INT_RES_0;

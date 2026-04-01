@@ -10,7 +10,7 @@ architecture sim of tb is
   signal in1 : std_logic;
 begin
   dut: entity work.nor2i_x1(rtl)
-    port map (A1 => in0, A2 => in1, \X\ => w_o);
+    port map (A => in0, B => in1, \X\ => w_o);
   process
   begin
     in0 <= '0'; in1 <= '0';

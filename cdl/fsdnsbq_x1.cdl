@@ -1,6 +1,34 @@
 * CDL/LVS-oriented netlist
 .SUBCKT fsdnsbq_x1 Q CK D SI SE SD VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+XFSDNSBQ_sei_P0 FSDNSBQ_se_b SE VDD VDD pmos w=2u l=100n
+XFSDNSBQ_sei_N0 FSDNSBQ_se_b SE VSS VSS nmos w=1u l=100n
+XFSDNSBQ_smx_MP0 FSDNSBQ_din SE D VDD pmos w=2u l=100n
+XFSDNSBQ_smx_MN0 FSDNSBQ_din FSDNSBQ_se_b D VSS nmos w=1u l=100n
+XFSDNSBQ_smx_MP1 FSDNSBQ_din FSDNSBQ_se_b SI VDD pmos w=2u l=100n
+XFSDNSBQ_smx_MN1 FSDNSBQ_din SE SI VSS nmos w=1u l=100n
+XFSDNSBQ_ck_P0 FSDNSBQ_ck_b CK VDD VDD pmos w=2u l=100n
+XFSDNSBQ_ck_N0 FSDNSBQ_ck_b CK VSS VSS nmos w=1u l=100n
+XFSDNSBQ_m_in_P FSDNSBQ_m_n1 FSDNSBQ_ck_b FSDNSBQ_din VDD pmos w=2u l=100n
+XFSDNSBQ_m_in_N FSDNSBQ_m_n1 CK FSDNSBQ_din VSS nmos w=1u l=100n
+XFSDNSBQ_m_i1_P0 FSDNSBQ_m_n2 FSDNSBQ_m_n1 VDD VDD pmos w=2u l=100n
+XFSDNSBQ_m_i1_N0 FSDNSBQ_m_n2 FSDNSBQ_m_n1 VSS VSS nmos w=1u l=100n
+XFSDNSBQ_m_i2_P0 FSDNSBQ_m_n1 FSDNSBQ_m_n2 VDD VDD pmos w=2u l=100n
+XFSDNSBQ_m_i2_N0 FSDNSBQ_m_n1 FSDNSBQ_m_n2 VSS VSS nmos w=1u l=100n
+XFSDNSBQ_m_fb_P FSDNSBQ_m_n1 CK FSDNSBQ_m_n2 VDD pmos w=2u l=100n
+XFSDNSBQ_m_fb_N FSDNSBQ_m_n1 FSDNSBQ_ck_b FSDNSBQ_m_n2 VSS nmos w=1u l=100n
+XFSDNSBQ_m_o_P0 FSDNSBQ_qm FSDNSBQ_m_n2 VDD VDD pmos w=2u l=100n
+XFSDNSBQ_m_o_N0 FSDNSBQ_qm FSDNSBQ_m_n2 VSS VSS nmos w=1u l=100n
+XFSDNSBQ_s_in_P FSDNSBQ_s_n1 CK FSDNSBQ_qm VDD pmos w=2u l=100n
+XFSDNSBQ_s_in_N FSDNSBQ_s_n1 FSDNSBQ_ck_b FSDNSBQ_qm VSS nmos w=1u l=100n
+XFSDNSBQ_s_i1_P0 FSDNSBQ_s_n2 FSDNSBQ_s_n1 VDD VDD pmos w=2u l=100n
+XFSDNSBQ_s_i1_N0 FSDNSBQ_s_n2 FSDNSBQ_s_n1 VSS VSS nmos w=1u l=100n
+XFSDNSBQ_s_i2_P0 FSDNSBQ_s_n1 FSDNSBQ_s_n2 VDD VDD pmos w=2u l=100n
+XFSDNSBQ_s_i2_N0 FSDNSBQ_s_n1 FSDNSBQ_s_n2 VSS VSS nmos w=1u l=100n
+XFSDNSBQ_s_fb_P FSDNSBQ_s_n1 FSDNSBQ_ck_b FSDNSBQ_s_n2 VDD pmos w=2u l=100n
+XFSDNSBQ_s_fb_N FSDNSBQ_s_n1 CK FSDNSBQ_s_n2 VSS nmos w=1u l=100n
+XFSDNSBQ_s_o_P0 Q FSDNSBQ_s_n2 VDD VDD pmos w=2u l=100n
+XFSDNSBQ_s_o_N0 Q FSDNSBQ_s_n2 VSS VSS nmos w=1u l=100n
+XFSDNSBQ_sdi_P0 FSDNSBQ_sd_b SD VDD VDD pmos w=2u l=100n
+XFSDNSBQ_sdi_N0 FSDNSBQ_sd_b SD VSS VSS nmos w=1u l=100n
+XFSDNSBQ_rst Q FSDNSBQ_sd_b VDD VDD pmos w=2u l=100n
 .ENDS fsdnsbq_x1

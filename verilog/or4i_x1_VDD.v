@@ -13,9 +13,9 @@
 `endif
 
 `celldefine
-module or4i_x1 (X, A1, A2, A3, A4, VDD, VSS);
+module or4i_x1 (X, A, B1, B2, B3, VDD, VSS);
    output X;
-   input A1, A2, A3, A4;
+   input A, B1, B2, B3;
    inout VDD, VSS;
 
    /////////////////////////////////////
@@ -24,12 +24,12 @@ module or4i_x1 (X, A1, A2, A3, A4, VDD, VSS);
 
    `ifdef VIRL_functiononly
    wire in0_b;
-   not #`STDCELL_COMBO_DELAY(in0_b, A1);
-   or #`STDCELL_COMBO_DELAY(X, in0_b, A2, A3, A4);
+   not #`STDCELL_COMBO_DELAY(in0_b, A);
+   or #`STDCELL_COMBO_DELAY(X, in0_b, B1, B2, B3);
    `else
    wire in0_b;
-   not (in0_b, A1);
-   or (X, in0_b, A2, A3, A4);
+   not (in0_b, A);
+   or (X, in0_b, B1, B2, B3);
    `endif
 
    /////////////////////////////////////
@@ -40,10 +40,10 @@ module or4i_x1 (X, A1, A2, A3, A4, VDD, VSS);
    `else
 
 specify
-(A1 +=> X)=(0, 0);
-(A2 +=> X)=(0, 0);
-(A3 +=> X)=(0, 0);
-(A4 +=> X)=(0, 0);
+(A +=> X)=(0, 0);
+(B1 +=> X)=(0, 0);
+(B2 +=> X)=(0, 0);
+(B3 +=> X)=(0, 0);
 endspecify
    `endif
 

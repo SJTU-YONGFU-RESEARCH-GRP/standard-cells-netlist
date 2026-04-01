@@ -1,6 +1,6 @@
-subckt nor2i_x1 A1 A2 X VDD VSS
-MPA0 (pmid_M0 A1 VDD VDD) pmos w=2u l=100n
-MPB0 (X A2 pmid_M0 VDD) pmos w=2u l=100n
-MNA0 (X A1 VSS VSS) nmos w=1u l=100n
-MNB0 (X A2 VSS VSS) nmos w=1u l=100n
+subckt nor2i_x1 A B X VDD VSS
+MPA0 (pmid_M0 A VDD VDD) pmos w=2u l=100n
+MPB0 (X B pmid_M0 VDD) pmos w=2u l=100n
+MNA0 (X A VSS VSS) nmos w=1u l=100n
+MNB0 (X B VSS VSS) nmos w=1u l=100n
 ends nor2i_x1

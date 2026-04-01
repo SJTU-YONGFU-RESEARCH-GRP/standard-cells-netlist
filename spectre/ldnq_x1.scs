@@ -1,5 +1,14 @@
 subckt ldnq_x1 Q G D VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+LDN_g_P0 (g_b G VDD VDD) pmos w=2u l=100n
+LDN_g_N0 (g_b G VSS VSS) nmos w=1u l=100n
+LDN_in_P (LDN_n1 G D VDD) pmos w=2u l=100n
+LDN_in_N (LDN_n1 g_b D VSS) nmos w=1u l=100n
+LDN_i1_P0 (LDN_n2 LDN_n1 VDD VDD) pmos w=2u l=100n
+LDN_i1_N0 (LDN_n2 LDN_n1 VSS VSS) nmos w=1u l=100n
+LDN_i2_P0 (LDN_n1 LDN_n2 VDD VDD) pmos w=2u l=100n
+LDN_i2_N0 (LDN_n1 LDN_n2 VSS VSS) nmos w=1u l=100n
+LDN_fb_P (LDN_n1 g_b LDN_n2 VDD) pmos w=2u l=100n
+LDN_fb_N (LDN_n1 G LDN_n2 VSS) nmos w=1u l=100n
+LDN_o_P0 (Q LDN_n2 VDD VDD) pmos w=2u l=100n
+LDN_o_N0 (Q LDN_n2 VSS VSS) nmos w=1u l=100n
 ends ldnq_x1

@@ -1,5 +1,35 @@
 subckt fsdprb_x1 Q QN CK D SI SE RD VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+FSDPRB_sei_P0 (FSDPRB_se_b SE VDD VDD) pmos w=2u l=100n
+FSDPRB_sei_N0 (FSDPRB_se_b SE VSS VSS) nmos w=1u l=100n
+FSDPRB_smx_MP0 (FSDPRB_din SE D VDD) pmos w=2u l=100n
+FSDPRB_smx_MN0 (FSDPRB_din FSDPRB_se_b D VSS) nmos w=1u l=100n
+FSDPRB_smx_MP1 (FSDPRB_din FSDPRB_se_b SI VDD) pmos w=2u l=100n
+FSDPRB_smx_MN1 (FSDPRB_din SE SI VSS) nmos w=1u l=100n
+FSDPRB_ck_P0 (FSDPRB_ck_b CK VDD VDD) pmos w=2u l=100n
+FSDPRB_ck_N0 (FSDPRB_ck_b CK VSS VSS) nmos w=1u l=100n
+FSDPRB_m_in_P (FSDPRB_m_n1 CK FSDPRB_din VDD) pmos w=2u l=100n
+FSDPRB_m_in_N (FSDPRB_m_n1 FSDPRB_ck_b FSDPRB_din VSS) nmos w=1u l=100n
+FSDPRB_m_i1_P0 (FSDPRB_m_n2 FSDPRB_m_n1 VDD VDD) pmos w=2u l=100n
+FSDPRB_m_i1_N0 (FSDPRB_m_n2 FSDPRB_m_n1 VSS VSS) nmos w=1u l=100n
+FSDPRB_m_i2_P0 (FSDPRB_m_n1 FSDPRB_m_n2 VDD VDD) pmos w=2u l=100n
+FSDPRB_m_i2_N0 (FSDPRB_m_n1 FSDPRB_m_n2 VSS VSS) nmos w=1u l=100n
+FSDPRB_m_fb_P (FSDPRB_m_n1 FSDPRB_ck_b FSDPRB_m_n2 VDD) pmos w=2u l=100n
+FSDPRB_m_fb_N (FSDPRB_m_n1 CK FSDPRB_m_n2 VSS) nmos w=1u l=100n
+FSDPRB_m_o_P0 (FSDPRB_qm FSDPRB_m_n2 VDD VDD) pmos w=2u l=100n
+FSDPRB_m_o_N0 (FSDPRB_qm FSDPRB_m_n2 VSS VSS) nmos w=1u l=100n
+FSDPRB_s_in_P (FSDPRB_s_n1 FSDPRB_ck_b FSDPRB_qm VDD) pmos w=2u l=100n
+FSDPRB_s_in_N (FSDPRB_s_n1 CK FSDPRB_qm VSS) nmos w=1u l=100n
+FSDPRB_s_i1_P0 (FSDPRB_s_n2 FSDPRB_s_n1 VDD VDD) pmos w=2u l=100n
+FSDPRB_s_i1_N0 (FSDPRB_s_n2 FSDPRB_s_n1 VSS VSS) nmos w=1u l=100n
+FSDPRB_s_i2_P0 (FSDPRB_s_n1 FSDPRB_s_n2 VDD VDD) pmos w=2u l=100n
+FSDPRB_s_i2_N0 (FSDPRB_s_n1 FSDPRB_s_n2 VSS VSS) nmos w=1u l=100n
+FSDPRB_s_fb_P (FSDPRB_s_n1 CK FSDPRB_s_n2 VDD) pmos w=2u l=100n
+FSDPRB_s_fb_N (FSDPRB_s_n1 FSDPRB_ck_b FSDPRB_s_n2 VSS) nmos w=1u l=100n
+FSDPRB_s_o_P0 (Q FSDPRB_s_n2 VDD VDD) pmos w=2u l=100n
+FSDPRB_s_o_N0 (Q FSDPRB_s_n2 VSS VSS) nmos w=1u l=100n
+FSDPRB_qn_P0 (QN Q VDD VDD) pmos w=2u l=100n
+FSDPRB_qn_N0 (QN Q VSS VSS) nmos w=1u l=100n
+FSDPRB_rdi_P0 (FSDPRB_rd_b RD VDD VDD) pmos w=2u l=100n
+FSDPRB_rdi_N0 (FSDPRB_rd_b RD VSS VSS) nmos w=1u l=100n
+FSDPRB_rcl (Q FSDPRB_rd_b VSS VSS) nmos w=1u l=100n
 ends fsdprb_x1

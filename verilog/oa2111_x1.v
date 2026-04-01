@@ -13,9 +13,9 @@
 `endif
 
 `celldefine
-module oa2111_x1 (X, A1, A2, B1, B2, C);
+module oa2111_x1 (X, A1, A2, B1, B2, B3);
    output X;
-   input A1, A2, B1, B2, C;
+   input A1, A2, B1, B2, B3;
 
    /////////////////////////////////////
    //          FUNCTIONALITY          //
@@ -24,11 +24,11 @@ module oa2111_x1 (X, A1, A2, B1, B2, C);
    `ifdef VIRL_functiononly
    wire t0;
    or #`STDCELL_COMBO_DELAY(t0, A1, A2);
-   and #`STDCELL_COMBO_DELAY(X, t0, B1, B2, C);
+   and #`STDCELL_COMBO_DELAY(X, t0, B1, B2, B3);
    `else
    wire t0;
    or (t0, A1, A2);
-   and (X, t0, B1, B2, C);
+   and (X, t0, B1, B2, B3);
    `endif
 
    /////////////////////////////////////
@@ -43,7 +43,7 @@ specify
 (A2 +=> X)=(0, 0);
 (B1 +=> X)=(0, 0);
 (B2 +=> X)=(0, 0);
-(C +=> X)=(0, 0);
+(B3 +=> X)=(0, 0);
 endspecify
    `endif
 

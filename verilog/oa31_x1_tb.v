@@ -2,7 +2,7 @@
 module tb;
   wire out;
   reg in0, in1, in2, in3;
-  oa31_x1 dut (.X(out), .A1(in0), .A2(in1), .B1(in2), .B2(in3));
+  oa31_x1 dut (.X(out), .A1(in0), .A2(in1), .A3(in2), .B(in3));
   initial begin
       in0=1'b0; in1=1'b0; in2=1'b0; in3=1'b0;
       #1;

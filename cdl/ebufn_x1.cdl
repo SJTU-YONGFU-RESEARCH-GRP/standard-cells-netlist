@@ -1,7 +1,7 @@
 * CDL/LVS-oriented netlist
-.SUBCKT ebufn_x1 A EN X VDD VSS
-XTEI_P0 te_n EN VDD VDD pmos w=2u l=100n
-XTEI_N0 te_n EN VSS VSS nmos w=1u l=100n
-XEBP0 X EN A VDD pmos w=2u l=100n
+.SUBCKT ebufn_x1 A TE_B X VDD VSS
+XTEI_P0 te_n TE_B VDD VDD pmos w=2u l=100n
+XTEI_N0 te_n TE_B VSS VSS nmos w=1u l=100n
+XEBP0 X TE_B A VDD pmos w=2u l=100n
 XEBN0 X te_n A VSS nmos w=1u l=100n
 .ENDS ebufn_x1

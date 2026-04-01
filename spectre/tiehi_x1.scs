@@ -1,5 +1,4 @@
-subckt tiehi_x1 L_HI VDD VSS
+subckt tiehi_x1 X VDD VSS
 * Physical cell: abstract subckt (rails per PDK CDL; add PDK devices if needed).
-* Abstract subckt (no MOS instances).
-* No transistor template was found for this kind/drive.
+TIE1P (X VSS VDD VDD) pmos w=2u l=100n
 ends tiehi_x1

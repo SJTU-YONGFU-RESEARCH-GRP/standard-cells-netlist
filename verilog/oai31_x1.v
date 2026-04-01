@@ -13,9 +13,9 @@
 `endif
 
 `celldefine
-module oai31_x1 (X, A1, A2, B1, B2);
+module oai31_x1 (X, A1, A2, A3, B);
    output X;
-   input A1, A2, B1, B2;
+   input A1, A2, A3, B;
 
    /////////////////////////////////////
    //          FUNCTIONALITY          //
@@ -23,13 +23,13 @@ module oai31_x1 (X, A1, A2, B1, B2);
 
    `ifdef VIRL_functiononly
    wire t0, t1;
-   or #`STDCELL_COMBO_DELAY(t0, A1, A2, B1);
-   and #`STDCELL_COMBO_DELAY(t1, t0, B2);
+   or #`STDCELL_COMBO_DELAY(t0, A1, A2, A3);
+   and #`STDCELL_COMBO_DELAY(t1, t0, B);
    not #`STDCELL_COMBO_DELAY(X, t1);
    `else
    wire t0, t1;
-   or (t0, A1, A2, B1);
-   and (t1, t0, B2);
+   or (t0, A1, A2, A3);
+   and (t1, t0, B);
    not (X, t1);
    `endif
 
@@ -43,8 +43,8 @@ module oai31_x1 (X, A1, A2, B1, B2);
 specify
 (A1 -=> X)=(0, 0);
 (A2 -=> X)=(0, 0);
-(B1 -=> X)=(0, 0);
-(B2 -=> X)=(0, 0);
+(A3 -=> X)=(0, 0);
+(B -=> X)=(0, 0);
 endspecify
    `endif
 

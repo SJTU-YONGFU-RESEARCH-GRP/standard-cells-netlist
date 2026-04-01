@@ -1,5 +1,27 @@
 .subckt fdnsbq_x1 Q CK D SD VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+XFDNSBQ_ck_P0 FDNSBQ_ck_b CK VDD VDD pmos w=2u l=100n
+XFDNSBQ_ck_N0 FDNSBQ_ck_b CK VSS VSS nmos w=1u l=100n
+XFDNSBQ_m_in_P FDNSBQ_m_n1 FDNSBQ_ck_b D VDD pmos w=2u l=100n
+XFDNSBQ_m_in_N FDNSBQ_m_n1 CK D VSS nmos w=1u l=100n
+XFDNSBQ_m_i1_P0 FDNSBQ_m_n2 FDNSBQ_m_n1 VDD VDD pmos w=2u l=100n
+XFDNSBQ_m_i1_N0 FDNSBQ_m_n2 FDNSBQ_m_n1 VSS VSS nmos w=1u l=100n
+XFDNSBQ_m_i2_P0 FDNSBQ_m_n1 FDNSBQ_m_n2 VDD VDD pmos w=2u l=100n
+XFDNSBQ_m_i2_N0 FDNSBQ_m_n1 FDNSBQ_m_n2 VSS VSS nmos w=1u l=100n
+XFDNSBQ_m_fb_P FDNSBQ_m_n1 CK FDNSBQ_m_n2 VDD pmos w=2u l=100n
+XFDNSBQ_m_fb_N FDNSBQ_m_n1 FDNSBQ_ck_b FDNSBQ_m_n2 VSS nmos w=1u l=100n
+XFDNSBQ_m_o_P0 FDNSBQ_qm FDNSBQ_m_n2 VDD VDD pmos w=2u l=100n
+XFDNSBQ_m_o_N0 FDNSBQ_qm FDNSBQ_m_n2 VSS VSS nmos w=1u l=100n
+XFDNSBQ_s_in_P FDNSBQ_s_n1 CK FDNSBQ_qm VDD pmos w=2u l=100n
+XFDNSBQ_s_in_N FDNSBQ_s_n1 FDNSBQ_ck_b FDNSBQ_qm VSS nmos w=1u l=100n
+XFDNSBQ_s_i1_P0 FDNSBQ_s_n2 FDNSBQ_s_n1 VDD VDD pmos w=2u l=100n
+XFDNSBQ_s_i1_N0 FDNSBQ_s_n2 FDNSBQ_s_n1 VSS VSS nmos w=1u l=100n
+XFDNSBQ_s_i2_P0 FDNSBQ_s_n1 FDNSBQ_s_n2 VDD VDD pmos w=2u l=100n
+XFDNSBQ_s_i2_N0 FDNSBQ_s_n1 FDNSBQ_s_n2 VSS VSS nmos w=1u l=100n
+XFDNSBQ_s_fb_P FDNSBQ_s_n1 FDNSBQ_ck_b FDNSBQ_s_n2 VDD pmos w=2u l=100n
+XFDNSBQ_s_fb_N FDNSBQ_s_n1 CK FDNSBQ_s_n2 VSS nmos w=1u l=100n
+XFDNSBQ_s_o_P0 Q FDNSBQ_s_n2 VDD VDD pmos w=2u l=100n
+XFDNSBQ_s_o_N0 Q FDNSBQ_s_n2 VSS VSS nmos w=1u l=100n
+XFDNSBQ_sdi_P0 FDNSBQ_sd_b SD VDD VDD pmos w=2u l=100n
+XFDNSBQ_sdi_N0 FDNSBQ_sd_b SD VSS VSS nmos w=1u l=100n
+XFDNSBQ_rst Q FDNSBQ_sd_b VDD VDD pmos w=2u l=100n
 .ends fdnsbq_x1

@@ -31,53 +31,77 @@ Most logic kinds are emitted with a symbolic drive encoded in the module / subci
 
 ## Combinational cells
 
+### Pin naming convention (emitted views)
+
+For consistency across generated **Verilog/VHDL/SPICE/CDL/Spectre**:
+
+- **Outputs** are named `X` (and for multi-output macros: `S`, `CO`, `ICO`, etc.)
+- **Single-input gates** use input `A`
+- **2-input primitives** use `A1`, `A2`
+- **3/4-input primitives** use `A1..A3` / `A1..A4`
+- **First-input-inverted variants** (`*I` kinds like `AND3I`, `NAND3I`, `OR3I`) still use `A1..` pin names; the inversion is in the Boolean definition.
+- **AO/OA family grouping**:
+  - `AO21`/`AOI21` use `A1`, `A2`, `B`
+  - `AO211`/`AOI211` use `A1`, `A2`, `B1`, `B2`
+  - `AO2111`/`AOI2111` use `A1`, `A2`, `B1`, `B2`, `B3`
+  - `AO221`/`AOI221` use `A1`, `A2`, `B1`, `B2`, `C`
+  - `AO31`/`AOI31` use `A1`, `A2`, `A3`, `B`
+  - `AO311`/`AOI311` use `A1`, `A2`, `A3`, `B1`, `B2`
+  - `AO32`/`AOI32` use `A1`, `A2`, `A3`, `B1`, `B2`
+  - `AO41`/`AOI41` use `A1`, `A2`, `A3`, `A4`, `B`
+  - `AOAI211`/`OAOI211` use `A1`, `A2`, `B`, `C`
+- **MUXes** use `D*` data pins and `S*` select pins (`S` for MUX2, `S0/S1` for MUX3/4, `S0..` for wide muxes)
+- **Tristate**:
+  - `EBUFN`/`EINVN`: active-low enable `TE_B`
+  - `BUFTS`: active-high enable `EN`
+
 ### Combinational cell list
 
 | # | Group | Name | Description | Bitwise (Verilog) |
 |---:|--------|------|-------------|-------------------|
-| 1 | Inverter | `INV` | Inverter | `out = ~in0` |
-| 2 | Buffer | `BUF` | Buffer | `out = in0` |
-| 3 | Delay | `DLY` | Delay buffer: same logic as `BUF` | `out = in0` |
-| 4 | Tristate | `EBUFN` | Tristate buffer, active-low enable `te_b`; SPICE ports `in0`, `te_b`, `out` | `bufif0 (out, in0, te_b)` |
-| 5 | Tristate | `EINVN` | Tristate inverter, active-low `te_b`; SPICE ports `in0`, `te_b`, `out` | `notif0 (out, in0, te_b)` |
-| 6 | Tristate | `BUFTS` | Tristate buffer, active-high enable `en` | `bufif1 (out, in0, en)` |
-| 7 | NAND | `NAND2` | 2-input NAND | `out = ~(in0 & in1)` |
-| 8 | NAND | `NAND2I` | 2-input NAND; same Boolean as `NAND2`; one input inverted at the pin (bubble) | `out = ~(in0 & in1)` |
-| 9 | NAND | `NAND3` | 3-input NAND | `out = ~(in0 & in1 & in2)` |
-| 10 | NAND | `NAND3I` | 3-input NAND; `in0` inverted in the Boolean | `out = ~((~in0) & in1 & in2)` |
-| 11 | NAND | `NAND4` | 4-input NAND | `out = ~(in0 & in1 & in2 & in3)` |
-| 12 | NAND | `NAND4I` | 4-input NAND; `in0` inverted in the Boolean | <code>out = ~((~in0) & in1 & in2 & in3)</code> |
-| 13 | NOR | `NOR2` | 2-input NOR | <code>out = ~(in0 &#124; in1)</code> |
-| 14 | NOR | `NOR2I` | 2-input NOR; same Boolean as `NOR2`; one input inverted at the pin (bubble) | <code>out = ~(in0 &#124; in1)</code> |
-| 15 | NOR | `NOR3` | 3-input NOR | <code>out = ~(in0 &#124; in1 &#124; in2)</code> |
-| 16 | NOR | `NOR3I` | 3-input NOR; `in0` inverted in the Boolean | <code>out = ~((~in0) &#124; in1 &#124; in2)</code> |
-| 17 | NOR | `NOR4` | 4-input NOR | <code>out = ~(in0 &#124; in1 &#124; in2 &#124; in3)</code> |
-| 18 | AND | `AND2` | 2-input AND | `out = in0 & in1` |
-| 19 | AND | `AND3` | 3-input AND | `out = in0 & in1 & in2` |
-| 20 | AND | `AND4` | 4-input AND | `out = in0 & in1 & in2 & in3` |
-| 21 | AND | `AND3I` | 3-input AND; `in0` inverted in the Boolean | <code>out = (~in0) & in1 & in2</code> |
-| 22 | AND | `AND4I` | 4-input AND; `in0` inverted in the Boolean | <code>out = (~in0) & in1 & in2 & in3</code> |
-| 23 | OR | `OR2` | 2-input OR | <code>out = in0 &#124; in1</code> |
-| 24 | OR | `OR3` | 3-input OR | <code>out = in0 &#124; in1 &#124; in2</code> |
-| 25 | OR | `OR3I` | 3-input OR; `in0` inverted in the Boolean | <code>out = (~in0) &#124; in1 &#124; in2</code> |
-| 26 | OR | `OR4` | 4-input OR | <code>out = in0 &#124; in1 &#124; in2 &#124; in3</code> |
-| 27 | OR | `OR4I` | 4-input OR; `in0` inverted in the Boolean | <code>out = (~in0) &#124; in1 &#124; in2 &#124; in3</code> |
-| 28 | XOR | `XOR2` | 2-input XOR | `out = in0 ^ in1` |
-| 29 | XNOR | `XNOR2` | 2-input XNOR | `out = ~(in0 ^ in1)` |
-| 30 | XOR | `XOR3` | 3-input XOR (odd parity) | `out = in0 ^ in1 ^ in2` |
-| 31 | XNOR | `XNOR3` | 3-input XNOR (even parity) | `out = ~(in0 ^ in1 ^ in2)` |
-| 32 | XOR | `XOR4` | 4-input XOR (odd parity) | `out = in0 ^ in1 ^ in2 ^ in3` |
-| 33 | XNOR | `XNOR4` | 4-input XNOR (even parity) | `out = ~(in0 ^ in1 ^ in2 ^ in3)` |
-| 34 | AND-OR | `AO21` | AND-OR-21; non-inverting sum (AOI core + output inverter) | <code>out = (in0 & in1) &#124; in2</code> |
-| 35 | AND-OR | `AO21I` | AND-OR-21I; last OR input inverted (`~in2`) vs `AO21` | <code>out = (in0 & in1) &#124; (~in2)</code> |
-| 36 | AND-OR | `AO211` | AND-OR-211 | <code>out = (in0 & in1) &#124; in2 &#124; in3</code> |
-| 37 | AND-OR | `AO2111` | AND-OR-2111 | <code>out = (in0 & in1) &#124; in2 &#124; in3 &#124; in4</code> |
-| 38 | AND-OR | `AO221` | AND-OR-221 | <code>out = (in0 & in1) &#124; (in2 & in3) &#124; in4</code> |
-| 39 | AND-OR | `AO2II2` | AND-OR-22I; both inputs inverted on the first 2-wide AND leg | <code>out = ((~in0) & (~in1)) &#124; (in2 & in3)</code> |
-| 40 | AND-OR | `AO31` | AND-OR-31 | <code>out = (in0 & in1 & in2) &#124; in3</code> |
-| 41 | AND-OR | `AO311` | AND-OR-311 | <code>out = (in0 & in1 & in2) &#124; in3 &#124; in4</code> |
-| 42 | AND-OR | `AO32` | AND-OR-32 | <code>out = (in0 & in1 & in2) &#124; (in3 & in4)</code> |
-| 43 | AND-OR | `AO41` | AND-OR-41 | <code>out = (in0 & in1 & in2 & in3) &#124; in4</code> |
+| 1 | Inverter | `INV` | Inverter | `X = ~A` |
+| 2 | Buffer | `BUF` | Buffer | `X = A` |
+| 3 | Delay | `DLY` | Delay buffer: same logic as `BUF` | `X = A` |
+| 4 | Tristate | `EBUFN` | Tristate buffer, active-low enable `TE_B` | `bufif0 (X, A, TE_B)` |
+| 5 | Tristate | `EINVN` | Tristate inverter, active-low `TE_B` | `notif0 (X, A, TE_B)` |
+| 6 | Tristate | `BUFTS` | Tristate buffer, active-high enable `EN` | `bufif1 (X, A, EN)` |
+| 7 | NAND | `NAND2` | 2-input NAND | `X = ~(A1 & A2)` |
+| 8 | NAND | `NAND2I` | 2-input NAND; same Boolean as `NAND2`; one input inverted at the pin (bubble) | `X = ~(A1 & A2)` |
+| 9 | NAND | `NAND3` | 3-input NAND | `X = ~(A1 & A2 & A3)` |
+| 10 | NAND | `NAND3I` | 3-input NAND; `A1` inverted in the Boolean | `X = ~((~A1) & A2 & A3)` |
+| 11 | NAND | `NAND4` | 4-input NAND | `X = ~(A1 & A2 & A3 & A4)` |
+| 12 | NAND | `NAND4I` | 4-input NAND; `A1` inverted in the Boolean | <code>X = ~((~A1) & A2 & A3 & A4)</code> |
+| 13 | NOR | `NOR2` | 2-input NOR | <code>X = ~(A1 &#124; A2)</code> |
+| 14 | NOR | `NOR2I` | 2-input NOR; same Boolean as `NOR2`; one input inverted at the pin (bubble) | <code>X = ~(A1 &#124; A2)</code> |
+| 15 | NOR | `NOR3` | 3-input NOR | <code>X = ~(A1 &#124; A2 &#124; A3)</code> |
+| 16 | NOR | `NOR3I` | 3-input NOR; `A1` inverted in the Boolean | <code>X = ~((~A1) &#124; A2 &#124; A3)</code> |
+| 17 | NOR | `NOR4` | 4-input NOR | <code>X = ~(A1 &#124; A2 &#124; A3 &#124; A4)</code> |
+| 18 | AND | `AND2` | 2-input AND | `X = A1 & A2` |
+| 19 | AND | `AND3` | 3-input AND | `X = A1 & A2 & A3` |
+| 20 | AND | `AND4` | 4-input AND | `X = A1 & A2 & A3 & A4` |
+| 21 | AND | `AND3I` | 3-input AND; `A1` inverted in the Boolean | <code>X = (~A1) & A2 & A3</code> |
+| 22 | AND | `AND4I` | 4-input AND; `A1` inverted in the Boolean | <code>X = (~A1) & A2 & A3 & A4</code> |
+| 23 | OR | `OR2` | 2-input OR | <code>X = A1 &#124; A2</code> |
+| 24 | OR | `OR3` | 3-input OR | <code>X = A1 &#124; A2 &#124; A3</code> |
+| 25 | OR | `OR3I` | 3-input OR; `A1` inverted in the Boolean | <code>X = (~A1) &#124; A2 &#124; A3</code> |
+| 26 | OR | `OR4` | 4-input OR | <code>X = A1 &#124; A2 &#124; A3 &#124; A4</code> |
+| 27 | OR | `OR4I` | 4-input OR; `A1` inverted in the Boolean | <code>X = (~A1) &#124; A2 &#124; A3 &#124; A4</code> |
+| 28 | XOR | `XOR2` | 2-input XOR | `X = A1 ^ A2` |
+| 29 | XNOR | `XNOR2` | 2-input XNOR | `X = ~(A1 ^ A2)` |
+| 30 | XOR | `XOR3` | 3-input XOR (odd parity) | `X = A1 ^ A2 ^ A3` |
+| 31 | XNOR | `XNOR3` | 3-input XNOR (even parity) | `X = ~(A1 ^ A2 ^ A3)` |
+| 32 | XOR | `XOR4` | 4-input XOR (odd parity) | `X = A1 ^ A2 ^ A3 ^ A4` |
+| 33 | XNOR | `XNOR4` | 4-input XNOR (even parity) | `X = ~(A1 ^ A2 ^ A3 ^ A4)` |
+| 34 | AND-OR | `AO21` | AND-OR-21; non-inverting sum (AOI core + output inverter) | <code>X = (A1 & A2) &#124; B</code> |
+| 35 | AND-OR | `AO21I` | AND-OR-21I; last OR input inverted (`~B`) vs `AO21` | <code>X = (A1 & A2) &#124; (~B)</code> |
+| 36 | AND-OR | `AO211` | AND-OR-211 | <code>X = (A1 & A2) &#124; B1 &#124; B2</code> |
+| 37 | AND-OR | `AO2111` | AND-OR-2111 | <code>X = (A1 & A2) &#124; B1 &#124; B2 &#124; B3</code> |
+| 38 | AND-OR | `AO221` | AND-OR-221 | <code>X = (A1 & A2) &#124; (B1 & B2) &#124; C</code> |
+| 39 | AND-OR | `AO2II2` | AND-OR-22I; both inputs inverted on the first 2-wide AND leg | <code>X = ((~A1) & (~A2)) &#124; (B1 & B2)</code> |
+| 40 | AND-OR | `AO31` | AND-OR-31 | <code>X = (A1 & A2 & A3) &#124; B</code> |
+| 41 | AND-OR | `AO311` | AND-OR-311 | <code>X = (A1 & A2 & A3) &#124; B1 &#124; B2</code> |
+| 42 | AND-OR | `AO32` | AND-OR-32 | <code>X = (A1 & A2 & A3) &#124; (B1 & B2)</code> |
+| 43 | AND-OR | `AO41` | AND-OR-41 | <code>X = (A1 & A2 & A3 & A4) &#124; B</code> |
 | 44 | AND-OR-INVERT | `AOI21` | AND-OR-INVERT-21 | <code>out = ~((in0 & in1) &#124; in2)</code> |
 | 45 | AND-OR-INVERT | `AOI21I` | AND-OR-INVERT-21I; last OR leg inverted before the NAND | <code>out = ~((in0 & in1) &#124; (~in2))</code> |
 | 46 | AND-OR-INVERT | `AOI22` | AND-OR-INVERT-22 | <code>out = ~((in0 & in1) &#124; (in2 & in3))</code> |

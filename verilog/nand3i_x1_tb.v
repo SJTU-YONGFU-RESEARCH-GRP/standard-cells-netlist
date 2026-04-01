@@ -2,7 +2,7 @@
 module tb;
   wire out;
   reg in0, in1, in2;
-  nand3i_x1 dut (.X(out), .A1(in0), .A2(in1), .A3(in2));
+  nand3i_x1 dut (.X(out), .A(in0), .B1(in1), .B2(in2));
   initial begin
       in0=1'b0; in1=1'b0; in2=1'b0;
       #1;

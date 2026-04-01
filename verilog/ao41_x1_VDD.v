@@ -13,9 +13,9 @@
 `endif
 
 `celldefine
-module ao41_x1 (X, A1, A2, B1, B2, C, VDD, VSS);
+module ao41_x1 (X, A1, A2, A3, A4, B, VDD, VSS);
    output X;
-   input A1, A2, B1, B2, C;
+   input A1, A2, A3, A4, B;
    inout VDD, VSS;
 
    /////////////////////////////////////
@@ -24,12 +24,12 @@ module ao41_x1 (X, A1, A2, B1, B2, C, VDD, VSS);
 
    `ifdef VIRL_functiononly
    wire t0;
-   and #`STDCELL_COMBO_DELAY(t0, A1, A2, B1, B2);
-   or #`STDCELL_COMBO_DELAY(X, t0, C);
+   and #`STDCELL_COMBO_DELAY(t0, A1, A2, A3, A4);
+   or #`STDCELL_COMBO_DELAY(X, t0, B);
    `else
    wire t0;
-   and (t0, A1, A2, B1, B2);
-   or (X, t0, C);
+   and (t0, A1, A2, A3, A4);
+   or (X, t0, B);
    `endif
 
    /////////////////////////////////////
@@ -42,9 +42,9 @@ module ao41_x1 (X, A1, A2, B1, B2, C, VDD, VSS);
 specify
 (A1 +=> X)=(0, 0);
 (A2 +=> X)=(0, 0);
-(B1 +=> X)=(0, 0);
-(B2 +=> X)=(0, 0);
-(C +=> X)=(0, 0);
+(A3 +=> X)=(0, 0);
+(A4 +=> X)=(0, 0);
+(B +=> X)=(0, 0);
 endspecify
    `endif
 

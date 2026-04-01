@@ -7,7 +7,7 @@ use  ieee.Vital_Primitives.all;
 use IEEE.VITAL_Timing.all;
 entity aoi31_x1 is
    port (
-      A1, A2, B1, B2 : in STD_LOGIC;
+      A1, A2, A3, B : in STD_LOGIC;
       X : out STD_LOGIC
    );
 end aoi31_x1;
@@ -15,7 +15,7 @@ end aoi31_x1;
 architecture aoi31_x1_arch of aoi31_x1 is
 begin
 
-   VitalBehavior : Process (A1, A2, B1, B2)
+   VitalBehavior : Process (A1, A2, A3, B)
       VARIABLE INT_RES_0 : STD_LOGIC := 'X';
    begin
 
@@ -23,7 +23,7 @@ begin
       --     FUNCTIONALITY SECTION      --
       ------------------------------------
 
-      INT_RES_0 := not (((A1 and A2 and B1) or B2));
+      INT_RES_0 := not (((A1 and A2 and A3) or B));
 
       ------------------------------------
       X <= INT_RES_0;
