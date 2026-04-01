@@ -1,3 +1,18 @@
 subckt oa2111_x1 A1 A2 B1 B2 C X VDD VSS
-* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+OA2111C0_NA10 (oa2111_oa211_n A1 oai211_n1 VSS) nmos w=1u l=100n
+OA2111C0_NA20 (oa2111_oa211_n A2 oai211_n1 VSS) nmos w=1u l=100n
+OA2111C0_NB0 (oai211_n1 B1 oai211_n2 VSS) nmos w=1u l=100n
+OA2111C0_NC0 (oai211_n2 B2 VSS VSS) nmos w=1u l=100n
+OA2111C0_PA10 (oai211_p1a A1 VDD VDD) pmos w=2u l=100n
+OA2111C0_PA20 (oa2111_oa211_n A2 oai211_p1a VDD) pmos w=2u l=100n
+OA2111C0_PB0 (oa2111_oa211_n B1 VDD VDD) pmos w=2u l=100n
+OA2111C0_PC0 (oa2111_oa211_n B2 VDD VDD) pmos w=2u l=100n
+OA2111CI0_P0 (oa2111_oa211 oa2111_oa211_n VDD VDD) pmos w=2u l=100n
+OA2111CI0_N0 (oa2111_oa211 oa2111_oa211_n VSS VSS) nmos w=1u l=100n
+OA2111N20_PA0 (oa2111_and_n oa2111_oa211 VDD VDD) pmos w=2u l=100n
+OA2111N20_PB0 (oa2111_and_n C VDD VDD) pmos w=2u l=100n
+OA2111N20_NB0 (oa2111_and_n C nmid_OA2111N20_0 VSS) nmos w=1u l=100n
+OA2111N20_NA0 (nmid_OA2111N20_0 oa2111_oa211 VSS VSS) nmos w=1u l=100n
+OA2111O0_P0 (X oa2111_and_n VDD VDD) pmos w=2u l=100n
+OA2111O0_N0 (X oa2111_and_n VSS VSS) nmos w=1u l=100n
 ends oa2111_x1

@@ -1,14 +1,34 @@
-library ieee;
-use ieee.std_logic_1164.all;
+--%BEGIN nand4i_x1
 
+
+library  ieee;
+use  ieee.std_logic_1164.all;
+use  ieee.Vital_Primitives.all;
+use IEEE.VITAL_Timing.all;
 entity nand4i_x1 is
-    port (
-        A1, A2, A3, A4 : in std_logic;
-        \out\ : out std_logic
-    );
-end entity nand4i_x1;
+   port (
+      A1, A2, A3, A4 : in STD_LOGIC;
+      X : out STD_LOGIC
+   );
+end nand4i_x1;
 
-architecture rtl of nand4i_x1 is
+architecture nand4i_x1_arch of nand4i_x1 is
 begin
-    \out\ <= not (((not A1) and A2 and A3 and A4));
-end architecture rtl;
+
+   VitalBehavior : Process (A1, A2, A3, A4)
+      VARIABLE INT_RES_0 : STD_LOGIC := 'X';
+   begin
+
+      ------------------------------------
+      --     FUNCTIONALITY SECTION      --
+      ------------------------------------
+
+      INT_RES_0 := not (((not A1) and A2 and A3 and A4));
+
+      ------------------------------------
+      X <= INT_RES_0;
+   end Process VitalBehavior;
+
+end nand4i_x1_arch;
+
+--%END nand4i_x1

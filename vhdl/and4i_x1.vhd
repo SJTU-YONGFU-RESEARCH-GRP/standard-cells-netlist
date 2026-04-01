@@ -1,14 +1,34 @@
-library ieee;
-use ieee.std_logic_1164.all;
+--%BEGIN and4i_x1
 
+
+library  ieee;
+use  ieee.std_logic_1164.all;
+use  ieee.Vital_Primitives.all;
+use IEEE.VITAL_Timing.all;
 entity and4i_x1 is
-    port (
-        A1, A2, A3, A4 : in std_logic;
-        \out\ : out std_logic
-    );
-end entity and4i_x1;
+   port (
+      A1, A2, A3, A4 : in STD_LOGIC;
+      X : out STD_LOGIC
+   );
+end and4i_x1;
 
-architecture rtl of and4i_x1 is
+architecture and4i_x1_arch of and4i_x1 is
 begin
-    \out\ <= (not A1) and A2 and A3 and A4;
-end architecture rtl;
+
+   VitalBehavior : Process (A1, A2, A3, A4)
+      VARIABLE INT_RES_0 : STD_LOGIC := 'X';
+   begin
+
+      ------------------------------------
+      --     FUNCTIONALITY SECTION      --
+      ------------------------------------
+
+      INT_RES_0 := (not A1) and A2 and A3 and A4;
+
+      ------------------------------------
+      X <= INT_RES_0;
+   end Process VitalBehavior;
+
+end and4i_x1_arch;
+
+--%END and4i_x1

@@ -1,33 +1,5 @@
 .subckt maj3_x1 X A1 A2 A3 VDD VSS
-* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
-XMAJab0_PA0 maj_ab_n A1 VDD VDD pmos w=2u l=100n
-XMAJab0_PB0 maj_ab_n A2 VDD VDD pmos w=2u l=100n
-XMAJab0_NB0 maj_ab_n A2 nmid_MAJab0_0 VSS nmos w=1u l=100n
-XMAJab0_NA0 nmid_MAJab0_0 A1 VSS VSS nmos w=1u l=100n
-XMAJac0_PA0 maj_ac_n A1 VDD VDD pmos w=2u l=100n
-XMAJac0_PB0 maj_ac_n A3 VDD VDD pmos w=2u l=100n
-XMAJac0_NB0 maj_ac_n A3 nmid_MAJac0_0 VSS nmos w=1u l=100n
-XMAJac0_NA0 nmid_MAJac0_0 A1 VSS VSS nmos w=1u l=100n
-XMAJbc0_PA0 maj_bc_n A2 VDD VDD pmos w=2u l=100n
-XMAJbc0_PB0 maj_bc_n A3 VDD VDD pmos w=2u l=100n
-XMAJbc0_NB0 maj_bc_n A3 nmid_MAJbc0_0 VSS nmos w=1u l=100n
-XMAJbc0_NA0 nmid_MAJbc0_0 A2 VSS VSS nmos w=1u l=100n
-XMAJabi0_P0 maj_ab maj_ab_n VDD VDD pmos w=2u l=100n
-XMAJabi0_N0 maj_ab maj_ab_n VSS VSS nmos w=1u l=100n
-XMAJaci0_P0 maj_ac maj_ac_n VDD VDD pmos w=2u l=100n
-XMAJaci0_N0 maj_ac maj_ac_n VSS VSS nmos w=1u l=100n
-XMAJbci0_P0 maj_bc maj_bc_n VDD VDD pmos w=2u l=100n
-XMAJbci0_N0 maj_bc maj_bc_n VSS VSS nmos w=1u l=100n
-XMAJor10_PA0 pmid_MAJor10_0 maj_ab VDD VDD pmos w=2u l=100n
-XMAJor10_PB0 maj_or_n maj_ac pmid_MAJor10_0 VDD pmos w=2u l=100n
-XMAJor10_NA0 maj_or_n maj_ab VSS VSS nmos w=1u l=100n
-XMAJor10_NB0 maj_or_n maj_ac VSS VSS nmos w=1u l=100n
-XMAJor1i0_P0 maj_or maj_or_n VDD VDD pmos w=2u l=100n
-XMAJor1i0_N0 maj_or maj_or_n VSS VSS nmos w=1u l=100n
-XMAJor20_PA0 pmid_MAJor20_0 maj_or VDD VDD pmos w=2u l=100n
-XMAJor20_PB0 maj_y_n maj_bc pmid_MAJor20_0 VDD pmos w=2u l=100n
-XMAJor20_NA0 maj_y_n maj_or VSS VSS nmos w=1u l=100n
-XMAJor20_NB0 maj_y_n maj_bc VSS VSS nmos w=1u l=100n
-XMAJO0_P0 X maj_y_n VDD VDD pmos w=2u l=100n
-XMAJO0_N0 X maj_y_n VSS VSS nmos w=1u l=100n
+* Abstract subckt (no MOS instances).
+* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
+* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
 .ends maj3_x1

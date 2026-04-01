@@ -1,4 +1,19 @@
 * CDL/LVS-oriented netlist
 .SUBCKT ao2111_x1 A1 A2 B1 B2 C X VDD VSS
-* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+XAO2111A0_PA0 ao2111_and_n A1 VDD VDD pmos w=2u l=100n
+XAO2111A0_PB0 ao2111_and_n A2 VDD VDD pmos w=2u l=100n
+XAO2111A0_NB0 ao2111_and_n A2 nmid_AO2111A0_0 VSS nmos w=1u l=100n
+XAO2111A0_NA0 nmid_AO2111A0_0 A1 VSS VSS nmos w=1u l=100n
+XAO2111AI0_P0 ao2111_and ao2111_and_n VDD VDD pmos w=2u l=100n
+XAO2111AI0_N0 ao2111_and ao2111_and_n VSS VSS nmos w=1u l=100n
+XAO2111N40_PA0 no4_1 ao2111_and VDD VDD pmos w=2u l=100n
+XAO2111N40_PB0 no4_2 B1 no4_1 VDD pmos w=2u l=100n
+XAO2111N40_PC0 no4_3 B2 no4_2 VDD pmos w=2u l=100n
+XAO2111N40_PD0 ao2111_or4_n C no4_3 VDD pmos w=2u l=100n
+XAO2111N40_NA0 ao2111_or4_n ao2111_and VSS VSS nmos w=1u l=100n
+XAO2111N40_NB0 ao2111_or4_n B1 VSS VSS nmos w=1u l=100n
+XAO2111N40_NC0 ao2111_or4_n B2 VSS VSS nmos w=1u l=100n
+XAO2111N40_ND0 ao2111_or4_n C VSS VSS nmos w=1u l=100n
+XAO2111O0_P0 X ao2111_or4_n VDD VDD pmos w=2u l=100n
+XAO2111O0_N0 X ao2111_or4_n VSS VSS nmos w=1u l=100n
 .ENDS ao2111_x1

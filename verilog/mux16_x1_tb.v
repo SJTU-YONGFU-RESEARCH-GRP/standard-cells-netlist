@@ -29,12 +29,12 @@ module tb;
   );
   initial begin
     for (k = 0; k < 64; k = k + 1) begin
-      d = {$random};
-      sel = {$random};
+      d = (k * 97 + 11) % (1 << 16);
+      sel = (k / 4) % (1 << 4);
       #1;
       idx = sel;
       if (out !== ((d >> idx) & 1'b1))
-        $fatal(1, "MUX wide mismatch");
+        $fatal(1, "MUX wide mismatch vec=%0d", k);
     end
     $display("TB_PASS %s", "mux16_x1");
     $finish(0);

@@ -1,3 +1,12 @@
 subckt aoi221_x1 A1 A2 B1 B2 C X VDD VSS
-* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+MNA10 (X A1 aoi221_nsa VSS) nmos w=1u l=100n
+MNA20 (aoi221_nsa A2 VSS VSS) nmos w=1u l=100n
+MNB10 (X B1 aoi221_nsb VSS) nmos w=1u l=100n
+MNB20 (aoi221_nsb B2 VSS VSS) nmos w=1u l=100n
+MNC0 (X C VSS VSS) nmos w=1u l=100n
+MPC0 (aoi221_n2 C VDD VDD) pmos w=2u l=100n
+MPB10 (aoi221_n1 B1 aoi221_n2 VDD) pmos w=2u l=100n
+MPB20 (aoi221_n1 B2 aoi221_n2 VDD) pmos w=2u l=100n
+MPA10 (X A1 aoi221_n1 VDD) pmos w=2u l=100n
+MPA20 (X A2 aoi221_n1 VDD) pmos w=2u l=100n
 ends aoi221_x1

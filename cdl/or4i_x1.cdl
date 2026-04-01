@@ -1,4 +1,15 @@
 * CDL/LVS-oriented netlist
 .SUBCKT or4i_x1 A1 A2 A3 A4 X VDD VSS
-* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+XO4I_P0 in0_b A1 VDD VDD pmos w=2u l=100n
+XO4I_N0 in0_b A1 VSS VSS nmos w=1u l=100n
+XO4I0_PA0 no4_1 in0_b VDD VDD pmos w=2u l=100n
+XO4I0_PB0 no4_2 A2 no4_1 VDD pmos w=2u l=100n
+XO4I0_PC0 no4_3 A3 no4_2 VDD pmos w=2u l=100n
+XO4I0_PD0 nor4i_out A4 no4_3 VDD pmos w=2u l=100n
+XO4I0_NA0 nor4i_out in0_b VSS VSS nmos w=1u l=100n
+XO4I0_NB0 nor4i_out A2 VSS VSS nmos w=1u l=100n
+XO4I0_NC0 nor4i_out A3 VSS VSS nmos w=1u l=100n
+XO4I0_ND0 nor4i_out A4 VSS VSS nmos w=1u l=100n
+XO4II0_P0 X nor4i_out VDD VDD pmos w=2u l=100n
+XO4II0_N0 X nor4i_out VSS VSS nmos w=1u l=100n
 .ENDS or4i_x1

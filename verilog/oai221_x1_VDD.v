@@ -13,9 +13,9 @@
 `endif
 
 `celldefine
-module oai221_x1 (X, A1, A2, B1, B2, in4, VDD, VSS);
+module oai221_x1 (X, A1, A2, B1, B2, C, VDD, VSS);
    output X;
-   input A1, A2, B1, B2, in4;
+   input A1, A2, B1, B2, C;
    inout VDD, VSS;
 
    /////////////////////////////////////
@@ -26,13 +26,13 @@ module oai221_x1 (X, A1, A2, B1, B2, in4, VDD, VSS);
    wire t0, t1, t2;
    or #`STDCELL_COMBO_DELAY(t0, A1, A2);
    or #`STDCELL_COMBO_DELAY(t1, B1, B2);
-   and #`STDCELL_COMBO_DELAY(t2, t0, t1, in4);
+   and #`STDCELL_COMBO_DELAY(t2, t0, t1, C);
    not #`STDCELL_COMBO_DELAY(X, t2);
    `else
    wire t0, t1, t2;
    or (t0, A1, A2);
    or (t1, B1, B2);
-   and (t2, t0, t1, in4);
+   and (t2, t0, t1, C);
    not (X, t2);
    `endif
 
@@ -48,7 +48,7 @@ specify
 (A2 -=> X)=(0, 0);
 (B1 -=> X)=(0, 0);
 (B2 -=> X)=(0, 0);
-(in4 -=> X)=(0, 0);
+(C -=> X)=(0, 0);
 endspecify
    `endif
 

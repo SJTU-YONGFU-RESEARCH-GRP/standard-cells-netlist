@@ -1,3 +1,26 @@
 subckt oai222_x1 A1 A2 B1 B2 C1 C2 X VDD VSS
-* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+OAI222A0_PA0 (pmid_OAI222A0_0 A1 VDD VDD) pmos w=2u l=100n
+OAI222A0_PB0 (oai222_a_n A2 pmid_OAI222A0_0 VDD) pmos w=2u l=100n
+OAI222A0_NA0 (oai222_a_n A1 VSS VSS) nmos w=1u l=100n
+OAI222A0_NB0 (oai222_a_n A2 VSS VSS) nmos w=1u l=100n
+OAI222AI0_P0 (oai222_a oai222_a_n VDD VDD) pmos w=2u l=100n
+OAI222AI0_N0 (oai222_a oai222_a_n VSS VSS) nmos w=1u l=100n
+OAI222B0_PA0 (pmid_OAI222B0_0 B1 VDD VDD) pmos w=2u l=100n
+OAI222B0_PB0 (oai222_b_n B2 pmid_OAI222B0_0 VDD) pmos w=2u l=100n
+OAI222B0_NA0 (oai222_b_n B1 VSS VSS) nmos w=1u l=100n
+OAI222B0_NB0 (oai222_b_n B2 VSS VSS) nmos w=1u l=100n
+OAI222BI0_P0 (oai222_b oai222_b_n VDD VDD) pmos w=2u l=100n
+OAI222BI0_N0 (oai222_b oai222_b_n VSS VSS) nmos w=1u l=100n
+OAI222C0_PA0 (pmid_OAI222C0_0 C1 VDD VDD) pmos w=2u l=100n
+OAI222C0_PB0 (oai222_c_n C2 pmid_OAI222C0_0 VDD) pmos w=2u l=100n
+OAI222C0_NA0 (oai222_c_n C1 VSS VSS) nmos w=1u l=100n
+OAI222C0_NB0 (oai222_c_n C2 VSS VSS) nmos w=1u l=100n
+OAI222CI0_P0 (oai222_c oai222_c_n VDD VDD) pmos w=2u l=100n
+OAI222CI0_N0 (oai222_c oai222_c_n VSS VSS) nmos w=1u l=100n
+OAI222N30_PA0 (X oai222_a VDD VDD) pmos w=2u l=100n
+OAI222N30_PB0 (X oai222_b VDD VDD) pmos w=2u l=100n
+OAI222N30_PC0 (X oai222_c VDD VDD) pmos w=2u l=100n
+OAI222N30_NC0 (X oai222_c nmid2 VSS) nmos w=1u l=100n
+OAI222N30_NB0 (nmid2 oai222_b nmid1 VSS) nmos w=1u l=100n
+OAI222N30_NA0 (nmid1 oai222_a VSS VSS) nmos w=1u l=100n
 ends oai222_x1

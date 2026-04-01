@@ -11,33 +11,33 @@ architecture sim of tb is
   signal in2 : std_logic;
 begin
   dut: entity work.or3i_x1(rtl)
-    port map (A1 => in0, A2 => in1, A3 => in2, \out\ => w_o);
+    port map (A1 => in0, A2 => in1, A3 => in2, \X\ => w_o);
   process
   begin
     in0 <= '0'; in1 <= '0'; in2 <= '0';
     wait for 1 ns;
-    assert w_o = '1' report "OR3I mismatch" severity failure;
+    assert w_o = '1' report "OR3I mismatch vec=" & integer'image(0) severity failure;
     in0 <= '1'; in1 <= '0'; in2 <= '0';
     wait for 1 ns;
-    assert w_o = '0' report "OR3I mismatch" severity failure;
+    assert w_o = '0' report "OR3I mismatch vec=" & integer'image(1) severity failure;
     in0 <= '0'; in1 <= '1'; in2 <= '0';
     wait for 1 ns;
-    assert w_o = '1' report "OR3I mismatch" severity failure;
+    assert w_o = '1' report "OR3I mismatch vec=" & integer'image(2) severity failure;
     in0 <= '1'; in1 <= '1'; in2 <= '0';
     wait for 1 ns;
-    assert w_o = '1' report "OR3I mismatch" severity failure;
+    assert w_o = '1' report "OR3I mismatch vec=" & integer'image(3) severity failure;
     in0 <= '0'; in1 <= '0'; in2 <= '1';
     wait for 1 ns;
-    assert w_o = '1' report "OR3I mismatch" severity failure;
+    assert w_o = '1' report "OR3I mismatch vec=" & integer'image(4) severity failure;
     in0 <= '1'; in1 <= '0'; in2 <= '1';
     wait for 1 ns;
-    assert w_o = '1' report "OR3I mismatch" severity failure;
+    assert w_o = '1' report "OR3I mismatch vec=" & integer'image(5) severity failure;
     in0 <= '0'; in1 <= '1'; in2 <= '1';
     wait for 1 ns;
-    assert w_o = '1' report "OR3I mismatch" severity failure;
+    assert w_o = '1' report "OR3I mismatch vec=" & integer'image(6) severity failure;
     in0 <= '1'; in1 <= '1'; in2 <= '1';
     wait for 1 ns;
-    assert w_o = '1' report "OR3I mismatch" severity failure;
+    assert w_o = '1' report "OR3I mismatch vec=" & integer'image(7) severity failure;
     report "TB_PASS or3i_x1" severity note;
     wait;
   end process;

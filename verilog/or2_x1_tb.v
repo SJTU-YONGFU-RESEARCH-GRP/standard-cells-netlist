@@ -6,16 +6,16 @@ module tb;
   initial begin
       in0=1'b0; in1=1'b0;
       #1;
-      if (out !== 1'b0) $fatal(1, "OR2 mismatch");
+      if (out !== 1'b0) $fatal(1, "OR2 mismatch vec=%0d", 0);
       in0=1'b1; in1=1'b0;
       #1;
-      if (out !== 1'b1) $fatal(1, "OR2 mismatch");
+      if (out !== 1'b1) $fatal(1, "OR2 mismatch vec=%0d", 1);
       in0=1'b0; in1=1'b1;
       #1;
-      if (out !== 1'b1) $fatal(1, "OR2 mismatch");
+      if (out !== 1'b1) $fatal(1, "OR2 mismatch vec=%0d", 2);
       in0=1'b1; in1=1'b1;
       #1;
-      if (out !== 1'b1) $fatal(1, "OR2 mismatch");
+      if (out !== 1'b1) $fatal(1, "OR2 mismatch vec=%0d", 3);
     $display("TB_PASS %s", "or2_x1");
     $finish(0);
   end

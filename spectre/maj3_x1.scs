@@ -1,3 +1,5 @@
 subckt maj3_x1 X A1 A2 A3 VDD VSS
-* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+* Abstract subckt (no MOS instances).
+* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
+* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
 ends maj3_x1

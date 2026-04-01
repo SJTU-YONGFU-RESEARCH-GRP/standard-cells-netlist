@@ -6,10 +6,10 @@ module tb;
   initial begin
       in0=1'b0;
       #1;
-      if (out !== 1'b0) $fatal(1, "DLY mismatch");
+      if (out !== 1'b0) $fatal(1, "DLY mismatch vec=%0d", 0);
       in0=1'b1;
       #1;
-      if (out !== 1'b1) $fatal(1, "DLY mismatch");
+      if (out !== 1'b1) $fatal(1, "DLY mismatch vec=%0d", 1);
     $display("TB_PASS %s", "dly_x1");
     $finish(0);
   end

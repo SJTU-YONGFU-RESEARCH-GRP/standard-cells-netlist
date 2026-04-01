@@ -1,4 +1,6 @@
 * CDL/LVS-oriented netlist
 .SUBCKT ls_h2l_x1 in0 out VDDL VDDH VSS
 * Level shifter: in0, out, VDDL (low domain), VDDH (high domain), VSS.
+* Abstract subckt (no MOS instances).
+* No transistor template was found for this kind/drive.
 .ENDS ls_h2l_x1

@@ -15,16 +15,16 @@ begin
   begin
     in0 <= '0'; in1 <= '0';
     wait for 1 ns;
-    assert w_sum = '1' and w_cout = '0' report "SUBH mismatch" severity failure;
+    assert w_sum = '1' and w_cout = '0' report "SUBH mismatch vec=" & integer'image(0) severity failure;
     in0 <= '1'; in1 <= '0';
     wait for 1 ns;
-    assert w_sum = '0' and w_cout = '1' report "SUBH mismatch" severity failure;
+    assert w_sum = '0' and w_cout = '1' report "SUBH mismatch vec=" & integer'image(1) severity failure;
     in0 <= '0'; in1 <= '1';
     wait for 1 ns;
-    assert w_sum = '0' and w_cout = '1' report "SUBH mismatch" severity failure;
+    assert w_sum = '0' and w_cout = '1' report "SUBH mismatch vec=" & integer'image(2) severity failure;
     in0 <= '1'; in1 <= '1';
     wait for 1 ns;
-    assert w_sum = '1' and w_cout = '1' report "SUBH mismatch" severity failure;
+    assert w_sum = '1' and w_cout = '1' report "SUBH mismatch vec=" & integer'image(3) severity failure;
     report "TB_PASS subh_x1" severity note;
     wait;
   end process;

@@ -1,3 +1,5 @@
 subckt mult2x2_x1 a0 a1 b0 b1 p0 p1 p2 p3 VDD VSS
-* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+* Abstract subckt (no MOS instances).
+* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
+* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
 ends mult2x2_x1

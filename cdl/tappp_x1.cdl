@@ -1,0 +1,6 @@
+* CDL/LVS-oriented netlist
+.SUBCKT tappp_x1 VDD VSS VDDR
+* Physical cell: abstract subckt (rails per PDK CDL; add PDK devices if needed).
+* Abstract subckt (no MOS instances).
+* No transistor template was found for this kind/drive.
+.ENDS tappp_x1

@@ -13,8 +13,8 @@
 `endif
 
 `celldefine
-module and3i_x1 (out, A1, A2, A3, VDD, VSS);
-   output out;
+module and3i_x1 (X, A1, A2, A3, VDD, VSS);
+   output X;
    input A1, A2, A3;
    inout VDD, VSS;
 
@@ -25,11 +25,11 @@ module and3i_x1 (out, A1, A2, A3, VDD, VSS);
    `ifdef VIRL_functiononly
    wire in0_b;
    not #`STDCELL_COMBO_DELAY(in0_b, A1);
-   and #`STDCELL_COMBO_DELAY(out, in0_b, A2, A3);
+   and #`STDCELL_COMBO_DELAY(X, in0_b, A2, A3);
    `else
    wire in0_b;
    not (in0_b, A1);
-   and (out, in0_b, A2, A3);
+   and (X, in0_b, A2, A3);
    `endif
 
    /////////////////////////////////////
@@ -40,9 +40,9 @@ module and3i_x1 (out, A1, A2, A3, VDD, VSS);
    `else
 
 specify
-(A1 +=> out)=(0, 0);
-(A2 +=> out)=(0, 0);
-(A3 +=> out)=(0, 0);
+(A1 +=> X)=(0, 0);
+(A2 +=> X)=(0, 0);
+(A3 +=> X)=(0, 0);
 endspecify
    `endif
 

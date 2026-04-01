@@ -1,4 +1,6 @@
 * CDL/LVS-oriented netlist
 .SUBCKT addf42_x1 S CO ICO A B C D CI VDD VSS
-* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+* Abstract subckt (no MOS instances).
+* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
+* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
 .ENDS addf42_x1

@@ -1,3 +1,18 @@
 subckt oa2ii2_x1 A1 A2 B1 B2 X VDD VSS
-* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+OA2II2L0_PA0 (oa2ii2_l A1 VDD VDD) pmos w=2u l=100n
+OA2II2L0_PB0 (oa2ii2_l A2 VDD VDD) pmos w=2u l=100n
+OA2II2L0_NB0 (oa2ii2_l A2 nmid_OA2II2L0_0 VSS) nmos w=1u l=100n
+OA2II2L0_NA0 (nmid_OA2II2L0_0 A1 VSS VSS) nmos w=1u l=100n
+OA2II2R0_PA0 (pmid_OA2II2R0_0 B1 VDD VDD) pmos w=2u l=100n
+OA2II2R0_PB0 (oa2ii2_r_n B2 pmid_OA2II2R0_0 VDD) pmos w=2u l=100n
+OA2II2R0_NA0 (oa2ii2_r_n B1 VSS VSS) nmos w=1u l=100n
+OA2II2R0_NB0 (oa2ii2_r_n B2 VSS VSS) nmos w=1u l=100n
+OA2II2RI0_P0 (oa2ii2_r oa2ii2_r_n VDD VDD) pmos w=2u l=100n
+OA2II2RI0_N0 (oa2ii2_r oa2ii2_r_n VSS VSS) nmos w=1u l=100n
+OA2II2N20_PA0 (oa2ii2_and_n oa2ii2_l VDD VDD) pmos w=2u l=100n
+OA2II2N20_PB0 (oa2ii2_and_n oa2ii2_r VDD VDD) pmos w=2u l=100n
+OA2II2N20_NB0 (oa2ii2_and_n oa2ii2_r nmid_OA2II2N20_0 VSS) nmos w=1u l=100n
+OA2II2N20_NA0 (nmid_OA2II2N20_0 oa2ii2_l VSS VSS) nmos w=1u l=100n
+OA2II2O0_P0 (X oa2ii2_and_n VDD VDD) pmos w=2u l=100n
+OA2II2O0_N0 (X oa2ii2_and_n VSS VSS) nmos w=1u l=100n
 ends oa2ii2_x1

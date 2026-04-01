@@ -1,4 +1,23 @@
 * CDL/LVS-oriented netlist
 .SUBCKT oa32_x1 A1 A2 B1 B2 C X VDD VSS
-* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+XOA32N30_PA0 pmid1 A1 VDD VDD pmos w=2u l=100n
+XOA32N30_PB0 pmid2 A2 pmid1 VDD pmos w=2u l=100n
+XOA32N30_PC0 oa32_or3_n B1 pmid2 VDD pmos w=2u l=100n
+XOA32N30_NA0 oa32_or3_n A1 VSS VSS nmos w=1u l=100n
+XOA32N30_NB0 oa32_or3_n A2 VSS VSS nmos w=1u l=100n
+XOA32N30_NC0 oa32_or3_n B1 VSS VSS nmos w=1u l=100n
+XOA32I30_P0 oa32_or3 oa32_or3_n VDD VDD pmos w=2u l=100n
+XOA32I30_N0 oa32_or3 oa32_or3_n VSS VSS nmos w=1u l=100n
+XOA32N20_PA0 pmid_OA32N20_0 B2 VDD VDD pmos w=2u l=100n
+XOA32N20_PB0 oa32_or2_n C pmid_OA32N20_0 VDD pmos w=2u l=100n
+XOA32N20_NA0 oa32_or2_n B2 VSS VSS nmos w=1u l=100n
+XOA32N20_NB0 oa32_or2_n C VSS VSS nmos w=1u l=100n
+XOA32I20_P0 oa32_or2 oa32_or2_n VDD VDD pmos w=2u l=100n
+XOA32I20_N0 oa32_or2 oa32_or2_n VSS VSS nmos w=1u l=100n
+XOA32AND0_PA0 oa32_and_n oa32_or3 VDD VDD pmos w=2u l=100n
+XOA32AND0_PB0 oa32_and_n oa32_or2 VDD VDD pmos w=2u l=100n
+XOA32AND0_NB0 oa32_and_n oa32_or2 nmid_OA32AND0_0 VSS nmos w=1u l=100n
+XOA32AND0_NA0 nmid_OA32AND0_0 oa32_or3 VSS VSS nmos w=1u l=100n
+XOA32O0_P0 X oa32_and_n VDD VDD pmos w=2u l=100n
+XOA32O0_N0 X oa32_and_n VSS VSS nmos w=1u l=100n
 .ENDS oa32_x1

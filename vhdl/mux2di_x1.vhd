@@ -1,15 +1,35 @@
-library ieee;
-use ieee.std_logic_1164.all;
+--%BEGIN mux2di_x1
 
+
+library  ieee;
+use  ieee.std_logic_1164.all;
+use  ieee.Vital_Primitives.all;
+use IEEE.VITAL_Timing.all;
 entity mux2di_x1 is
-    port (
-        D0, D1 : in std_logic;
-        S : in std_logic;
-        \X\ : out std_logic
-    );
-end entity mux2di_x1;
+   port (
+      D0, D1 : in STD_LOGIC;
+      S : in STD_LOGIC;
+      X : out STD_LOGIC
+   );
+end mux2di_x1;
 
-architecture rtl of mux2di_x1 is
+architecture mux2di_x1_arch of mux2di_x1 is
 begin
-    \X\ <= D1 when S = '1' else (not D0);
-end architecture rtl;
+
+   VitalBehavior : Process (D0, D1, S)
+      VARIABLE INT_RES_0 : STD_LOGIC := 'X';
+   begin
+
+      ------------------------------------
+      --     FUNCTIONALITY SECTION      --
+      ------------------------------------
+
+      INT_RES_0 := D1 when S = '1' else (not D0);
+
+      ------------------------------------
+      X <= INT_RES_0;
+   end Process VitalBehavior;
+
+end mux2di_x1_arch;
+
+--%END mux2di_x1

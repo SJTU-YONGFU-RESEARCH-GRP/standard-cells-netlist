@@ -19,7 +19,7 @@ begin
       d <= std_logic_vector(to_unsigned((k * 97 + 11) mod 65536, 16));
       sel <= std_logic_vector(to_unsigned((k / 4) mod 16, 4));
       wait for 1 ns;
-      assert w_o = d(to_integer(unsigned(sel))) report "MUX wide mismatch" severity failure;
+      assert w_o = d(to_integer(unsigned(sel))) report "MUX wide mismatch vec=" & integer'image(k) severity failure;
     end loop;
     report "TB_PASS mux16_x1" severity note;
     wait;

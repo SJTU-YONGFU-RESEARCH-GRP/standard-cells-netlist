@@ -7,16 +7,16 @@ module tb;
   initial begin
       in0=1'b0; in1=1'b0;
       #1;
-      if (sum !== 1'b1 || cout !== 1'b0) $fatal(1, "ADDHII mismatch");
+      if (sum !== 1'b1 || cout !== 1'b0) $fatal(1, "ADDHII mismatch vec=%0d", 0);
       in0=1'b1; in1=1'b0;
       #1;
-      if (sum !== 1'b0 || cout !== 1'b1) $fatal(1, "ADDHII mismatch");
+      if (sum !== 1'b0 || cout !== 1'b1) $fatal(1, "ADDHII mismatch vec=%0d", 1);
       in0=1'b0; in1=1'b1;
       #1;
-      if (sum !== 1'b0 || cout !== 1'b0) $fatal(1, "ADDHII mismatch");
+      if (sum !== 1'b0 || cout !== 1'b0) $fatal(1, "ADDHII mismatch vec=%0d", 2);
       in0=1'b1; in1=1'b1;
       #1;
-      if (sum !== 1'b1 || cout !== 1'b0) $fatal(1, "ADDHII mismatch");
+      if (sum !== 1'b1 || cout !== 1'b0) $fatal(1, "ADDHII mismatch vec=%0d", 3);
     $display("TB_PASS %s", "addhii_x1");
     $finish(0);
   end

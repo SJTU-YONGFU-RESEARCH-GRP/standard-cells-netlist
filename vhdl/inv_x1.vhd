@@ -1,14 +1,34 @@
-library ieee;
-use ieee.std_logic_1164.all;
+--%BEGIN inv_x1
 
+
+library  ieee;
+use  ieee.std_logic_1164.all;
+use  ieee.Vital_Primitives.all;
+use IEEE.VITAL_Timing.all;
 entity inv_x1 is
-    port (
-        A : in std_logic;
-        \X\ : out std_logic
-    );
-end entity inv_x1;
+   port (
+      A : in STD_LOGIC;
+      X : out STD_LOGIC
+   );
+end inv_x1;
 
-architecture rtl of inv_x1 is
+architecture inv_x1_arch of inv_x1 is
 begin
-    \X\ <= not A;
-end architecture rtl;
+
+   VitalBehavior : Process (A)
+      VARIABLE INT_RES_0 : STD_LOGIC := 'X';
+   begin
+
+      ------------------------------------
+      --     FUNCTIONALITY SECTION      --
+      ------------------------------------
+
+      INT_RES_0 := not A;
+
+      ------------------------------------
+      X <= INT_RES_0;
+   end Process VitalBehavior;
+
+end inv_x1_arch;
+
+--%END inv_x1

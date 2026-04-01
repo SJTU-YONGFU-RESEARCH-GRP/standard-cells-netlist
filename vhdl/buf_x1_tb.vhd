@@ -14,10 +14,10 @@ begin
   begin
     in0 <= '0';
     wait for 1 ns;
-    assert w_o = '0' report "BUF mismatch" severity failure;
+    assert w_o = '0' report "BUF mismatch vec=" & integer'image(0) severity failure;
     in0 <= '1';
     wait for 1 ns;
-    assert w_o = '1' report "BUF mismatch" severity failure;
+    assert w_o = '1' report "BUF mismatch vec=" & integer'image(1) severity failure;
     report "TB_PASS buf_x1" severity note;
     wait;
   end process;

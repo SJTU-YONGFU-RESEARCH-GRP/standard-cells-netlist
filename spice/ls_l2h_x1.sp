@@ -1,3 +1,5 @@
 .subckt ls_l2h_x1 in0 out VDDL VDDH VSS
 * Level shifter: in0, out, VDDL (low domain), VDDH (high domain), VSS.
+* Abstract subckt (no MOS instances).
+* No transistor template was found for this kind/drive.
 .ends ls_l2h_x1

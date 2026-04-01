@@ -1,4 +1,13 @@
 * CDL/LVS-oriented netlist
 .SUBCKT oa211_x1 A1 A2 B1 B2 X VDD VSS
-* Abstract subckt: behavioral/LVS placeholder — no MOS instances in the template.
+XOA2110_NA10 oa211_mid A1 oai211_n1 VSS nmos w=1u l=100n
+XOA2110_NA20 oa211_mid A2 oai211_n1 VSS nmos w=1u l=100n
+XOA2110_NB0 oai211_n1 B1 oai211_n2 VSS nmos w=1u l=100n
+XOA2110_NC0 oai211_n2 B2 VSS VSS nmos w=1u l=100n
+XOA2110_PA10 oai211_p1a A1 VDD VDD pmos w=2u l=100n
+XOA2110_PA20 oa211_mid A2 oai211_p1a VDD pmos w=2u l=100n
+XOA2110_PB0 oa211_mid B1 VDD VDD pmos w=2u l=100n
+XOA2110_PC0 oa211_mid B2 VDD VDD pmos w=2u l=100n
+XOA211OUT0_P0 X oa211_mid VDD VDD pmos w=2u l=100n
+XOA211OUT0_N0 X oa211_mid VSS VSS nmos w=1u l=100n
 .ENDS oa211_x1
