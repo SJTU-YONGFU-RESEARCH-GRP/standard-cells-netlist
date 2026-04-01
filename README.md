@@ -212,29 +212,21 @@ Power-rail taps and level shifters share multi-supply / cross-domain concerns; c
 
 | # | Name             | Description |
 |--:|------------------|-------------|
-| 15 | Power-gate fill | `PGATFILL` | Power-gate **header** filler / strap (`LIBHPD_PGATFILL_*`, port `ENXB`); reference family (prefix stripped), not yet mapped to `CellKind` |
-| 16 | Power-gate fill | `PGATBFILL` | Power-gate **footer** filler (`LIBHPD_PGATBFILL_*`, ports `EN`/`ENX`); reference family (prefix stripped), not yet mapped to `CellKind` |
-| 17 | Power-gate driver | `PGATDRV` | Power-gate **header** driver (`LIBHPD_PGATDRV_*`, port `ENXB`); reference family (prefix stripped), not yet mapped to `CellKind` |
-| 18 | Power-gate driver | `PGATBDRV` | Power-gate **footer** driver (`LIBHPD_PGATBDRV_*`, ports `EN`/`ENX`); reference family (prefix stripped), not yet mapped to `CellKind` |
-| 1 | `PWR_HEADER`     | Row header / power strap tap: inout VDD, VDDH, VSS (domain vs core) |
-| 2 | `PWR_FOOTER`     | Row footer / power strap tap: inout VDD, VDDH, VSS |
-| 3 | `PWR_MANAGEMENT` | Power-management / isolation anchor (abstract): VDD, VDDH, VSS |
-| 1 | `LS_L2H` | Level shifter low→high: in0 (VDDL domain), out (VDDH domain); VDDL, VDDH, VSS |
-| 2 | `LS_H2L` | Level shifter high→low: in0 (VDDH domain), out (VDDL domain); VDDL, VDDH, VSS |
-| 3 | `LVLDBUF` | reference family (prefix stripped), not yet mapped to `CellKind` |
-| 4 | `LVLDBUFE0` | reference family (prefix stripped), not yet mapped to `CellKind` |
-| 5 | `LVLDINV` | reference family (prefix stripped), not yet mapped to `CellKind` |
-| 6 | `LVLDINVE1` | reference family (prefix stripped), not yet mapped to `CellKind` |
-| 7 | `ISOS0CL1` | reference family (prefix stripped), not yet mapped to `CellKind` |
-| 8 | `ISOS1CL0` | reference family (prefix stripped), not yet mapped to `CellKind` |
-| 9 | `FSB2DPQ` | reference family (prefix stripped), not yet mapped to `CellKind` |
-| 10 | `FSB2DPRBQ` | reference family (prefix stripped), not yet mapped to `CellKind` |
-| 11 | `FSB2DPSBQ` | reference family (prefix stripped), not yet mapped to `CellKind` |
-| 12 | `BUF_PSW` | reference family (prefix stripped), not yet mapped to `CellKind` |
-| 13 | `BUF_PW` | reference family (prefix stripped), not yet mapped to `CellKind` |
-| 14 | `INV_PSW` | reference family (prefix stripped), not yet mapped to `CellKind` |
-| 15 | `INV_PW` | reference family (prefix stripped), not yet mapped to `CellKind` |
-| 16 | `ND2_PSW` | reference family (prefix stripped), not yet mapped to `CellKind` |
-| 17 | `NR2_PSW` | reference family (prefix stripped), not yet mapped to `CellKind` |
+| 6 | `BUF_PSW` | Power-switch flavored BUF; **ref_lib-style SPICE ports**: `VDD VSS VDDR VBP VBN X A` (HDL functional; SPICE-family is an abstract shell) |
+| 7 | `BUF_PW` | Power-well BUF; **ref_lib-style SPICE ports**: `VDD VSS VDDR VBP VBN X A` (HDL functional; SPICE-family is an abstract shell) |
+| 8 | `INV_PSW` | Power-switch flavored INV; **ref_lib-style SPICE ports**: `VDD VSS VDDR VBP VBN X A` (HDL functional; SPICE-family is an abstract shell) |
+| 9 | `INV_PW` | Power-well INV; **ref_lib-style SPICE ports**: `VDD VSS VDDR VBP VBN X A` (HDL functional; SPICE-family is an abstract shell) |
+| 10 | `ND2_PSW` | Power-switch flavored NAND2; **ref_lib-style SPICE ports**: `VDD VSS VDDR VBP VBN X A1 A2` (HDL functional; SPICE-family is an abstract shell) |
+| 11 | `NR2_PSW` | Power-switch flavored NOR2; **ref_lib-style SPICE ports**: `VDD VSS VDDR VBP VBN X A1 A2` (HDL functional; SPICE-family is an abstract shell) |
+| 12 | `LVLDBUF` | Level/domain BUF; **ref_lib-style SPICE ports**: `VDD VSS VDDR VBP VBN X A` (HDL functional; SPICE-family is an abstract shell) |
+| 13 | `LVLDBUFE0` | Level/domain BUF w/ enable; function \(X = A \land EN\); **ref_lib-style SPICE ports**: `VDD VSS VDDR VBP VBN X A EN` |
+| 14 | `LVLDINV` | Level/domain INV; **ref_lib-style SPICE ports**: `VDD VSS VDDR VBP VBN X A` |
+| 15 | `LVLDINVE1` | Level/domain INV w/ enable; function \(X = \lnot(A \land EN)\); **ref_lib-style SPICE ports**: `VDD VSS VDDR VBP VBN X A EN` |
+| 16 | `ISOS0CL1` | Isolation (clamp-low style); function \(X = A \lor EN0\); **ref_lib-style SPICE ports**: `VDD VSS VDDR VBP VBN X A EN0` |
+| 17 | `ISOS1CL0` | Isolation (clamp-high style); function \(X = A \land EN\); **ref_lib-style SPICE ports**: `VDD VSS VDDR VBP VBN X A EN` |
+| 18 | Power-gate fill | `PGATFILL` | Header filler/strap helper; **ref_lib-style SPICE ports**: `VDDP VSS VBP VBN VDDCF ENXB` (HDL shell; SPICE-family is an abstract shell) |
+| 19 | Power-gate fill | `PGATBFILL` | Footer filler; **ref_lib-style SPICE ports**: `VDDP VSS VBP VBN VDDCF ENX EN` (HDL shell; SPICE-family is an abstract shell) |
+| 20 | Power-gate driver | `PGATDRV` | Header driver; **ref_lib-style SPICE ports**: `VDDP VSS VBP VBN VDDC ENXB` (HDL shell; SPICE-family is an abstract shell) |
+| 21 | Power-gate driver | `PGATBDRV` | Footer driver; **ref_lib-style SPICE ports**: `VDDP VSS VBP VBN VDDC ENX EN` (HDL shell; SPICE-family is an abstract shell) |
 
 ---

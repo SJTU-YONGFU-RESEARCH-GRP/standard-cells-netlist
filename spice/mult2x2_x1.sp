@@ -1,5 +1,70 @@
-.subckt mult2x2_x1 a0 a1 b0 b1 p0 p1 p2 p3 VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+.subckt mult2x2_x1 A0 A1 B0 B1 P0 P1 P2 P3 VDD VSS
+XM22_PP00_PA0 m22_pp00_n A0 VDD VDD pmos w=2u l=100n
+XM22_PP00_PB0 m22_pp00_n B0 VDD VDD pmos w=2u l=100n
+XM22_PP00_NB0 m22_pp00_n B0 nmid_M22_PP00_0 VSS nmos w=1u l=100n
+XM22_PP00_NA0 nmid_M22_PP00_0 A0 VSS VSS nmos w=1u l=100n
+XM22_PP00I_P0 P0 m22_pp00_n VDD VDD pmos w=2u l=100n
+XM22_PP00I_N0 P0 m22_pp00_n VSS VSS nmos w=1u l=100n
+XM22_PP10_PA0 m22_pp10_n A1 VDD VDD pmos w=2u l=100n
+XM22_PP10_PB0 m22_pp10_n B0 VDD VDD pmos w=2u l=100n
+XM22_PP10_NB0 m22_pp10_n B0 nmid_M22_PP10_0 VSS nmos w=1u l=100n
+XM22_PP10_NA0 nmid_M22_PP10_0 A1 VSS VSS nmos w=1u l=100n
+XM22_PP10I_P0 m22_pp10 m22_pp10_n VDD VDD pmos w=2u l=100n
+XM22_PP10I_N0 m22_pp10 m22_pp10_n VSS VSS nmos w=1u l=100n
+XM22_PP01_PA0 m22_pp01_n A0 VDD VDD pmos w=2u l=100n
+XM22_PP01_PB0 m22_pp01_n B1 VDD VDD pmos w=2u l=100n
+XM22_PP01_NB0 m22_pp01_n B1 nmid_M22_PP01_0 VSS nmos w=1u l=100n
+XM22_PP01_NA0 nmid_M22_PP01_0 A0 VSS VSS nmos w=1u l=100n
+XM22_PP01I_P0 m22_pp01 m22_pp01_n VDD VDD pmos w=2u l=100n
+XM22_PP01I_N0 m22_pp01 m22_pp01_n VSS VSS nmos w=1u l=100n
+XM22_PP11_PA0 m22_pp11_n A1 VDD VDD pmos w=2u l=100n
+XM22_PP11_PB0 m22_pp11_n B1 VDD VDD pmos w=2u l=100n
+XM22_PP11_NB0 m22_pp11_n B1 nmid_M22_PP11_0 VSS nmos w=1u l=100n
+XM22_PP11_NA0 nmid_M22_PP11_0 A1 VSS VSS nmos w=1u l=100n
+XM22_PP11I_P0 m22_pp11 m22_pp11_n VDD VDD pmos w=2u l=100n
+XM22_PP11I_N0 m22_pp11 m22_pp11_n VSS VSS nmos w=1u l=100n
+XM22_X1_nr_PA0 pmid_M22_X1_nr_0 m22_pp10 VDD VDD pmos w=2u l=100n
+XM22_X1_nr_PB0 x_nor_p1 m22_pp01 pmid_M22_X1_nr_0 VDD pmos w=2u l=100n
+XM22_X1_nr_NA0 x_nor_p1 m22_pp10 VSS VSS nmos w=1u l=100n
+XM22_X1_nr_NB0 x_nor_p1 m22_pp01 VSS VSS nmos w=1u l=100n
+XM22_X1_iv_P0 x_or_p1 x_nor_p1 VDD VDD pmos w=2u l=100n
+XM22_X1_iv_N0 x_or_p1 x_nor_p1 VSS VSS nmos w=1u l=100n
+XM22_X1_nd_PA0 x_nand_p1 m22_pp10 VDD VDD pmos w=2u l=100n
+XM22_X1_nd_PB0 x_nand_p1 m22_pp01 VDD VDD pmos w=2u l=100n
+XM22_X1_nd_NB0 x_nand_p1 m22_pp01 nmid_M22_X1_nd_0 VSS nmos w=1u l=100n
+XM22_X1_nd_NA0 nmid_M22_X1_nd_0 m22_pp10 VSS VSS nmos w=1u l=100n
+XM22_X1_na_PA0 x_pre_p1 x_or_p1 VDD VDD pmos w=2u l=100n
+XM22_X1_na_PB0 x_pre_p1 x_nand_p1 VDD VDD pmos w=2u l=100n
+XM22_X1_na_NB0 x_pre_p1 x_nand_p1 nmid_M22_X1_na_0 VSS nmos w=1u l=100n
+XM22_X1_na_NA0 nmid_M22_X1_na_0 x_or_p1 VSS VSS nmos w=1u l=100n
+XM22_X1_xo_P0 P1 x_pre_p1 VDD VDD pmos w=2u l=100n
+XM22_X1_xo_N0 P1 x_pre_p1 VSS VSS nmos w=1u l=100n
+XM22_C1_PA0 m22_c1_n m22_pp10 VDD VDD pmos w=2u l=100n
+XM22_C1_PB0 m22_c1_n m22_pp01 VDD VDD pmos w=2u l=100n
+XM22_C1_NB0 m22_c1_n m22_pp01 nmid_M22_C1_0 VSS nmos w=1u l=100n
+XM22_C1_NA0 nmid_M22_C1_0 m22_pp10 VSS VSS nmos w=1u l=100n
+XM22_C1I_P0 m22_c1 m22_c1_n VDD VDD pmos w=2u l=100n
+XM22_C1I_N0 m22_c1 m22_c1_n VSS VSS nmos w=1u l=100n
+XM22_X2_nr_PA0 pmid_M22_X2_nr_0 m22_pp11 VDD VDD pmos w=2u l=100n
+XM22_X2_nr_PB0 x_nor_p2 m22_c1 pmid_M22_X2_nr_0 VDD pmos w=2u l=100n
+XM22_X2_nr_NA0 x_nor_p2 m22_pp11 VSS VSS nmos w=1u l=100n
+XM22_X2_nr_NB0 x_nor_p2 m22_c1 VSS VSS nmos w=1u l=100n
+XM22_X2_iv_P0 x_or_p2 x_nor_p2 VDD VDD pmos w=2u l=100n
+XM22_X2_iv_N0 x_or_p2 x_nor_p2 VSS VSS nmos w=1u l=100n
+XM22_X2_nd_PA0 x_nand_p2 m22_pp11 VDD VDD pmos w=2u l=100n
+XM22_X2_nd_PB0 x_nand_p2 m22_c1 VDD VDD pmos w=2u l=100n
+XM22_X2_nd_NB0 x_nand_p2 m22_c1 nmid_M22_X2_nd_0 VSS nmos w=1u l=100n
+XM22_X2_nd_NA0 nmid_M22_X2_nd_0 m22_pp11 VSS VSS nmos w=1u l=100n
+XM22_X2_na_PA0 x_pre_p2 x_or_p2 VDD VDD pmos w=2u l=100n
+XM22_X2_na_PB0 x_pre_p2 x_nand_p2 VDD VDD pmos w=2u l=100n
+XM22_X2_na_NB0 x_pre_p2 x_nand_p2 nmid_M22_X2_na_0 VSS nmos w=1u l=100n
+XM22_X2_na_NA0 nmid_M22_X2_na_0 x_or_p2 VSS VSS nmos w=1u l=100n
+XM22_X2_xo_P0 P2 x_pre_p2 VDD VDD pmos w=2u l=100n
+XM22_X2_xo_N0 P2 x_pre_p2 VSS VSS nmos w=1u l=100n
+XM22_C2_PA0 m22_c2_n m22_pp11 VDD VDD pmos w=2u l=100n
+XM22_C2_PB0 m22_c2_n m22_c1 VDD VDD pmos w=2u l=100n
+XM22_C2_NB0 m22_c2_n m22_c1 nmid_M22_C2_0 VSS nmos w=1u l=100n
+XM22_C2_NA0 nmid_M22_C2_0 m22_pp11 VSS VSS nmos w=1u l=100n
+XM22_C2I_P0 P3 m22_c2_n VDD VDD pmos w=2u l=100n
+XM22_C2I_N0 P3 m22_c2_n VSS VSS nmos w=1u l=100n
 .ends mult2x2_x1

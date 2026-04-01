@@ -1,5 +1,14 @@
 .subckt mux3_x1 D0 D1 D2 S0 S1 X VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+XM3S0_P0 s0_b S0 VDD VDD pmos w=2u l=100n
+XM3S0_N0 s0_b S0 VSS VSS nmos w=1u l=100n
+XM3S1_P0 s1_b S1 VDD VDD pmos w=2u l=100n
+XM3S1_N0 s1_b S1 VSS VSS nmos w=1u l=100n
+XM3a0_MP0 mux3_m01 S0 D0 VDD pmos w=2u l=100n
+XM3a0_MN0 mux3_m01 s0_b D0 VSS nmos w=1u l=100n
+XM3a0_MP1 mux3_m01 s0_b D1 VDD pmos w=2u l=100n
+XM3a0_MN1 mux3_m01 S0 D1 VSS nmos w=1u l=100n
+XM3b0_MP0 X S1 mux3_m01 VDD pmos w=2u l=100n
+XM3b0_MN0 X s1_b mux3_m01 VSS nmos w=1u l=100n
+XM3b0_MP1 X s1_b D2 VDD pmos w=2u l=100n
+XM3b0_MN1 X S1 D2 VSS nmos w=1u l=100n
 .ends mux3_x1

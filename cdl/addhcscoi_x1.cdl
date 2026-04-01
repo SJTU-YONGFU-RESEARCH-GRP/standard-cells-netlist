@@ -1,6 +1,43 @@
 * CDL/LVS-oriented netlist
 .SUBCKT addhcscoi_x1 S CO0 CO1 A B CI VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+XADDHCS_X1_nr_PA0 pmid_ADDHCS_X1_nr_0 A VDD VDD pmos w=2u l=100n
+XADDHCS_X1_nr_PB0 x_nor_xab B pmid_ADDHCS_X1_nr_0 VDD pmos w=2u l=100n
+XADDHCS_X1_nr_NA0 x_nor_xab A VSS VSS nmos w=1u l=100n
+XADDHCS_X1_nr_NB0 x_nor_xab B VSS VSS nmos w=1u l=100n
+XADDHCS_X1_iv_P0 x_or_xab x_nor_xab VDD VDD pmos w=2u l=100n
+XADDHCS_X1_iv_N0 x_or_xab x_nor_xab VSS VSS nmos w=1u l=100n
+XADDHCS_X1_nd_PA0 x_nand_xab A VDD VDD pmos w=2u l=100n
+XADDHCS_X1_nd_PB0 x_nand_xab B VDD VDD pmos w=2u l=100n
+XADDHCS_X1_nd_NB0 x_nand_xab B nmid_ADDHCS_X1_nd_0 VSS nmos w=1u l=100n
+XADDHCS_X1_nd_NA0 nmid_ADDHCS_X1_nd_0 A VSS VSS nmos w=1u l=100n
+XADDHCS_X1_na_PA0 x_pre_xab x_or_xab VDD VDD pmos w=2u l=100n
+XADDHCS_X1_na_PB0 x_pre_xab x_nand_xab VDD VDD pmos w=2u l=100n
+XADDHCS_X1_na_NB0 x_pre_xab x_nand_xab nmid_ADDHCS_X1_na_0 VSS nmos w=1u l=100n
+XADDHCS_X1_na_NA0 nmid_ADDHCS_X1_na_0 x_or_xab VSS VSS nmos w=1u l=100n
+XADDHCS_X1_xo_P0 addhcs_xab x_pre_xab VDD VDD pmos w=2u l=100n
+XADDHCS_X1_xo_N0 addhcs_xab x_pre_xab VSS VSS nmos w=1u l=100n
+XADDHCS_X2_nr_PA0 pmid_ADDHCS_X2_nr_0 addhcs_xab VDD VDD pmos w=2u l=100n
+XADDHCS_X2_nr_PB0 x_nor_sum CI pmid_ADDHCS_X2_nr_0 VDD pmos w=2u l=100n
+XADDHCS_X2_nr_NA0 x_nor_sum addhcs_xab VSS VSS nmos w=1u l=100n
+XADDHCS_X2_nr_NB0 x_nor_sum CI VSS VSS nmos w=1u l=100n
+XADDHCS_X2_iv_P0 x_or_sum x_nor_sum VDD VDD pmos w=2u l=100n
+XADDHCS_X2_iv_N0 x_or_sum x_nor_sum VSS VSS nmos w=1u l=100n
+XADDHCS_X2_nd_PA0 x_nand_sum addhcs_xab VDD VDD pmos w=2u l=100n
+XADDHCS_X2_nd_PB0 x_nand_sum CI VDD VDD pmos w=2u l=100n
+XADDHCS_X2_nd_NB0 x_nand_sum CI nmid_ADDHCS_X2_nd_0 VSS nmos w=1u l=100n
+XADDHCS_X2_nd_NA0 nmid_ADDHCS_X2_nd_0 addhcs_xab VSS VSS nmos w=1u l=100n
+XADDHCS_X2_na_PA0 x_pre_sum x_or_sum VDD VDD pmos w=2u l=100n
+XADDHCS_X2_na_PB0 x_pre_sum x_nand_sum VDD VDD pmos w=2u l=100n
+XADDHCS_X2_na_NB0 x_pre_sum x_nand_sum nmid_ADDHCS_X2_na_0 VSS nmos w=1u l=100n
+XADDHCS_X2_na_NA0 nmid_ADDHCS_X2_na_0 x_or_sum VSS VSS nmos w=1u l=100n
+XADDHCS_X2_xo_P0 S x_pre_sum VDD VDD pmos w=2u l=100n
+XADDHCS_X2_xo_N0 S x_pre_sum VSS VSS nmos w=1u l=100n
+XADDHCS_CO0_PA0 CO0 A VDD VDD pmos w=2u l=100n
+XADDHCS_CO0_PB0 CO0 B VDD VDD pmos w=2u l=100n
+XADDHCS_CO0_NB0 CO0 B nmid_ADDHCS_CO0_0 VSS nmos w=1u l=100n
+XADDHCS_CO0_NA0 nmid_ADDHCS_CO0_0 A VSS VSS nmos w=1u l=100n
+XADDHCS_CO1_PA0 pmid_ADDHCS_CO1_0 A VDD VDD pmos w=2u l=100n
+XADDHCS_CO1_PB0 CO1 B pmid_ADDHCS_CO1_0 VDD pmos w=2u l=100n
+XADDHCS_CO1_NA0 CO1 A VSS VSS nmos w=1u l=100n
+XADDHCS_CO1_NB0 CO1 B VSS VSS nmos w=1u l=100n
 .ENDS addhcscoi_x1

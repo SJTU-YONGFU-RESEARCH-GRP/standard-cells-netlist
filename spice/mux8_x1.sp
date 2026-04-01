@@ -1,5 +1,40 @@
 .subckt mux8_x1 D0 D1 D2 D3 D4 D5 D6 D7 S0 S1 S2 X VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+XM8S0_P0 s0_b S0 VDD VDD pmos w=2u l=100n
+XM8S0_N0 s0_b S0 VSS VSS nmos w=1u l=100n
+XM8S1_P0 s1_b S1 VDD VDD pmos w=2u l=100n
+XM8S1_N0 s1_b S1 VSS VSS nmos w=1u l=100n
+XM8S2_P0 s2_b S2 VDD VDD pmos w=2u l=100n
+XM8S2_N0 s2_b S2 VSS VSS nmos w=1u l=100n
+XM8a0_MP0 m8_m01 S0 D0 VDD pmos w=2u l=100n
+XM8a0_MN0 m8_m01 s0_b D0 VSS nmos w=1u l=100n
+XM8a0_MP1 m8_m01 s0_b D1 VDD pmos w=2u l=100n
+XM8a0_MN1 m8_m01 S0 D1 VSS nmos w=1u l=100n
+XM8b0_MP0 m8_m23 S0 D2 VDD pmos w=2u l=100n
+XM8b0_MN0 m8_m23 s0_b D2 VSS nmos w=1u l=100n
+XM8b0_MP1 m8_m23 s0_b D3 VDD pmos w=2u l=100n
+XM8b0_MN1 m8_m23 S0 D3 VSS nmos w=1u l=100n
+XM8c0_MP0 m8_m45 S0 D4 VDD pmos w=2u l=100n
+XM8c0_MN0 m8_m45 s0_b D4 VSS nmos w=1u l=100n
+XM8c0_MP1 m8_m45 s0_b D5 VDD pmos w=2u l=100n
+XM8c0_MN1 m8_m45 S0 D5 VSS nmos w=1u l=100n
+XM8d0_MP0 m8_m67 S0 D6 VDD pmos w=2u l=100n
+XM8d0_MN0 m8_m67 s0_b D6 VSS nmos w=1u l=100n
+XM8d0_MP1 m8_m67 s0_b D7 VDD pmos w=2u l=100n
+XM8d0_MN1 m8_m67 S0 D7 VSS nmos w=1u l=100n
+XM8e0_MP0 m8_m0123 S1 m8_m01 VDD pmos w=2u l=100n
+XM8e0_MN0 m8_m0123 s1_b m8_m01 VSS nmos w=1u l=100n
+XM8e0_MP1 m8_m0123 s1_b m8_m23 VDD pmos w=2u l=100n
+XM8e0_MN1 m8_m0123 S1 m8_m23 VSS nmos w=1u l=100n
+XM8f0_MP0 m8_m4567 S1 m8_m45 VDD pmos w=2u l=100n
+XM8f0_MN0 m8_m4567 s1_b m8_m45 VSS nmos w=1u l=100n
+XM8f0_MP1 m8_m4567 s1_b m8_m67 VDD pmos w=2u l=100n
+XM8f0_MN1 m8_m4567 S1 m8_m67 VSS nmos w=1u l=100n
+XM8g0_MP0 m8_y S2 m8_m0123 VDD pmos w=2u l=100n
+XM8g0_MN0 m8_y s2_b m8_m0123 VSS nmos w=1u l=100n
+XM8g0_MP1 m8_y s2_b m8_m4567 VDD pmos w=2u l=100n
+XM8g0_MN1 m8_y S2 m8_m4567 VSS nmos w=1u l=100n
+XM8Oa0_P0 m8_y_b m8_y VDD VDD pmos w=2u l=100n
+XM8Oa0_N0 m8_y_b m8_y VSS VSS nmos w=1u l=100n
+XM8Ob0_P0 X m8_y_b VDD VDD pmos w=2u l=100n
+XM8Ob0_N0 X m8_y_b VSS VSS nmos w=1u l=100n
 .ends mux8_x1

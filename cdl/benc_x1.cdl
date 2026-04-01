@@ -1,6 +1,41 @@
 * CDL/LVS-oriented netlist
 .SUBCKT benc_x1 S A X M0 M1 M2 VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+XBENC_M2_P0 m2_b M2 VDD VDD pmos w=2u l=100n
+XBENC_M2_N0 m2_b M2 VSS VSS nmos w=1u l=100n
+XBENC_OR_PA0 pmid_BENC_OR_0 M1 VDD VDD pmos w=2u l=100n
+XBENC_OR_PB0 benc_m_or_n M0 pmid_BENC_OR_0 VDD pmos w=2u l=100n
+XBENC_OR_NA0 benc_m_or_n M1 VSS VSS nmos w=1u l=100n
+XBENC_OR_NB0 benc_m_or_n M0 VSS VSS nmos w=1u l=100n
+XBENC_ORI_P0 benc_m_or benc_m_or_n VDD VDD pmos w=2u l=100n
+XBENC_ORI_N0 benc_m_or benc_m_or_n VSS VSS nmos w=1u l=100n
+XBENC_S_PA0 benc_s_n m2_b VDD VDD pmos w=2u l=100n
+XBENC_S_PB0 benc_s_n benc_m_or VDD VDD pmos w=2u l=100n
+XBENC_S_NB0 benc_s_n benc_m_or nmid_BENC_S_0 VSS nmos w=1u l=100n
+XBENC_S_NA0 nmid_BENC_S_0 m2_b VSS VSS nmos w=1u l=100n
+XBENC_SI_P0 S benc_s_n VDD VDD pmos w=2u l=100n
+XBENC_SI_N0 S benc_s_n VSS VSS nmos w=1u l=100n
+XBENC_NAND_PA0 benc_m_nand M1 VDD VDD pmos w=2u l=100n
+XBENC_NAND_PB0 benc_m_nand M0 VDD VDD pmos w=2u l=100n
+XBENC_NAND_NB0 benc_m_nand M0 nmid_BENC_NAND_0 VSS nmos w=1u l=100n
+XBENC_NAND_NA0 nmid_BENC_NAND_0 M1 VSS VSS nmos w=1u l=100n
+XBENC_A_PA0 benc_a_n M2 VDD VDD pmos w=2u l=100n
+XBENC_A_PB0 benc_a_n benc_m_nand VDD VDD pmos w=2u l=100n
+XBENC_A_NB0 benc_a_n benc_m_nand nmid_BENC_A_0 VSS nmos w=1u l=100n
+XBENC_A_NA0 nmid_BENC_A_0 M2 VSS VSS nmos w=1u l=100n
+XBENC_AI_P0 A benc_a_n VDD VDD pmos w=2u l=100n
+XBENC_AI_N0 A benc_a_n VSS VSS nmos w=1u l=100n
+XBENC_X_nr_PA0 pmid_BENC_X_nr_0 M1 VDD VDD pmos w=2u l=100n
+XBENC_X_nr_PB0 x_nor_x M0 pmid_BENC_X_nr_0 VDD pmos w=2u l=100n
+XBENC_X_nr_NA0 x_nor_x M1 VSS VSS nmos w=1u l=100n
+XBENC_X_nr_NB0 x_nor_x M0 VSS VSS nmos w=1u l=100n
+XBENC_X_iv_P0 x_or_x x_nor_x VDD VDD pmos w=2u l=100n
+XBENC_X_iv_N0 x_or_x x_nor_x VSS VSS nmos w=1u l=100n
+XBENC_X_nd_PA0 x_nand_x M1 VDD VDD pmos w=2u l=100n
+XBENC_X_nd_PB0 x_nand_x M0 VDD VDD pmos w=2u l=100n
+XBENC_X_nd_NB0 x_nand_x M0 nmid_BENC_X_nd_0 VSS nmos w=1u l=100n
+XBENC_X_nd_NA0 nmid_BENC_X_nd_0 M1 VSS VSS nmos w=1u l=100n
+XBENC_X_na_PA0 X x_or_x VDD VDD pmos w=2u l=100n
+XBENC_X_na_PB0 X x_nand_x VDD VDD pmos w=2u l=100n
+XBENC_X_na_NB0 X x_nand_x nmid_BENC_X_na_0 VSS nmos w=1u l=100n
+XBENC_X_na_NA0 nmid_BENC_X_na_0 x_or_x VSS VSS nmos w=1u l=100n
 .ENDS benc_x1

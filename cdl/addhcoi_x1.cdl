@@ -1,6 +1,23 @@
 * CDL/LVS-oriented netlist
 .SUBCKT addhcoi_x1 S CO A B VDD VSS
-* Abstract subckt (no MOS instances).
-* ref_lib analogue: provide a PDK-specific transistor netlist if needed.
-* Use verilog/vhdl for functional simulation; provide a PDK-specific netlist for transistor-level.
+XADDH_S_nr_PA0 pmid_ADDH_S_nr_0 A VDD VDD pmos w=2u l=100n
+XADDH_S_nr_PB0 x_nor_0 B pmid_ADDH_S_nr_0 VDD pmos w=2u l=100n
+XADDH_S_nr_NA0 x_nor_0 A VSS VSS nmos w=1u l=100n
+XADDH_S_nr_NB0 x_nor_0 B VSS VSS nmos w=1u l=100n
+XADDH_S_iv_P0 x_or_0 x_nor_0 VDD VDD pmos w=2u l=100n
+XADDH_S_iv_N0 x_or_0 x_nor_0 VSS VSS nmos w=1u l=100n
+XADDH_S_nd_PA0 x_nand_0 A VDD VDD pmos w=2u l=100n
+XADDH_S_nd_PB0 x_nand_0 B VDD VDD pmos w=2u l=100n
+XADDH_S_nd_NB0 x_nand_0 B nmid_ADDH_S_nd_0 VSS nmos w=1u l=100n
+XADDH_S_nd_NA0 nmid_ADDH_S_nd_0 A VSS VSS nmos w=1u l=100n
+XADDH_S_na_PA0 x_pre_0 x_or_0 VDD VDD pmos w=2u l=100n
+XADDH_S_na_PB0 x_pre_0 x_nand_0 VDD VDD pmos w=2u l=100n
+XADDH_S_na_NB0 x_pre_0 x_nand_0 nmid_ADDH_S_na_0 VSS nmos w=1u l=100n
+XADDH_S_na_NA0 nmid_ADDH_S_na_0 x_or_0 VSS VSS nmos w=1u l=100n
+XADDH_S_xo_P0 S x_pre_0 VDD VDD pmos w=2u l=100n
+XADDH_S_xo_N0 S x_pre_0 VSS VSS nmos w=1u l=100n
+XADDH_COI_PA0 CO A VDD VDD pmos w=2u l=100n
+XADDH_COI_PB0 CO B VDD VDD pmos w=2u l=100n
+XADDH_COI_NB0 CO B nmid_ADDH_COI_0 VSS nmos w=1u l=100n
+XADDH_COI_NA0 nmid_ADDH_COI_0 A VSS VSS nmos w=1u l=100n
 .ENDS addhcoi_x1

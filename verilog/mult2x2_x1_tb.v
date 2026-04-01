@@ -2,7 +2,7 @@
 module tb;
   reg [1:0] a, b;
   wire [3:0] p;
-  mult2x2_x1 dut (.p0(p[0]), .p1(p[1]), .p2(p[2]), .p3(p[3]), .a0(a[0]), .a1(a[1]), .b0(b[0]), .b1(b[1]));
+  mult2x2_x1 dut (.P0(p[0]), .P1(p[1]), .P2(p[2]), .P3(p[3]), .A0(a[0]), .A1(a[1]), .B0(b[0]), .B1(b[1]));
   integer aa, bb;
   initial begin
     for (aa = 0; aa < 4; aa = aa + 1)

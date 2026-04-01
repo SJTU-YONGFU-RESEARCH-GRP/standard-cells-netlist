@@ -1,0 +1,5 @@
+.subckt nd2_psw_x1 VDD VSS VDDR VBP VBN X A1 A2
+* Power-management helper: ref_lib-style rails listed first (VDD,VSS,VDDR,VBP,VBN).
+* Abstract subckt (no MOS instances).
+* No transistor template was found for this kind/drive.
+.ends nd2_psw_x1

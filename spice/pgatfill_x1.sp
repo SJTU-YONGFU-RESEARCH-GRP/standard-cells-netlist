@@ -1,0 +1,5 @@
+.subckt pgatfill_x1 VDDP VSS VBP VBN VDDCF ENXB
+* Power-management helper: ref_lib-style rails listed first (VDD,VSS,VDDR,VBP,VBN).
+* Abstract subckt (no MOS instances).
+* No transistor template was found for this kind/drive.
+.ends pgatfill_x1
