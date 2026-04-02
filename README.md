@@ -2,30 +2,10 @@
 
 ## Table of Contents
 
-- [Drive strengths](#drive-strengths)
 - [Combinational cells](#combinational-cells)
 - [Sequential cells](#sequential-cells)
 - [ECO cells](#eco-cells)
 - [Power management cells](#power-management-cells)
-
-To print the same list from the CLI:
-
-```bash
-./stdcell-gen.sh list-cells
-```
-
-## Drive strengths
-
-Most logic kinds are emitted with a symbolic drive encoded in the module / subcircuit name (for example `inv_x4`).
-
-| # | Drive  | Meaning (SPICE templates)                           |
-|--:|--------|-----------------------------------------------------|
-| 1 | **X1** | Single pull-up / pull-down leg (per template stack) |
-| 2 | **X2** | Two parallel legs                                   |
-| 3 | **X4** | Four parallel legs                                  |
-| 4 | **X8** | Eight parallel legs                                 |
-| . | ....   | ...                                                 |
-| N | **XN** | N parallel legs                                     |
 
 ---
 
